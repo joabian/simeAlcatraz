@@ -14,5 +14,12 @@ namespace simeAlcatraz.Controllers
         {
             return View();
         }
+
+        public ActionResult verInventario()
+        {
+            return View();
+        }
+
+
 	}
 }
