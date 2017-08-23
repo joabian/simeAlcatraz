@@ -16,6 +16,11 @@ namespace simeAlcatraz.Models
     {
         public int id { get; set; }
         public string nombre { get; set; }
-        public Nullable<bool> activo { get; set; }
+        public bool activo { get; set; }
+        public Nullable<int> idEncargado { get; set; }
+        public string direccion { get; set; }
+        public string telefono { get; set; }
+        public string email { get; set; }
+        public string horario { get; set; }
     }
 }

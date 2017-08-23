@@ -21,5 +21,6 @@ namespace simeAlcatraz.Models
         public Nullable<int> idUsuario { get; set; }
         public Nullable<System.DateTime> fechaUltimoServicio { get; set; }
         public string numeroSerie { get; set; }
+        public Nullable<int> idSucursal { get; set; }
     }
 }

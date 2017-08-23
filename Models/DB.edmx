@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sime_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="sime_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actividades">
           <Key>
             <PropertyRef Name="id" />
@@ -37,6 +37,7 @@
           <Property Name="idUsuario" Type="int" />
           <Property Name="fechaUltimoServicio" Type="datetime" />
           <Property Name="numeroSerie" Type="nvarchar" MaxLength="50" />
+          <Property Name="idSucursal" Type="int" />
         </EntityType>
         <EntityType Name="categoria">
           <Key>
@@ -80,9 +81,13 @@
           <Property Name="modeloEquipo" Type="nvarchar" MaxLength="50" />
           <Property Name="serializado" Type="bit" />
           <Property Name="numeroSerie" Type="nvarchar" MaxLength="50" />
-          <Property Name="fechaModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaModifico" Type="datetime" />
           <Property Name="userModifico" Type="nvarchar" MaxLength="50" />
           <Property Name="userCaptura" Type="nvarchar" MaxLength="50" />
+          <Property Name="areaStatus" Type="bit" />
+          <Property Name="hasCheckList" Type="bit" />
+          <Property Name="periodoServ" Type="bit" />
+          <Property Name="periodoServNum" Type="int" />
         </EntityType>
         <EntityType Name="fotos">
           <Key>
@@ -111,6 +116,7 @@
           <Property Name="fechaAtencion" Type="date" />
           <Property Name="fechaClaususa" Type="date" />
           <Property Name="estatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
         </EntityType>
         <EntityType Name="log">
           <Key>
@@ -181,6 +187,7 @@
           <Property Name="sucursal_id" Type="int" Nullable="false" />
           <Property Name="equipo_id" Type="int" Nullable="false" />
           <Property Name="qty" Type="int" Nullable="false" />
+          <Property Name="area_id" Type="int" />
         </EntityType>
         <EntityType Name="subcategoria">
           <Key>
@@ -198,7 +205,12 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="50" />
-          <Property Name="activo" Type="bit" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="idEncargado" Type="int" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="150" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="150" />
+          <Property Name="horario" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="suspenciones">
           <Key>
@@ -267,26 +279,34 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
         <EntityType Name="vw_stock">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="equipoID" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="equipoID" Type="int" Nullable="false" />
+          <Property Name="idArea" Type="int" />
+          <Property Name="idEquipo" Type="int" />
+          <Property Name="idSucursal" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="fechaUltimoServicio" Type="datetime" />
+          <Property Name="nombreEquipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="checklist" Type="bit" />
+          <Property Name="periodo" Type="bit" />
+          <Property Name="diasPeriodo" Type="int" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
           <Property Name="fechaIngreso" Type="datetime" />
           <Property Name="id_categoria" Type="int" />
           <Property Name="id_subcategoria" Type="int" />
           <Property Name="activo" Type="bit" />
           <Property Name="marcaEquipo" Type="nvarchar" MaxLength="50" />
-          <Property Name="nombreEquipo" Type="nvarchar" MaxLength="50" />
           <Property Name="modeloEquipo" Type="nvarchar" MaxLength="50" />
           <Property Name="serializado" Type="bit" />
           <Property Name="numeroSerie" Type="nvarchar" MaxLength="50" />
-          <Property Name="fechaModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaModifico" Type="datetime" />
           <Property Name="userModifico" Type="nvarchar" MaxLength="50" />
           <Property Name="userCaptura" Type="nvarchar" MaxLength="50" />
           <Property Name="categoriaNombre" Type="nvarchar" MaxLength="50" />
           <Property Name="SubcategoriaNombre" Type="nvarchar" MaxLength="50" />
           <Property Name="sucursal" Type="nvarchar" MaxLength="50" />
+          <Property Name="fotourl" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityContainer Name="sime_dbModelStoreContainer">
           <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
@@ -323,14 +343,22 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <EntitySet Name="vw_stock" EntityType="Self.vw_stock" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_stock].[id] AS [id], 
-    [vw_stock].[equipoID] AS [equipoID], 
+    [vw_stock].[idArea] AS [idArea], 
+    [vw_stock].[idEquipo] AS [idEquipo], 
+    [vw_stock].[idSucursal] AS [idSucursal], 
+    [vw_stock].[cantidad] AS [cantidad], 
+    [vw_stock].[idUsuario] AS [idUsuario], 
+    [vw_stock].[fechaUltimoServicio] AS [fechaUltimoServicio], 
+    [vw_stock].[nombreEquipo] AS [nombreEquipo], 
+    [vw_stock].[checklist] AS [checklist], 
+    [vw_stock].[periodo] AS [periodo], 
+    [vw_stock].[diasPeriodo] AS [diasPeriodo], 
     [vw_stock].[descripcion] AS [descripcion], 
     [vw_stock].[fechaIngreso] AS [fechaIngreso], 
     [vw_stock].[id_categoria] AS [id_categoria], 
     [vw_stock].[id_subcategoria] AS [id_subcategoria], 
     [vw_stock].[activo] AS [activo], 
     [vw_stock].[marcaEquipo] AS [marcaEquipo], 
-    [vw_stock].[nombreEquipo] AS [nombreEquipo], 
     [vw_stock].[modeloEquipo] AS [modeloEquipo], 
     [vw_stock].[serializado] AS [serializado], 
     [vw_stock].[numeroSerie] AS [numeroSerie], 
@@ -339,12 +367,12 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
     [vw_stock].[userCaptura] AS [userCaptura], 
     [vw_stock].[categoriaNombre] AS [categoriaNombre], 
     [vw_stock].[SubcategoriaNombre] AS [SubcategoriaNombre], 
-    [vw_stock].[sucursal] AS [sucursal]
+    [vw_stock].[sucursal] AS [sucursal], 
+    [vw_stock].[fotourl] AS [fotourl]
     FROM [dbo].[vw_stock] AS [vw_stock]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sime_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -380,6 +408,7 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <Property Name="idUsuario" Type="Int32" />
           <Property Name="fechaUltimoServicio" Type="DateTime" Precision="3" />
           <Property Name="numeroSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idSucursal" Type="Int32" />
         </EntityType>
         <EntityType Name="categoria">
           <Key>
@@ -423,9 +452,13 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <Property Name="modeloEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="serializado" Type="Boolean" />
           <Property Name="numeroSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fechaModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaModifico" Type="DateTime" Precision="3" />
           <Property Name="userModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="userCaptura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="areaStatus" Type="Boolean" />
+          <Property Name="hasCheckList" Type="Boolean" />
+          <Property Name="periodoServ" Type="Boolean" />
+          <Property Name="periodoServNum" Type="Int32" />
         </EntityType>
         <EntityType Name="foto">
           <Key>
@@ -454,6 +487,7 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <Property Name="fechaAtencion" Type="DateTime" Precision="0" />
           <Property Name="fechaClaususa" Type="DateTime" Precision="0" />
           <Property Name="estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
         </EntityType>
         <EntityType Name="log">
           <Key>
@@ -524,6 +558,7 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <Property Name="sucursal_id" Type="Int32" Nullable="false" />
           <Property Name="equipo_id" Type="Int32" Nullable="false" />
           <Property Name="qty" Type="Int32" Nullable="false" />
+          <Property Name="area_id" Type="Int32" />
         </EntityType>
         <EntityType Name="subcategoria">
           <Key>
@@ -541,7 +576,12 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="activo" Type="Boolean" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="idEncargado" Type="Int32" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="horario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="suspencione">
           <Key>
@@ -606,10 +646,8 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
         <EntityType Name="vw_stock">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="equipoID" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="equipoID" Type="Int32" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
           <Property Name="id_categoria" Type="Int32" />
@@ -620,12 +658,22 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <Property Name="modeloEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="serializado" Type="Boolean" />
           <Property Name="numeroSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fechaModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaModifico" Type="DateTime" Precision="3" />
           <Property Name="userModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="userCaptura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="categoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SubcategoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idArea" Type="Int32" />
+          <Property Name="idEquipo" Type="Int32" />
+          <Property Name="idSucursal" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="fechaUltimoServicio" Type="DateTime" Precision="3" />
+          <Property Name="checklist" Type="Boolean" />
+          <Property Name="periodo" Type="Boolean" />
+          <Property Name="diasPeriodo" Type="Int32" />
+          <Property Name="fotourl" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="sime_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="actividades" EntityType="Self.actividade" />
@@ -683,6 +731,7 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <EntitySetMapping Name="areaStocks">
             <EntityTypeMapping TypeName="sime_dbModel.areaStock">
               <MappingFragment StoreEntitySet="areaStock">
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idArea" ColumnName="idArea" />
                 <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
@@ -726,6 +775,10 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <EntitySetMapping Name="equipoes">
             <EntityTypeMapping TypeName="sime_dbModel.equipo">
               <MappingFragment StoreEntitySet="equipo">
+                <ScalarProperty Name="periodoServNum" ColumnName="periodoServNum" />
+                <ScalarProperty Name="periodoServ" ColumnName="periodoServ" />
+                <ScalarProperty Name="hasCheckList" ColumnName="hasCheckList" />
+                <ScalarProperty Name="areaStatus" ColumnName="areaStatus" />
                 <ScalarProperty Name="equipoID" ColumnName="equipoID" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
@@ -760,6 +813,7 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <EntitySetMapping Name="incidencias">
             <EntityTypeMapping TypeName="sime_dbModel.incidencia">
               <MappingFragment StoreEntitySet="incidencias">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="equipoID" ColumnName="equipoID" />
@@ -842,6 +896,7 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <EntitySetMapping Name="stocks">
             <EntityTypeMapping TypeName="sime_dbModel.stock">
               <MappingFragment StoreEntitySet="stock">
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sucursal_id" ColumnName="sucursal_id" />
                 <ScalarProperty Name="equipo_id" ColumnName="equipo_id" />
@@ -863,6 +918,11 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <EntitySetMapping Name="sucursales">
             <EntityTypeMapping TypeName="sime_dbModel.sucursale">
               <MappingFragment StoreEntitySet="sucursales">
+                <ScalarProperty Name="horario" ColumnName="horario" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="idEncargado" ColumnName="idEncargado" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="activo" ColumnName="activo" />
@@ -934,8 +994,17 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <EntitySetMapping Name="vw_stock">
             <EntityTypeMapping TypeName="sime_dbModel.vw_stock">
               <MappingFragment StoreEntitySet="vw_stock">
+                <ScalarProperty Name="fotourl" ColumnName="fotourl" />
+                <ScalarProperty Name="diasPeriodo" ColumnName="diasPeriodo" />
+                <ScalarProperty Name="periodo" ColumnName="periodo" />
+                <ScalarProperty Name="checklist" ColumnName="checklist" />
+                <ScalarProperty Name="fechaUltimoServicio" ColumnName="fechaUltimoServicio" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="equipoID" ColumnName="equipoID" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />

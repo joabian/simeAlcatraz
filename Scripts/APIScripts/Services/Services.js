@@ -1,4 +1,4 @@
-﻿app.service("EquipoService", function ($http) {
+﻿app.service("Services", function ($http) {
 
     
 

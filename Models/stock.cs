@@ -18,5 +18,6 @@ namespace simeAlcatraz.Models
         public int sucursal_id { get; set; }
         public int equipo_id { get; set; }
         public int qty { get; set; }
+        public Nullable<int> area_id { get; set; }
     }
 }

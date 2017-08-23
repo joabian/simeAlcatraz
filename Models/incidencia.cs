@@ -24,5 +24,6 @@ namespace simeAlcatraz.Models
         public Nullable<System.DateTime> fechaAtencion { get; set; }
         public Nullable<System.DateTime> fechaClaususa { get; set; }
         public string estatus { get; set; }
+        public Nullable<int> status { get; set; }
     }
 }

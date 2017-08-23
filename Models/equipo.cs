@@ -25,8 +25,12 @@ namespace simeAlcatraz.Models
         public string modeloEquipo { get; set; }
         public Nullable<bool> serializado { get; set; }
         public string numeroSerie { get; set; }
-        public string fechaModifico { get; set; }
+        public Nullable<System.DateTime> fechaModifico { get; set; }
         public string userModifico { get; set; }
         public string userCaptura { get; set; }
+        public Nullable<bool> areaStatus { get; set; }
+        public Nullable<bool> hasCheckList { get; set; }
+        public Nullable<bool> periodoServ { get; set; }
+        public Nullable<int> periodoServNum { get; set; }
     }
 }

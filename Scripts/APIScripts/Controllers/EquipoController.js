@@ -56,9 +56,16 @@
             nombreEquipo: $scope.nombreEquipo,
             modeloEquipo: $scope.modelo,
             serializado: isSerializado,
-            numeroSerie: serial
+            numeroSerie: serial,
+            fechaModifico: new Date(),
+            userModifico: 'admin',
+            userCaptura: 'admin',
+            areaStatus: false,
+            hasCheckList: false,
+            periodoServ: false,
+            periodoServNum: 0
         };
-
+        console.log(equipo);
         var saveEquipo = Services.saveEquipo(equipo);
         saveEquipo.then(function (d) {
             getAll();
