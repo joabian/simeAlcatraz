@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sime_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="actividades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idChecklist" Type="int" />
+    <Property Name="idTarea" Type="int" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="areas">
+    <Key>
+      <PropertyRef Name="areaID" />
+    </Key>
+    <Property Name="areaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="250" />
+    <Property Name="idSucursal" Type="int" />
+    <Property Name="usuarioEncargado" Type="int" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="fechaIngreso" Type="datetime" />
+  </EntityType>
+  <EntityType Name="areaStock">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idArea" Type="int" />
+    <Property Name="idEquipo" Type="int" />
+    <Property Name="cantidad" Type="int" />
+    <Property Name="idUsuario" Type="int" />
+    <Property Name="fechaUltimoServicio" Type="datetime" />
+    <Property Name="numeroSerie" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="categoria">
+    <Key>
+      <PropertyRef Name="categoriaID" />
+    </Key>
+    <Property Name="categoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="fechaIngreso" Type="datetime" />
+  </EntityType>
+  <EntityType Name="checklist">
+    <Key>
+      <PropertyRef Name="checkID" />
+    </Key>
+    <Property Name="checkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idEquipo" Type="int" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+    <Property Name="periodoServicio" Type="int" />
+  </EntityType>
+  <EntityType Name="comentarios">
+    <Key>
+      <PropertyRef Name="comentarioID" />
+    </Key>
+    <Property Name="comentarioID" Type="int" Nullable="false" />
+    <Property Name="incidenciaID" Type="int" Nullable="false" />
+    <Property Name="comentario" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="equipo">
+    <Key>
+      <PropertyRef Name="equipoID" />
+    </Key>
+    <Property Name="equipoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+    <Property Name="fechaIngreso" Type="datetime" />
+    <Property Name="id_categoria" Type="int" />
+    <Property Name="id_subcategoria" Type="int" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="marcaEquipo" Type="nvarchar" MaxLength="50" />
+    <Property Name="nombreEquipo" Type="nvarchar" MaxLength="50" />
+    <Property Name="modeloEquipo" Type="nvarchar" MaxLength="50" />
+    <Property Name="serializado" Type="bit" />
+    <Property Name="numeroSerie" Type="nvarchar" MaxLength="50" />
+    <Property Name="fechaModifico" Type="nvarchar" MaxLength="50" />
+    <Property Name="userModifico" Type="nvarchar" MaxLength="50" />
+    <Property Name="userCaptura" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="fotos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_equipo" Type="int" />
+    <Property Name="url" Type="nvarchar" MaxLength="150" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="fcreo" Type="date" />
+    <Property Name="creo" Type="varchar" MaxLength="50" />
+    <Property Name="modifico" Type="varchar" MaxLength="50" />
+    <Property Name="fmodifico" Type="date" />
+  </EntityType>
+  <EntityType Name="incidencias">
+    <Key>
+      <PropertyRef Name="incidenciaID" />
+    </Key>
+    <Property Name="incidenciaID" Type="int" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="100" />
+    <Property Name="equipoID" Type="int" Nullable="false" />
+    <Property Name="serializado" Type="bit" />
+    <Property Name="numSerie" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="fechaAperrtura" Type="date" />
+    <Property Name="fechaAtencion" Type="date" />
+    <Property Name="fechaClaususa" Type="date" />
+    <Property Name="estatus" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idRecord" Type="int" />
+    <Property Name="tabla" Type="nvarchar" MaxLength="50" />
+    <Property Name="usuario" Type="int" />
+    <Property Name="evento" Type="nvarchar" MaxLength="500" />
+    <Property Name="valOld" Type="nvarchar" MaxLength="50" />
+    <Property Name="valNew" Type="nvarchar" MaxLength="50" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="pagina" Type="nvarchar" MaxLength="150" />
+    <Property Name="tipo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="requisiciones">
+    <Key>
+      <PropertyRef Name="requisicionID" />
+    </Key>
+    <Property Name="requisicionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idRequisitor" Type="int" />
+    <Property Name="idResuelve" Type="int" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+    <Property Name="respuesta" Type="nvarchar" MaxLength="500" />
+    <Property Name="estatus" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="roles">
+    <Key>
+      <PropertyRef Name="rolID" />
+    </Key>
+    <Property Name="rolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rol" Type="nvarchar" MaxLength="50" />
+    <Property Name="creo" Type="int" />
+    <Property Name="fCreo" Type="datetime" />
+    <Property Name="modifico" Type="int" />
+    <Property Name="fModifico" Type="datetime" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="servicios">
+    <Key>
+      <PropertyRef Name="servicioID" />
+    </Key>
+    <Property Name="servicioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idAreaStock" Type="int" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="idUsuario" Type="int" />
+    <Property Name="atendido" Type="bit" />
+    <Property Name="idChecklist" Type="int" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="soluciones">
+    <Key>
+      <PropertyRef Name="solucionID" />
+    </Key>
+    <Property Name="solucionID" Type="int" Nullable="false" />
+    <Property Name="incidenciaID" Type="int" Nullable="false" />
+    <Property Name="solucion" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="funciono" Type="bit" Nullable="false" />
+    <Property Name="contador" Type="int" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="stock">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sucursal_id" Type="int" Nullable="false" />
+    <Property Name="equipo_id" Type="int" Nullable="false" />
+    <Property Name="qty" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="subcategoria">
+    <Key>
+      <PropertyRef Name="subcategoriaID" />
+    </Key>
+    <Property Name="subcategoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="categoriaID" Type="int" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="fechaIngreso" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="sucursales">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="suspenciones">
+    <Key>
+      <PropertyRef Name="suspencionID" />
+    </Key>
+    <Property Name="suspencionID" Type="int" Nullable="false" />
+    <Property Name="incidenciaID" Type="int" Nullable="false" />
+    <Property Name="comentario" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="fechaApertura" Type="datetime" Nullable="false" />
+    <Property Name="fechaClausura" Type="datetime" Nullable="false" />
+    <Property Name="activa" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tareasCheck">
+    <Key>
+      <PropertyRef Name="idTarea" />
+    </Key>
+    <Property Name="idTarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreTarea" Type="nvarchar" MaxLength="200" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="creo" Type="nvarchar" MaxLength="200" />
+    <Property Name="fcreo" Type="date" />
+    <Property Name="modifico" Type="nvarchar" MaxLength="200" />
+    <Property Name="fmodifico" Type="date" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="usuarioID" />
+    </Key>
+    <Property Name="usuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usuario" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="apellidoPaterno" Type="nvarchar" MaxLength="100" />
+    <Property Name="apellidoMaterno" Type="nvarchar" MaxLength="100" />
+    <Property Name="fechaNacimiento" Type="datetime" />
+    <Property Name="rfc" Type="nvarchar" MaxLength="50" />
+    <Property Name="curp" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="fechaContratacion" Type="datetime" />
+    <Property Name="idSupervisor" Type="int" />
+    <Property Name="idSucursalBase" Type="int" />
+    <Property Name="telefono" Type="nvarchar" MaxLength="50" />
+    <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="departamento" Type="int" />
+    <Property Name="puesto" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'sime_db.dbo.vw_areas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_areas">
+    <Key>
+      <PropertyRef Name="areaID" />
+      <PropertyRef Name="nombreSucursal" />
+      <PropertyRef Name="nombreEncargado" />
+    </Key>
+    <Property Name="areaID" Type="int" Nullable="false" />
+    <Property Name="nombreArea" Type="nvarchar" MaxLength="50" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="250" />
+    <Property Name="nombreSucursal" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombreEncargado" Type="nvarchar" MaxLength="302" Nullable="false" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="fechaIngreso" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_stock">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="equipoID" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="equipoID" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+    <Property Name="fechaIngreso" Type="datetime" />
+    <Property Name="id_categoria" Type="int" />
+    <Property Name="id_subcategoria" Type="int" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="marcaEquipo" Type="nvarchar" MaxLength="50" />
+    <Property Name="nombreEquipo" Type="nvarchar" MaxLength="50" />
+    <Property Name="modeloEquipo" Type="nvarchar" MaxLength="50" />
+    <Property Name="serializado" Type="bit" />
+    <Property Name="numeroSerie" Type="nvarchar" MaxLength="50" />
+    <Property Name="fechaModifico" Type="nvarchar" MaxLength="50" />
+    <Property Name="userModifico" Type="nvarchar" MaxLength="50" />
+    <Property Name="userCaptura" Type="nvarchar" MaxLength="50" />
+    <Property Name="categoriaNombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="SubcategoriaNombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="sucursal" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="sime_dbModelStoreContainer">
+    <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="areas" EntityType="Self.areas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="areaStock" EntityType="Self.areaStock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="checklist" EntityType="Self.checklist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="comentarios" EntityType="Self.comentarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipo" EntityType="Self.equipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fotos" EntityType="Self.fotos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="incidencias" EntityType="Self.incidencias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="log" EntityType="Self.log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="requisiciones" EntityType="Self.requisiciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="servicios" EntityType="Self.servicios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="soluciones" EntityType="Self.soluciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="stock" EntityType="Self.stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subcategoria" EntityType="Self.subcategoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="suspenciones" EntityType="Self.suspenciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tareasCheck" EntityType="Self.tareasCheck" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_areas" EntityType="Self.vw_areas" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_areas].[areaID] AS [areaID], 
+    [vw_areas].[nombreArea] AS [nombreArea], 
+    [vw_areas].[descripcion] AS [descripcion], 
+    [vw_areas].[nombreSucursal] AS [nombreSucursal], 
+    [vw_areas].[nombreEncargado] AS [nombreEncargado], 
+    [vw_areas].[activo] AS [activo], 
+    [vw_areas].[fechaIngreso] AS [fechaIngreso]
+    FROM [dbo].[vw_areas] AS [vw_areas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_stock" EntityType="Self.vw_stock" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_stock].[id] AS [id], 
+    [vw_stock].[equipoID] AS [equipoID], 
+    [vw_stock].[descripcion] AS [descripcion], 
+    [vw_stock].[fechaIngreso] AS [fechaIngreso], 
+    [vw_stock].[id_categoria] AS [id_categoria], 
+    [vw_stock].[id_subcategoria] AS [id_subcategoria], 
+    [vw_stock].[activo] AS [activo], 
+    [vw_stock].[marcaEquipo] AS [marcaEquipo], 
+    [vw_stock].[nombreEquipo] AS [nombreEquipo], 
+    [vw_stock].[modeloEquipo] AS [modeloEquipo], 
+    [vw_stock].[serializado] AS [serializado], 
+    [vw_stock].[numeroSerie] AS [numeroSerie], 
+    [vw_stock].[fechaModifico] AS [fechaModifico], 
+    [vw_stock].[userModifico] AS [userModifico], 
+    [vw_stock].[userCaptura] AS [userCaptura], 
+    [vw_stock].[categoriaNombre] AS [categoriaNombre], 
+    [vw_stock].[SubcategoriaNombre] AS [SubcategoriaNombre], 
+    [vw_stock].[sucursal] AS [sucursal]
+    FROM [dbo].[vw_stock] AS [vw_stock]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
