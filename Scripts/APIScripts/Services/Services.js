@@ -1,7 +1,5 @@
 ﻿app.service("Services", function ($http) {
-
     
-
     this.getEquipos = function () {
         return $http.get("/api/equipos")
     }

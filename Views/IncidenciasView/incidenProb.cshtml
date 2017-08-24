@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "incidenProb";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="IncidenCtrl">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="text-center m-t-lg">
+                <div class="ibox-title" style="background:#0a1434; color:white;">
+                    <h1><strong>Crear Incidencia</strong></h1>
+                </div><br />
+
+                <div class="ibox-title">
+                    <h5>Formulario para crear Incidencia</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Usuario</label>
+                            <div class="col-lg-10"><input type="text" placeholder="Usuario" ng-model="usuario" class="form-control">  </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Equipo</label>
+
+                            <div class="col-lg-10"><input type="text" placeholder="Equipo" ng-model="equipoID" class="form-control"></div>
+                            <span class="help-block m-b-none">
+                                Número de equipo que muestra en su etiqueta
+                            </span>
+                        </div>
+                       <!-- <div class="form-group">
+                            <label class="col-sm-2 control-label">Serializado</label>
+                            <div class="col-sm-10">
+                                <div class="i-checks"><label><input type="checkbox" ng-model="checked" aria-label="Toggle ngShow" data-ng-click="ocultar();"> <i></i></label></div>
+                            </div>
+                        </div>
+                        <div class="form-group check-element animate-show-hide" ng-show="checked">
+                            <label class="col-sm-2 control-label">Número de serie</label>
+                            <div class="col-sm-10"><input type="text" placeholder="Número de serie" data-ng-model="noserie" class="form-control "></div>
+                        </div>-->
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Descripción</label>
+                                <div class="col-sm-10">
+                                    <textarea rows="5" cols="10" class="form-control" ng-model="descripcion" placeholder="Ingrese una descripción"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                       <!-- <div class="text-left">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Foto</label>
+                                <div class="col-sm-10">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput" data-ng-model="foto2">
+                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                        <div>
+                                            <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar imagen</span><span class="fileinput-exists">Cambiar</span><input type="file" file-model="foto" name="imgUpl" id="imguplo"></span>
+                                            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <br />
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button type="button" id="incProb" ng-click="saveInc();" class="btn btn-info">Registrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function showValor(val) {
+        alert(val);
+    }
+</script>
+<link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+<!-- Jasny -->
+<script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+

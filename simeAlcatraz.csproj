@@ -133,6 +133,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
+    <Folder Include="Views\Incidencias\" />
+    <Folder Include="Views\tickets\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="Controllers\GridOptionsController.cs" />
     <Compile Include="Controllers\DashboardsController.cs" />
     <Compile Include="Controllers\incidenciasController.cs" />
+    <Compile Include="Controllers\incidenciasViewController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\LandingController.cs" />
     <Compile Include="Controllers\LayoutsController.cs" />
@@ -172,9 +175,11 @@
     <Compile Include="Controllers\stockController.cs" />
     <Compile Include="Controllers\subcategoriasController.cs" />
     <Compile Include="Controllers\sucursalesController.cs" />
+    <Compile Include="Controllers\sucursalesViewController.cs" />
     <Compile Include="Controllers\suspencionesController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\tareasChecksController.cs" />
+    <Compile Include="Controllers\ticketsViewController.cs" />
     <Compile Include="Controllers\UIElementsController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Controllers\vwAreasController.cs" />
@@ -502,6 +507,7 @@
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\angular.min.js" />
     <Content Include="Scripts\APIScripts\Controllers\EquipoController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\IncidenciaController.js" />
     <Content Include="Scripts\APIScripts\Modules\Module.js" />
     <Content Include="Scripts\APIScripts\Services\Services.js" />
     <Content Include="Scripts\api\typehead_collection.json" />
@@ -1952,6 +1958,15 @@
     <Content Include="Scripts\plugins\topojson\LICENSE" />
     <Content Include="Views\EquiposView\agregarEquipo.cshtml" />
     <Content Include="Views\EquiposView\verInventario.cshtml" />
+    <Content Include="Views\IncidenciasView\incidencias.cshtml" />
+    <Content Include="Views\IncidenciasView\incidenCerradas.cshtml" />
+    <Content Include="Views\IncidenciasView\incidenProb.cshtml" />
+    <Content Include="Views\IncidenciasView\incidenSol.cshtml" />
+    <Content Include="Views\IncidenciasView\incidenSusp.cshtml" />
+    <Content Include="Views\SucursalesView\sucursales.cshtml" />
+    <Content Include="Views\SucursalesView\sucursalEnc.cshtml" />
+    <Content Include="Views\TicketsView\ticketForm.cshtml" />
+    <Content Include="Views\TicketsView\ticketLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

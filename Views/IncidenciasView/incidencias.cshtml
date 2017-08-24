@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "incidencias";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper wrapper-content  animated fadeInRight" ng-controller="IncidenciaController">
+
+    <div class="row">
+        <div class="text-center m-t-lg">
+            <div class="ibox-title" style="background:#0a1434; color:white;">
+                <h1><strong>Tablero de Incidencias</strong></h1>
+            </div><br />
+        </div>
+
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>Abiertas</h3>
+                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list" ng-model="data.inc">
+                        <li ng-if="abierta.estatus==1" ng-repeat="abierta in data.inc">
+                            <strong>Descripcion: </strong> {{abierta.descripcion}}
+                            <br /><strong>Usuario: </strong> {{abierta.usuario}}
+                            <div class="agile-detail">
+                                <a class="pull-right btn btn-xs btn-white">Atender</a>
+                                <i class="fa fa-arrow-circle-right"><strong> ID de incidencia: </strong></i> {{abierta.incidenciaID}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>Suspendidas</h3>
+                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list" ng-model="dataS.suspen">
+                        <li class="{{suspe.statusClass}}-element" ng-repeat="suspe in dataS.susp">
+                            <strong>Descripcion: </strong> {{suspe.comentario}}
+                            <div class="agile-detail">
+                                <a class="pull-right btn btn-xs btn-white">Re-abrir</a>
+                                <i class="fa fa-arrow-circle-right"><strong> ID de incidencia: </strong></i> {{suspe.incidenciaID}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>En atención</h3>
+                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list" ng-model="data.inc">
+                        <li ng-if="abierta.estatus==3" ng-repeat="abierta in inc">
+                            <strong>Descripcion: </strong> {{abierta.descripcion}}
+                            <br /><strong>Usuario: </strong> {{abierta.usuario}}
+                            <div class="agile-detail">
+                                <a class="pull-right btn btn-xs btn-white" href="views/incidenSol.html">Agregar solucion</a>
+                                <a class="pull-right btn btn-xs btn-white" href="incidenSusp.html">Suspender</a>
+                                <i class="fa fa-arrow-circle-right"><strong> ID de incidencia: </strong></i> {{abierta.incidenciaID}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <h4>
+                Incidencias en serie
+            </h4>
+
+            <div class="output p-m m white-bg">
+
+                <h3>Abiertas</h3>
+                {{data.inc }}
+
+                <h3>En proceso</h3>
+                {{inProgressList }}
+
+                <h3>Cerradas</h3>
+                {{completedList}}
+
+            </div>
+        </div>
+    </div>
+</div>
+

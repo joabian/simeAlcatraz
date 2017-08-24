@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "incidenCerradas";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="IncidenCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="text-center m-t-lg">
+                    <div class="ibox-title" style="background:#0a1434; color:white;">
+                        <h1><strong>Lista de Incidencias cerradas</strong></h1>
+                    </div><br />
+                </div>
+                <div class="ibox-content">
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Descripción</th>
+                            <th>Fecha registro</th>
+                            <th>Fecha atencion</th>
+                            <th>Fecha cierre</th>
+                        </tr>
+                        <tr ng-repeat="incidencias in data.inc" ng-if="incidencias.estatus==4">
+                            <td>{{ incidencias.incidenciaID }}</td>
+                            <td>{{ incidencias.usuario }}</td>
+                            <td>{{ incidencias.descripcion}}</td>
+                            <td>{{ incidencias.fechaAperrtura}}</td>
+                            <td>{{ incidencias.fechaAtencion}}</td>
+                            <td>{{ incidencias.fechaClaususa}}</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
