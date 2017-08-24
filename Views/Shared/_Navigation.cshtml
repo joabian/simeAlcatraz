@@ -31,6 +31,7 @@
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "EquiposView", cssClass: "in")">
                     <li class="@Html.IsSelected(action: "agregarEquipo")"><a href="@Url.Action("agregarEquipo", "EquiposView")">Agregar Equipo</a></li>
                     <li class="@Html.IsSelected(action: "verInventario")"><a href="@Url.Action("verInventario", "EquiposView")">Ver Inventario</a></li>
+                    <li class="@Html.IsSelected(action: "updateEquipo")"><a href="@Url.Action("updateEquipo", "EquiposView")">Modificar</a></li>
                 </ul>
             </li>
 

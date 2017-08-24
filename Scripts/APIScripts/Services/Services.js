@@ -6,6 +6,10 @@
         return $http.get("/api/equipos")
     }
 
+    this.getCategorias = function () {
+        return $http.get("/api/categorias")
+    }
+
     this.getEquipoByID = function (id) {
         var url = '/api/equipos/' + id;
         return $http(

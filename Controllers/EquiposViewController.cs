@@ -20,6 +20,10 @@ namespace simeAlcatraz.Controllers
             return View();
         }
 
+        public ActionResult updateEquipo()
+        {
+            return View();
+        }
 
-	}
+    }
 }
