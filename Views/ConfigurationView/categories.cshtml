@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "categories";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Categorias</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("agregarEquipo", "EquiposView")">Inicio</a>
+            </li>
+            <li>
+                <a>Configuracion</a>
+            </li>
+            <li class="active">
+                <strong>Categorias</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="CategoriaController">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Categorias Activas</h5> &nbsp; <i>(doble click para actualizar)</i>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody data-ng-repeat="categoria in categorias">
+                            <tr>
+                                <td>{{categoria.categoriaID}}</td>
+                                <td ng-blur="updCategoria(categoria,$event)" ng-dblclick="makeEditable($event)">{{categoria.nombre}}</td>
+                                <td> 
+                                    <button class="btn btn-danger btn-circle" type="button" data-ng-click="dltCategoria(categoria.categoriaID)">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Agregar nueva Categoria</h5>
+                    
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group">
+                        <label for="codigo">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre" data-ng-model="nombre" required/>
+                    </div>
+                    <button type="button" class="btn btn-default" data-ng-click="saveCategoria();">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/peity")
+    @Scripts.Render("~/plugins/iCheck")
+}

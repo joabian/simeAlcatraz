@@ -1,0 +1,20 @@
+﻿.cusRadio{
+   
+}
+.cusRadioLabel{
+    text-align:left;
+   
+    color:#7f8c8d;
+    font-size:16px;
+    line-height:33px;
+}
+.cusRadio input[type=radio] {
+    -webkit-appearance:none;
+    width:25px;
+    height:25px;
+    background:#ecf0f1;
+    outline:none;
+}
+.cusRadio input[type=radio]:hover{
+    cursor:pointer;
+}
