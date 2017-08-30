@@ -116,7 +116,9 @@ namespace simeAlcatraz
 
             // dataTables 
             bundles.Add(new ScriptBundle("~/plugins/dataTables").Include(
-                      "~/Scripts/plugins/dataTables/datatables.min.js"));
+                      "~/Scripts/plugins/dataTables/datatables.min.js",
+                      "~/Scripts/plugins/dataTables/angular-datatables.min.js",
+                      "~/Scripts/plugins/dataTables/angular-datatables.buttons.min.js"));
 
             // jeditable 
             bundles.Add(new ScriptBundle("~/plugins/jeditable").Include(

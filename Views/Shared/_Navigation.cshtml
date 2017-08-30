@@ -39,7 +39,7 @@
                 <a href="#"><i class="fa fa-bicycle"></i> <span class="nav-label" data-i18n="nav.equipment">Equipo</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "EquiposView", cssClass: "in")">
                     <li class="@Html.IsSelected(action: "agregarEquipo")"><a href="@Url.Action("agregarEquipo", "EquiposView")">Agregar Equipo</a></li>
-                    <li class="@Html.IsSelected(action: "verInventario")"><a href="@Url.Action("verInventario", "EquiposView")">Ver Inventario</a></li>
+                    <li class="@Html.IsSelected(action: "inventario")"><a href="@Url.Action("inventario", "EquiposView")">Ver Inventario</a></li>
                 </ul>
             </li>
 
