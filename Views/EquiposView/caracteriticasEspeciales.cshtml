@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "Caracteristicas especiales";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="wrapper" class="wrapper wrapper-content" ng-controller="EquipoController" >
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h2>Caracteristicas especiales</h2>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-5">
+                <select class="form-control" ng-model="seloadAction" ng-change="loadActioncarEsp();">
+                    <option value="">Escoja una accion</option>
+                    <option value="1">Control de mantenimiento</option>
+                    <option value="2">Control de inventario</option>
+                </select>
+            </div>
+        </div>
+        <br />
+
+        <div class="row" style="background:#fff;">
+            <div ng-if="valAction == 0" ></div>
+
+            <div ng-if="valAction == 1" class="animated fadeInRight">
+                <hr />
+
+                <div class="row">
+                    <div class="col-lg-8 col-sm-8 text-center"><h4>Seleccione el equipo y periodo</h4></div>
+                    <div class="col-lg-3 col-sm-3"><h4>Seleccione las tareas para el mantenimiento</h4></div>
+                </div>
+                <div class="col-lg-8 col-sm-8" style="padding-top:10px;">
+                    <div class="row col-lg-12 col-sm-12">
+                        <div class="col-lg-6 col-sm-6">
+                            <select class="form-control" ng-options="Categoria.nombre for Categoria in categorias track by Categoria.categoriaID"
+                                    ng-model="category" ng-change="updateSubcat(category.categoriaID)">
+                                <option value="">Seleccionar Categoria</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-sm-6" >
+                            <select class="form-control" ng-options="Subcategoria.nombre for Subcategoria in subcategorias track by Subcategoria.subcategoriaID"
+                                    ng-model="subcategory" ng-change="getEquiposWhoutCheck(subcategory.subcategoriaID)">
+                                <option value="">seleccionar Subcategoria</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row col-lg-12 col-sm-12">
+                        <br />
+                        <div class="col-lg-12 col-sm-12">
+                            <select class="form-control" ng-options="periodo.nombrePeriodo for periodo in periodoMantenimiento track by periodo.idperiodo"
+                                    ng-model="periodomant">
+                                <option value="">Periodo de revision</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12">
+                        <br />
+                        <div class="col-lg-4 col-sm-6 animated fadeInRight" ng-repeat="equi in equiposWotck">
+                            <div class="ibox-content text-center contenEquipo" onclick="changeColorChk2(this)">
+                                <h3>{{equi.nombreEquipo}}</h3>
+                                <div class="" style="padding-left:0px;">
+                                    <img alt="image" class="imgeqTsk" ng-src="{{equi.fotourl}}" style="width:100%;height:150px">
+                                </div>
+                                <small>Marca:{{equi.marcaEquipo}}</small><br />
+                                <small>No. Serie:{{equi.numeroSerie}}</small><br />
+                                <small>Sucursal: {{equi.sucursal}}</small>
+                                <input type="checkbox" value='{{equi.idEquipo}}' style="visibility:" name="equiposFCheck" class="i-checks">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 text-center">
+                        <div class="row col-lg-12 col-sm-12 center-block" style="display:block;margin:auto">
+                            <br />
+                            <button type="button" class="btn btn-info" ng-click="saveChecklist(category,subcategory,periodomant);">Guardar lista</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-3" >
+                    <ul class="todo-list m-t" >
+                        <li ng-repeat="tareas in tareascheck" class="clickeableLi" onclick="changeColorChk(this)">
+                            <input type="checkbox" value='{{tareas.idTarea}}' name="tareasCheck" class="i-checks" style="visibility:hidden"> {{tareas.nombreTarea}}
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div ng-if="valAction == 2" class="animated fadeInRight">
+
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 text-center"><h4>Seleccione el equipo y periodo</h4></div>
+                </div>
+                <div class="col-lg-12 col-sm-12" style="padding-top:10px;">
+                    <div class="row col-lg-12 col-sm-12">
+                        <div class="col-lg-6 col-sm-6">
+                            <select class="form-control" ng-options="Categoria.nombre for Categoria in categorias track by Categoria.categoriaID"
+                                    ng-model="category" ng-change="updateSubcat(category.categoriaID)">
+                                <option value="">Seleccionar Categoria</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <select class="form-control" ng-options="Subcategoria.nombre for Subcategoria in subcategorias track by Subcategoria.subcategoriaID"
+                                    ng-model="subcategory" ng-change="getEquiposWhoutCheck(subcategory.subcategoriaID)">
+                                <option value="">seleccionar Subcategoria</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row col-lg-12 col-sm-12">
+                        <br />
+                        <div class="col-lg-12 col-sm-12">
+                            <select class="form-control" ng-options="periodo.nombrePeriodo for periodo in periodoMantenimiento track by periodo.idperiodo"
+                                    ng-model="periodoMantenimiento.periodomant">
+                                <option value="">Periodo de revision</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12" ui-view="contentEquTask"></div>
+                    <div class="col-lg-12 col-sm-12 text-center">
+                        <div class="row col-lg-12 col-sm-12 center-block" style="display:block;margin:auto">
+                            <br />
+                            <button type="button" class="btn btn-info" ng-click="savePeriodo();">Guardar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+
+        </div>
+    </div>
+<script type="text/javascript">
+		function changeColorChk(li){
+			if(li.childNodes[1].checked){
+			    li.style.background = "#fff";
+				li.style.color="#000";
+				li.childNodes[1].checked=false;
+			}else{
+				li.style.background = "#1abc9c";
+				li.style.color="#fff";
+				li.childNodes[1].checked=true;
+			}
+		}
+		function changeColorChk2(li) {
+		    if (li.childNodes[13].checked) {
+		        li.style.background = "#fff";
+		        li.style.color = "#000";
+		        li.childNodes[13].checked = false;
+		    } else {
+		        li.style.background = "#1abc9c";
+		        li.style.color = "#fff";
+		        li.childNodes[13].checked = true;
+		    }
+
+		}
+</script>

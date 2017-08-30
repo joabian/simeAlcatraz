@@ -27,6 +27,7 @@ namespace simeAlcatraz.Controllers
             equipo fnd = myEntity.equipoes.Find(id);
             return fnd;
         }
+       
 
         // POST api/equipos
         public void Post(equipo equipo)

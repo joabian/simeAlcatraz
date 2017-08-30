@@ -133,6 +133,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
+    <Folder Include="Images\assets\" />
+    <Folder Include="Views\Configuracion\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -145,6 +147,8 @@
     <Compile Include="Controllers\categoriasController.cs" />
     <Compile Include="Controllers\checkListsController.cs" />
     <Compile Include="Controllers\comentariosController.cs" />
+    <Compile Include="Controllers\ConfiguracionController.cs" />
+    <Compile Include="Controllers\ConfiguracionViewController.cs" />
     <Compile Include="Controllers\CSSAnimationsController.cs" />
     <Compile Include="Controllers\EcommerceController.cs" />
     <Compile Include="Controllers\EquiposController.cs" />
@@ -1953,6 +1957,9 @@
     <Content Include="Views\EquiposView\agregarEquipo.cshtml" />
     <Content Include="Views\EquiposView\verInventario.cshtml" />
     <Content Include="Views\EquiposView\updateEquipo.cshtml" />
+    <Content Include="Views\ConfiguracionView\categorias.cshtml" />
+    <Content Include="Views\inventario.cshtml" />
+    <Content Include="Views\EquiposView\caracteriticasEspeciales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
