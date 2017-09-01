@@ -18,3 +18,17 @@
 .cusRadio input[type=radio]:hover{
     cursor:pointer;
 }
+.todo-list .clickeableLi{
+	background:#fff;
+	color:#000;
+    border:1px solid #bdc3c7;
+}
+.todo-list .clickeableLi:hover{
+	cursor:pointer;	
+}
+.contenEquipo{
+    border:1px solid #bdc3c7;
+}
+.contenEquipo:hover{
+    cursor:pointer;
+}

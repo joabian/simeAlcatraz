@@ -46,5 +46,56 @@ namespace simeAlcatraz.Controllers
                         select mysub;
             return query;
         }
+        // GET api/vwstock/GetBySucNameCatSubcat/1/1/2
+        [Route("api/vwstock/GetBySubcat/{subId}/")]
+        public IEnumerable<vw_stock> GetBySubcategoryID(int subId)
+        {
+          
+                var query = from mysub in myEntity.vw_stock.AsEnumerable()
+                .Where(mysub => mysub.id_subcategoria == subId
+                && mysub.checklist == false)
+                            select mysub;
+                return query;
+         
+
+        }
+
+ 
+        // GET api/vwstock/GetBySubcatInv/1
+        [Route("api/vwstock/GetBySubcatInv/{subId}/")]
+        public IEnumerable<vw_stock> GetBySubcategoryIDnoInv(int subId)
+        {
+
+            var query = from mysub in myEntity.vw_stock.AsEnumerable()
+            .Where(mysub => mysub.id_subcategoria == subId
+            && mysub.periodo == false)
+                        select mysub;
+            return query;
+
+
+        }
+        // GET api/vwstock/GetBySucNameCatSubcat/1/1/2
+        [Route("api/vwstock/GetBySucNameCatSubcat/{sucId}/{catId}/{subId}")]
+        public IEnumerable<vw_stock> GetByCategoryID(int sucId, int catId, int subId)
+        {
+            if (subId == 0)
+            {
+                var query = from mysub in myEntity.vw_stock.AsEnumerable()
+                .Where(mysub => mysub.idSucursal == sucId
+                && mysub.id_categoria == catId)
+                            select mysub;
+                return query;
+            }
+            else
+            {
+                var query = from mysub in myEntity.vw_stock.AsEnumerable()
+                .Where(mysub => mysub.idSucursal == sucId
+                && mysub.id_categoria == catId
+                && mysub.id_subcategoria == subId)
+                            select mysub;
+                return query;
+            }
+
+        }
     }
 }

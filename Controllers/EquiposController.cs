@@ -27,6 +27,7 @@ namespace simeAlcatraz.Controllers
             equipo fnd = myEntity.equipoes.Find(id);
             return fnd;
         }
+       
 
         // POST api/equipos
         public void Post(equipo equipo)
@@ -72,6 +73,29 @@ namespace simeAlcatraz.Controllers
                     throw;
                 }
             }
+        }
+        // POST api/usuarios/updateField/id/name/value
+        [Route("api/equipos/updateField/{id}/{fieldName}/{value}")]
+        public void Post(int id, string fieldName, int value)
+        {
+            myEntity.Database.ExecuteSqlCommand("UPDATE equipo SET [" + fieldName + "] = '" + value + "', periodoServ='true' WHERE equipoID = '" + id+"'");
+            myEntity.SaveChanges();
+        }
+
+        // POST api/usuarios/updateFieldx/id/name/value
+        [Route("api/equipos/updateFieldChkl/{id}/{value}/{fieldName}")]
+        public void Post(int id, string value, string fieldName)
+        {
+            myEntity.Database.ExecuteSqlCommand("UPDATE equipo SET [" + fieldName + "] = '" + value + "' WHERE equipoID = '" + id + "'");
+            myEntity.SaveChanges();
+        }
+
+        // POST api/usuarios/updateFieldx/id/name/value
+        [Route("api/equipos/updateFieldChkl/{id}/{value}/{fieldName}")]
+        public void get(int id, string value, string fieldName)
+        {
+            myEntity.Database.ExecuteSqlCommand("UPDATE equipo SET [" + fieldName + "] = '" + value + "' WHERE equipoID = '" + id + "'");
+            myEntity.SaveChanges();
         }
     }
 }

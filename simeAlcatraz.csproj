@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>simeAlcatraz</RootNamespace>
     <AssemblyName>simeAlcatraz</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,6 +61,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -71,8 +73,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -109,9 +110,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -126,6 +125,7 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -133,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
+    <Folder Include="Images\assets\" />
+    <Folder Include="Views\AreaTecnico\" />
+    <Folder Include="Views\Configuracion\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -142,9 +145,12 @@
     <Compile Include="Controllers\actividadesController.cs" />
     <Compile Include="Controllers\AppViewsController.cs" />
     <Compile Include="Controllers\areasController.cs" />
+    <Compile Include="Controllers\AreaTecnicoViewController.cs" />
     <Compile Include="Controllers\categoriasController.cs" />
     <Compile Include="Controllers\checkListsController.cs" />
     <Compile Include="Controllers\comentariosController.cs" />
+    <Compile Include="Controllers\ConfiguracionController.cs" />
+    <Compile Include="Controllers\ConfiguracionViewController.cs" />
     <Compile Include="Controllers\CSSAnimationsController.cs" />
     <Compile Include="Controllers\EcommerceController.cs" />
     <Compile Include="Controllers\EquiposController.cs" />
@@ -501,6 +507,7 @@
     <Content Include="Scripts\angular\angular-touch.min.js" />
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\APIScripts\Controllers\AreaTecnicoController.js" />
     <Content Include="Scripts\APIScripts\Controllers\EquipoController.js" />
     <Content Include="Scripts\APIScripts\Modules\Module.js" />
     <Content Include="Scripts\APIScripts\Services\Services.js" />
@@ -1951,6 +1958,15 @@
     <Content Include="Views\UIElements\HelperClasses.cshtml" />
     <Content Include="Scripts\plugins\topojson\LICENSE" />
     <Content Include="Views\EquiposView\agregarEquipo.cshtml" />
+    <Content Include="Views\EquiposView\verInventario.cshtml" />
+    <Content Include="Views\EquiposView\updateEquipo.cshtml" />
+    <Content Include="Views\ConfiguracionView\categorias.cshtml" />
+    <Content Include="Views\inventario.cshtml" />
+    <Content Include="Views\EquiposView\caracteriticasEspeciales.cshtml" />
+    <Content Include="Views\AreaTecnicoView\controlinventario.cshtml" />
+    <Content Include="Views\AreaTecnicoView\controlmantenimiento.cshtml" />
+    <Content Include="Views\AreaTecnicoView\setticket.cshtml" />
+    <Content Include="Views\AreaTecnicoView\problemasolucion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

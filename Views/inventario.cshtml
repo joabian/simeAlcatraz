@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "inventario";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<style>
+    #rowInv {
+        background: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    #navInven {
+        background-image: url('views/../img/assets/pattern3.jpg');
+        width: 100%;
+        margin-left: 0;
+        background-image: url('../Images/assets/pattern3.jpg');
+    }
+
+    #navTopMenu {
+        background: #000;
+        margin: 0;
+        padding: 0;
+    }
+
+    .ibox {
+        box-shadow: none;
+        transition: box-shadow 0.3s;
+    }
+
+        .ibox:hover {
+            background: red;
+            box-shadow: 0px 0px 35px 0px #bdc3c7;
+        }
+</style>
+
+<div id="rowInv" class="wrapper col-lg-12 col-sm-12 white-bg animated fadeInRight" style="min-height:750px;" data-ng-controller="EquipoController" ng-init="update(1)">
+    <div class="row" id="navTopMenu">
+        <div class="col-lg-10 col-sm-10"></div>
+        <div class="col-lg-1 col-sm-1"><button class="form-control" style="background:none;border:none;"  href="@Url.Action("inventario", "EquiposView")">Volver</button></div>
+    </div>
+    <div class="row" id="navInven">
+        <div class="col-lg-3 col-sm-3">
+           
+            <h2 style="color:#fff;"><img src="~/Images/assets/logow.png" />| Inventario</h2>
+        </div>
+        <div class="col-lg-1 col-sm-1"></div>
+
+        <div class="col-lg-3 col-sm-3">
+            <label style="color:#fff">Sucursal</label>
+            <select class="form-control animated fadeInRight" name="sucursal" id="sucursal"
+                    ng-options="sucursal.nombre for sucursal in dataSucursal.sucursales track by sucursal.id"
+                    ng-model="dataSucursal.sucursalMod">
+                <option value="">Seleccione una sucursal</option>
+            </select>
+        </div>
+
+        <div class="col-lg-3 col-sm-3">
+            <label style="color:#fff">Categoria</label>
+            <select class="form-control animated fadeInRight" name="categoria" id="categoria"
+                    ng-options="Categoria.nombre for Categoria in data.Categorias track by Categoria.categoriaID"
+                    ng-model="data.catego" ng-change="update(data.catego.categoriaID)"></select>
+        </div>
+        <div class="col-lg-1 col-sm-1" style="padding-top:25px;"><button class="form-control" style="background:none;color:#fff;" ng-click="getEquipobySubcat();">ver</button></div>
+    </div>
+    <div class="row"><br /><br /></div>
+    <div class="row" data-ng-controller="EquiposCtrl">
+        <div class="col-lg-3 col-sm-3" ng-include="'views/subcatSel.html'"></div>
+        <div class="col-lg-8 col-sm-8" ui-view="contenInve"></div>
+    </div>
+</div>
+<link href="../Content/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font awesome -->
+<link href="font-awesome../Content/font-awesome.css" rel="stylesheet">
+
+<!-- Main Inspinia CSS files -->
+<link href="../Content//animate.css" rel="stylesheet">
+
+<link id="loadBefore" href="../Content//style.css" rel="stylesheet">
+<!-- Custom CSS file -->
+<link href="../Content/estilo.css" rel="stylesheet">
+<script src="js/jquery/jquery-2.1.1.min.js"></script>
+<script src="js/plugins/jquery-ui/jquery-ui.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+
+<!-- MetsiMenu -->
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+<!-- SlimScroll -->
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Peace JS -->
+<script src="js/plugins/pace/pace.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+
+<!-- Main Angular scripts-->
+<script src="js/angular/angular.min.js"></script>
+<script src="js/angular/angular-sanitize.js"></script>
+<script src="js/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
+<script src="js/angular-translate/angular-translate.min.js"></script>
+<script src="js/ui-router/angular-ui-router.min.js"></script>
+<script src="js/bootstrap/ui-bootstrap-tpls-1.1.2.min.js"></script>
+<script src="js/plugins/angular-idle/angular-idle.js"></script>
+<script src="js/app.js"></script>
+<script src="js/config.js"></script>
+<script src="js/translations.js"></script>
+<script src="js/directives.js"></script>
+<script src="js/controllers.js"></script>
