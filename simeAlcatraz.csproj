@@ -182,6 +182,7 @@
     <Compile Include="Controllers\vwAreasController.cs" />
     <Compile Include="Controllers\vwStockController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
+    <Compile Include="Extensions\CustomMultipartFormDataStreamProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,6 +202,8 @@
     <Compile Include="Models\checklist.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PhotoActionResult.cs" />
+    <Compile Include="Models\PhotoViewModel.cs" />
     <Compile Include="Models\comentario.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -1380,8 +1383,17 @@
     <Content Include="Scripts\app\skin.config.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\angular\FileAPI.flash.swf" />
+    <Content Include="Scripts\angular\FileAPI.js" />
+    <Content Include="Scripts\angular\FileAPI.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\angular\ng-file-upload-all.js" />
+    <Content Include="Scripts\angular\ng-file-upload-all.min.js" />
+    <Content Include="Scripts\angular\ng-file-upload-shim.js" />
+    <Content Include="Scripts\angular\ng-file-upload-shim.min.js" />
+    <Content Include="Scripts\angular\ng-file-upload.js" />
+    <Content Include="Scripts\angular\ng-file-upload.min.js" />
     <Content Include="Scripts\plugins\blueimp\jquery.blueimp-gallery.min.js" />
     <Content Include="Scripts\plugins\bootstrap-markdown\bootstrap-markdown.js" />
     <Content Include="Scripts\plugins\bootstrap-markdown\markdown.js" />

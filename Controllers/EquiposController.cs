@@ -29,14 +29,18 @@ namespace simeAlcatraz.Controllers
         }
 
         // POST api/equipos
-        public void Post(equipo equipo)
+        public int Post(equipo equipo)
         {
-
+            int id;
+            id = 0;
             if (ModelState.IsValid)
             {
                 myEntity.equipoes.Add(equipo);
                 myEntity.SaveChanges();
+                id = equipo.equipoID;
             }
+
+            return id;
         }
 
         // PUT api/equipos/5
@@ -73,5 +77,16 @@ namespace simeAlcatraz.Controllers
                 }
             }
         }
+        // POST api/usuarios/updateField/id/name/value
+        [Route("api/equipos/updateField/{id}/{fieldName}/{value}")]
+        public void Post(int id, string fieldName, int value)
+        {
+            myEntity.Database.ExecuteSqlCommand("UPDATE equipo SET [" + fieldName + "] = '" + value + "' WHERE equipoID = '" + id+"'");
+            myEntity.SaveChanges();
+        }
+
+        
+
+        
     }
 }

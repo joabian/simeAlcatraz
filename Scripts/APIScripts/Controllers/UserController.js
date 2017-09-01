@@ -1,4 +1,4 @@
-﻿app.controller('UserController', function ($scope, Services) {
+﻿app.controller('UserController', function ($scope, Services, Upload) {
     getUsers();
 
     //$scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -90,5 +90,52 @@
         obj.target.focus();
     };
     
-    
+    //Variables
+    $scope.photos = [];
+    $scope.files = [];
+    $scope.previewPhoto = {};
+
+    $scope.setPreviewPhoto = function (photo) {
+        $scope.previewPhoto = photo;
+    }
+
+    $scope.activate = function () {
+
+        Services.getAll()
+          .then(function (data) {
+              $scope.photos = data.data.Photos;
+
+              setPreviewPhoto();
+          }, function (err) {
+              console.log("Error status: " + err.status);
+
+          });
+    }
+
+    $scope.uploadFiles = function (files) {
+        console.log("entra");
+        Upload.upload({
+            url: "/api/files/",
+            data: { file: files }
+        })
+          .then(function (response) {
+              activate();
+              setPreviewPhoto();
+
+          }, function (err) {
+              console.log("Error status: " + err.status);
+
+          });
+
+
+    }
+
+    $scope.removePhoto = function (photo) {
+        Services.deletePhoto(photo.Name)
+          .then(function () {
+              activate();
+
+              setPreviewPhoto();
+          });
+    }
 })

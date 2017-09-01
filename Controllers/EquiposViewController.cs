@@ -17,14 +17,20 @@ namespace simeAlcatraz.Controllers
 
         public ActionResult verInventario()
         {
-            return View();
+            return PartialView("~/Views/EquiposView/verInventario.cshtml");
         }
 
+        public ActionResult updateEquipo()
+        {
+            return View();
+        }
         public ActionResult inventario()
         {
             return PartialView("~/Views/inventario.cshtml");
         }
-
-
-	}
+        public ActionResult caracteriticasEspeciales()
+        {
+            return View();
+        }
+    }
 }
