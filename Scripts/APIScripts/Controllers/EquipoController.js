@@ -4,7 +4,31 @@
     getSucursalesAll();
     getAllTask();
 
-    $scope.resultado = $scope.codigo + 10;
+    function showNotification(tipo, msg, title, TimeOut) {
+        toastr.clear();
+        if (TimeOut == undefined) {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "timeOut": "700"
+            };
+        }
+        else {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "timeOut": TimeOut
+            };
+        }
+        if (tipo == 1) { toastr.success(msg, title); }
+        if (tipo == 2) { toastr.info(msg, title); }
+        if (tipo == 3) { toastr.warning(msg, title); }
+        if (tipo == 4) { toastr.error(msg, title); }
+    }
 
     $scope.periodoMantenimiento = [
     { idperiodo: 1, peridoMantenimiento: 1, nombrePeriodo: "Diario" },
@@ -74,20 +98,118 @@
             console.log('Oops! Something went wrong while fetching the data.')
         })
     }
-  
-    $scope.saveChecklist = function (idcat,idsubcat,periodo) {
-        
-        alert(idcat.categoriaID + " " + idsubcat.subcategoriaID + " " + periodo.peridoMantenimiento);
-        if ($scope.periodomant != undefined && $scope.category != undefined && $scope.subcategory != undefined) {
-            alert($scope.periodomant + " " + $scope.category + " " + $scope.subcategory);
+    $scope.getEquiposWhoutInven = function (id) {
+        if (id == undefined) { id = 0; }
+        var servCall = Services.getEquiposWhoutInv(id);
+        servCall.then(function (d) {
+            $scope.equiposWotInv = d.data;
+            //console.log($scope.equiposWotInv)
+        }, function (error) {
+            console.log('Oops! Something went wrong while fetching the data.')
+        })
+    }
+    $scope.saveChecklist = function (idcat, idsubcat, periodo) {
+        var arrIdTask = [], arrIdEqui = [];
+        var datosCheck = document.getElementsByName("tareasCheck");
+        var equiposFcheck = document.getElementsByName("equiposFCheck");
+       
+        if (idcat != undefined && idsubcat != undefined && periodo != undefined) {
+           // showNotification(2, "sddsd", "Equipos", 2000);
+             if (equiposFcheck.length <= 0){
+                showNotification(3, "No hay equipos", 'Nada encontrado', 4000);
+             }
+             else
+             {
+                 //showNotification(2, "Hay "+equiposFcheck.length+" equipos", 'Equipos', 4000);
+                 for (i = 0; i < datosCheck.length; i++) { if (datosCheck[i].checked) { arrIdTask.push(datosCheck[i].value); } }
+                 for (i = 0; i < equiposFcheck.length; i++) { if (equiposFcheck[i].checked) { arrIdEqui.push(equiposFcheck[i].value); } }
+                 if (arrIdEqui.length <= 0) { showNotification(3, "Seleccione uno o varios equipos", 'Alerta', 4000); }
+                 else
+                 {
+                     if (arrIdTask.length <= 0) {
+                       showNotification(3,"Seleccione una o varias tareas","Seleccionar Tareas",4000)
+                     }
+                     else {
+                         alert(arrIdEqui);
+                         var idEq;
+                        for (j = 0; j < arrIdEqui.length; j++)
+                        {
+                            alert("Ciclo: " + j + "de " + arrIdEqui.length);
+                            idEq = arrIdEqui[j];
+                            //alert(idEq);
+                            var checklist = {
+                                idEquipo: arrIdEqui[j],
+                                descripcion: "N/A",
+                                periodoServicio: periodo.peridoMantenimiento
+                            };
+                          
+                            Services.saveCheckList(checklist);
+
+                            for (k = 0; k < arrIdTask.length; k++) {
+                                var actividades = {
+                                    idChecklist: d.data,
+                                    idTarea: arrIdTask[k],
+                                    activo: true
+                                }
+                                Services.saveActividades(actividades);
+                            }
+                          
+                            Services.updEquipoHasCheck(arrIdEqui[j], "hasCheckList", 'true');
+                            
+
+                         }
+                     }
+                    
+                 }
+             }
         }
         else {
             var faltaPeriodo = "", faltaCate = "", faltaSubcate = "";
-            if ($scope.periodoMantenimiento.periodomant == null || $scope.periodoMantenimiento.periodomant == undefined) { faltaPeriodo = "Periodo de mantenimiento"; }
-            if ($scope.category == null || $scope.category == undefined) { faltaCate = "Categoria"; }
-            if ($scope.subcategory == null || $scope.subcategory == undefined) { faltaSubcate = "Subcategoria"; }
+            if (periodo == null || periodo == undefined) { faltaPeriodo = "Periodo de mantenimiento"; }
+            if (idcat == null || idcat == undefined) { faltaCate = "Categoria"; }
+            if (idsubcat == null || idsubcat == undefined) { faltaSubcate = "Subcategoria"; }
            
-            alert("Por favor selecccione: \n" + faltaCate + "\n" + faltaSubcate + "\n" + faltaPeriodo);
+            showNotification(3, "Seleccione: <br />" + faltaCate + "<br />" + faltaSubcate + "<br />" + faltaPeriodo, "Seleccionar Opciones", 5000);
+        }
+    }
+
+    $scope.savePeriodo = function (idcat, idsubcat, periodo) {
+        var arrIdEqui = [];
+        var equiposFcheck = document.getElementsByName("equiposFCheck");
+
+        if (idcat != undefined && idsubcat != undefined && periodo != undefined) {
+            // showNotification(2, "sddsd", "Equipos", 2000);
+            if (equiposFcheck.length <= 0) {
+                showNotification(3, "No hay equipos", 'Nada encontrado', 4000);
+            }
+            else {
+                for (i = 0; i < equiposFcheck.length; i++) { if (equiposFcheck[i].checked) { arrIdEqui.push(equiposFcheck[i].value); } }
+                if (arrIdEqui.length <= 0) { showNotification(3, "Seleccione uno o varios equipos", 'Alerta', 4000); }
+                else
+                {
+                        for (j = 0; j < arrIdEqui.length; j++) {
+                           
+                            var updEquip = Services.updEquip(arrIdEqui[j],"periodoServNum",periodo.peridoMantenimiento);
+                            updEquip.then(function (d) {
+                                $scope.getEquiposWhoutInven(idsubcat.subcategoriaID);
+                                showNotification(1, "Periodo registrado!", "Exito", 1000);
+
+                            }, function (error) {
+                                showNotification(4, "Oops! Something went wrong while saving the data.", "Error", 3000);
+                            })
+                        }
+                    
+
+                }
+            }
+        }
+        else {
+            var faltaPeriodo = "", faltaCate = "", faltaSubcate = "";
+            if (periodo == null || periodo == undefined) { faltaPeriodo = "Periodo de mantenimiento"; }
+            if (idcat == null || idcat == undefined) { faltaCate = "Categoria"; }
+            if (idsubcat == null || idsubcat == undefined) { faltaSubcate = "Subcategoria"; }
+
+            showNotification(3, "Seleccione: <br />" + faltaCate + "<br />" + faltaSubcate + "<br />" + faltaPeriodo, "Seleccionar Opciones", 5000);
         }
     }
     $scope.getAllTaskForOnecheck = function (id, arrDatos) {
@@ -225,16 +347,15 @@
             console.log('Oops! Something went wrong while deleting the data.')
         })
     };
-
+   
     $scope.saveEquipo = function () {
         var isSerializado = $scope.checked;
         var serial = "N/A";
         if (isSerializado != undefined) {
             if (isSerializado) { if ($scope.noserie != undefined) { serial = $scope.noserie; } else { isSerializado = false; } }
         }
-
         else { isSerializado = false; }
-
+         
         var equipo = {
             //equipoID:4,
             descripcion: $scope.descripcion,
@@ -255,15 +376,16 @@
             periodoServ: false,
             periodoServNum: 0
         };
-        console.log(equipo);
+       
         var saveEquipo = Services.saveEquipo(equipo);
         saveEquipo.then(function (d) {
-            //getAll();   
+            //getAll();
+            showNotification(1, 'Equipo registrado!', 'Correcto');
             $('html, body').animate({ scrollTop: 0 }, 'normal');
             document.getElementById("toclearform").reset();
           
         }, function (error) {
-            console.log('Oops! Something went wrong while saving the data.')
+            showNotification(4,"Error al registrar","Error");
         })
 
     }

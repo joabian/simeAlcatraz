@@ -65,13 +65,21 @@
     <!-- Handler for local scripts -->
     @RenderSection("scripts", required: false)
 
+  
+    @Styles.Render("~/plugins/toastrStyles")
+
+    @Scripts.Render("~/plugins/toastr")
+    
 
     <script src="~/Scripts/angular/angular.js"></script>
     @*<script src="~/Scripts/angular-route.js"></script>*@
     <script src="~/Scripts/APIScripts/Modules/Module.js"></script>
     <script src="~/Scripts/APIScripts/Services/Services.js"></script>
+    <script src="~/Scripts/APIScripts/Directives/Directives.js"></script>
     <script src="~/Scripts/APIScripts/Controllers/EquipoController.js"></script> 
+    <script src="~/Scripts/APIScripts/Controllers/AreasController.js"></script>
 
+    @Scripts.Render("~/plugins/dataTables")
 </body>
 
 

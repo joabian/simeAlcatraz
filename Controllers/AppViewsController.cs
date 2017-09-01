@@ -8,7 +8,7 @@ namespace simeAlcatraz.Controllers
 {
     public class AppViewsController : Controller
     {
-
+         
         public ActionResult Contacts()
         {
             return View();

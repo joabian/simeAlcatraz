@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>simeAlcatraz</RootNamespace>
     <AssemblyName>simeAlcatraz</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -144,6 +144,7 @@
     <Compile Include="Controllers\actividadesController.cs" />
     <Compile Include="Controllers\AppViewsController.cs" />
     <Compile Include="Controllers\areasController.cs" />
+    <Compile Include="Controllers\AreasViewController.cs" />
     <Compile Include="Controllers\categoriasController.cs" />
     <Compile Include="Controllers\checkListsController.cs" />
     <Compile Include="Controllers\comentariosController.cs" />
@@ -191,6 +192,9 @@
     <Compile Include="Models\actividade.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\alerta.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\area.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -233,6 +237,9 @@
     <Compile Include="Models\log.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\problemInAlert.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\requisicione.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -266,6 +273,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_areas.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_checklist.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_stock.cs">
@@ -456,6 +466,16 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="locales\en.json" />
     <Content Include="locales\es.json" />
+    <Content Include="Models\DB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB.edmx</DependentUpon>
+      <LastGenOutput>DB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB.edmx</DependentUpon>
+      <LastGenOutput>DB.cs</LastGenOutput>
+    </Content>
     <Content Include="pdf\example.pdf" />
     <Content Include="Content\plugins\summernote\font\summernote.eot" />
     <Content Include="Content\plugins\summernote\font\summernote.ttf" />
@@ -464,18 +484,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\DB.edmx.diagram">
       <DependentUpon>DB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\DB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
     <Content Include="Scripts\angular\angular-animate.js" />
@@ -505,7 +515,9 @@
     <Content Include="Scripts\angular\angular-touch.min.js" />
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\APIScripts\Controllers\AreasController.js" />
     <Content Include="Scripts\APIScripts\Controllers\EquipoController.js" />
+    <Content Include="Scripts\APIScripts\Directives\Directives.js" />
     <Content Include="Scripts\APIScripts\Modules\Module.js" />
     <Content Include="Scripts\APIScripts\Services\Services.js" />
     <Content Include="Scripts\api\typehead_collection.json" />
@@ -1592,6 +1604,8 @@
     <Content Include="Scripts\plugins\datamaps\datamaps.all.min.js" />
     <Content Include="Scripts\plugins\datapicker\bootstrap-datepicker.js" />
     <Content Include="Images\header.jpg" />
+    <Content Include="Scripts\plugins\dataTables\angular-datatables.buttons.min.js" />
+    <Content Include="Scripts\plugins\dataTables\angular-datatables.min.js" />
     <Content Include="Scripts\plugins\dataTables\datatables.min.js" />
     <Content Include="Scripts\plugins\daterangepicker\daterangepicker.js" />
     <Content Include="Scripts\plugins\diff_match_patch\javascript\diff_match_patch.js" />
@@ -1960,6 +1974,8 @@
     <Content Include="Views\ConfiguracionView\categorias.cshtml" />
     <Content Include="Views\inventario.cshtml" />
     <Content Include="Views\EquiposView\caracteriticasEspeciales.cshtml" />
+    <Content Include="Views\AreasView\agregarArea.cshtml" />
+    <Content Include="Views\AreasView\asignarEquipo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

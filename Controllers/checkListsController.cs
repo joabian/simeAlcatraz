@@ -27,14 +27,21 @@ namespace simeAlcatraz.Controllers
 
         }
 
+      
         // POST api/checklists
-        public void Post(checklist chl)
+        public int Post(checklist chl)
         {
+            int id;
+            id = 0;
             if (ModelState.IsValid)
             {
                 myEntity.checklists.Add(chl);
                 myEntity.SaveChanges();
+                id = chl.checkID;
+                
             }
+
+            return id;
         }
 
         // PUT api/checklists/5

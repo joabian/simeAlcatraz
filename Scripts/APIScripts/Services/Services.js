@@ -1,5 +1,36 @@
 ﻿app.service("Services", function ($http) {
 
+    // ====================================== <AREAS>=============================================  
+
+    this.getUsers = function () {
+        return $http.get("/api/usuarios")
+    }
+
+    this.saveArea = function (area) {
+        return $http(
+        {
+            method: 'post',
+            data: area,
+            url: '/api/areas'
+        });
+    }
+
+    this.getAreas = function () {
+        return $http.get("/api/vwareas")
+    }
+    
+    this.deleteArea = function (id) {
+        var url = '/api/areas/' + id;
+        return $http(
+        {
+            method: 'delete',
+            data: id,
+            url: url
+        });
+    }
+
+
+    // ====================================== </AREAS>============================================
     
 
     this.getEquipos = function () {
@@ -66,5 +97,40 @@
     }
     this.getEquiposWhoutCkl = function (idsubcat) {
         return $http.get("/api/vwstock/GetBySubcat/" + idsubcat)
+    }
+
+    this.saveCheckList = function (check) {
+        return $http(
+      {
+          method: 'post',
+          data: check,
+          url: '/api/checkLists'
+      });
+    }
+    this.saveActividades = function (activ) {
+        return $http(
+       {
+          method: 'post',
+          data: activ,
+          url: '/api/actividades'
+       });
+    }
+    this.getEquiposWhoutInv = function (idsubcat) {
+        return $http.get("/api/vwstock/GetBySubcatInv/" + idsubcat)
+    }
+    this.updEquip = function (id,field,value) {
+        return $http(
+    {
+       method: 'post',
+       url: '/api/equipos/updateField/'+id+'/'+field+'/'+value
+    });
+    }
+
+    this.updEquipoHasCheck = function (id,field,value) {
+        return $http(
+            {
+                method: 'post',
+                url: "/api/equipos/updateFieldChkl/"+id+"/"+value+"/"+field
+            });
     }
 });
