@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "users";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Usuarios</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("agregarEquipo", "EquiposView")">Inicio</a>
+            </li>
+            <li>
+                <a>Configuracion</a>
+            </li>
+            <li class="active">
+                <strong>Usuarios</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="UserController">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Agregar Nuevo Usuario <small>Expandir</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-6 b-r">
+                            <div role="form">
+                                <div class="form-group">
+                                    <label>Nombre Usuario</label>
+                                    <input type="text" class="form-control" id="nombreUsuario" placeholder="Usuario" data-ng-model="nombreUsuario" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" id="password" data-ng-model="password" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombre(s)</label>
+                                    <input type="text" class="form-control" id="nombre" placeholder="Nombre" data-ng-model="nombre" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido Paterno</label>
+                                    <input type="text" class="form-control" id="apellidoPaterno" placeholder="Apellido Paterno" data-ng-model="apellidoPaterno" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido Materno</label>
+                                    <input type="text" class="form-control" id="apellidoMaterno" placeholder="Apellido Materno" data-ng-model="apellidoMaterno" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>RFC</label>
+                                    <input type="text" class="form-control" id="rfc" placeholder="RFC" data-ng-model="rfc" />
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div role="form">
+                                <div class="form-group">
+                                    <label>CURP</label>
+                                    <input type="text" class="form-control" id="curp" placeholder="CURP" data-ng-model="curp" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" id="email" placeholder="email" data-ng-model="email" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Telefono</label>
+                                    <input type="text" class="form-control" id="telefono" placeholder="Telefono" data-ng-model="telefono" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Departamento</label>
+                                    <input type="text" class="form-control" id="departamento" placeholder="Departamento" data-ng-model="departamento" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Pueso</label>
+                                    <input type="text" class="form-control" id="puesto" placeholder="Puesto" data-ng-model="puesto" />
+                                </div>
+                                <div>
+                                    <button class="btn btn-default pull-right m-t-n-xs" type="button" data-ng-click="saveUser();">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Usuarios Activos</h5> &nbsp; <i>(doble click para actualizar)</i>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Nombre</th>
+                                <th>Apellido Paterno</th>
+                                <th>Apellido Materno</th>
+                                <th>RFC</th>
+                                <th>CURP</th>
+                                <th>email</th>
+                                <th>Telefono</th>
+                                <th>fecha Contrato</th>
+                                <th>Supervisor</th>
+                                <th>Sucursal</th>
+                                <th>Departamento</th>
+                                <th>Puesto</th>
+                                <th>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody data-ng-repeat="usuario in usuarios">
+                            <tr>
+                                <td ng-blur="updateUser(usuario,$event,'nombreUsuario')" ng-dblclick="makeEditable($event)">{{usuario.nombreUsuario}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'nombre')" ng-dblclick="makeEditable($event)">{{usuario.nombre}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'apellidoPaterno')" ng-dblclick="makeEditable($event)">{{usuario.apellidoPaterno}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'apellidoMaterno')" ng-dblclick="makeEditable($event)">{{usuario.apellidoMaterno}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'rfc')" ng-dblclick="makeEditable($event)">{{usuario.rfc}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'curp')" ng-dblclick="makeEditable($event)">{{usuario.curp}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'email')" ng-dblclick="makeEditable($event)">{{usuario.email}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'telefono')" ng-dblclick="makeEditable($event)">{{usuario.telefono}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'fechaContratacion')" ng-dblclick="makeEditable($event)">{{usuario.fechaContratacion}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'idSupervisor')" ng-dblclick="makeEditable($event)">{{usuario.idSupervisor}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'idSucursalBase')" ng-dblclick="makeEditable($event)">{{usuario.idSucursalBase}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'departamento')" ng-dblclick="makeEditable($event)">{{usuario.departamento}}</td>
+                                <td ng-blur="updateUser(usuario,$event,'puesto')" ng-dblclick="makeEditable($event)">{{usuario.puesto}}</td>
+
+                                <td>
+                                    <button class="btn btn-danger btn-circle" type="button" data-ng-click="deleteUser(usuario.usuarioID)">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/peity")
+    @Scripts.Render("~/plugins/iCheck")
+}

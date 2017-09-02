@@ -3,7 +3,7 @@
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="wrapper wrapper-content animated fadeInRight" ng-controller="IncidenCtrl">
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="IncidenciaController">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -22,13 +22,13 @@
                             <th>Fecha atencion</th>
                             <th>Fecha cierre</th>
                         </tr>
-                        <tr ng-repeat="incidencias in data.inc" ng-if="incidencias.estatus==4">
-                            <td>{{ incidencias.incidenciaID }}</td>
-                            <td>{{ incidencias.usuario }}</td>
-                            <td>{{ incidencias.descripcion}}</td>
-                            <td>{{ incidencias.fechaAperrtura}}</td>
-                            <td>{{ incidencias.fechaAtencion}}</td>
-                            <td>{{ incidencias.fechaClaususa}}</td>
+                        <tr ng-repeat="incidencia in incidencias" ng-if="incidencia.status==4">
+                            <td>{{ incidencia.incidenciaID }}</td>
+                            <td>{{ incidencia.usuario }}</td>
+                            <td>{{ incidencia.descripcion}}</td>
+                            <td>{{ incidencia.fechaAperrtura}}</td>
+                            <td>{{ incidencia.fechaAtencion}}</td>
+                            <td>{{ incidencia.fechaClaususa}}</td>
                         </tr>
                     </table>
 

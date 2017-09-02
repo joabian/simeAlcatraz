@@ -1,10 +1,11 @@
-﻿app.controller('IncidenciaController', function ($scope, Services) {
+﻿app.controller('IncidenciaController', function ($scope, Services, $rootScope) {
+    getIncidencias();
 
-    function getAllInc() {
-        var servCall = Services.getAll();
-        servCall.then(function (d) {
-            $scope.inc = d.data;
-            console.log($scope.inc)
+    function getIncidencias() {
+        var selInc = Services.getIncidencias();
+        selInc.then(function (d) {
+            $rootScope.incidencias = d.data;
+           
         }, function (error) {
             console.log('algo salio mal!')
         })
@@ -15,39 +16,57 @@
         ob.target.focus();
     };
 
-    $scope.updInc = function (inc, eve) {
-        inc.descripcion = eve.currentTarget.innerText;
-        var upd = Services.updateEquipo(inc);
-        upd.then(function (d) {
-            getAll();
+    $scope.updateIncidencia = function (ob) {
+        var id = ob.currentTarget.value;       
+       
+        
+        var upd = Services.updateIncidenciaField(id,"status","3");
+        upd.then(function(d){
+            getIncidencias();
         }, function (error) {
-            console.log('Oops! Something went wrong while updating the data.')
-        })
+            console.log("No se hizo el cambio")
+        })       
     };
 
-    $scope.dltInc = function (id) {
-        var dlt = Services.deleteInc(id);
+    $scope.deleteIncidencia = function (id) {
+        var dlt = Services.deleteIncidencia(id);
         dlt.then(function (d) {
-            getAll();
+            getIncidencias();
         }, function (error) {
             console.log('Oops! Something went wrong while deleting the data.')
         })
     };
 
-    $scope.saveInc = function () {
+    $scope.saveIncidencia = function () {
         var incidencia = {
-            usuario = $scope.usuario,
-
-        }
-        
+            usuario: $scope.usuario,
+            equipoID: $scope.equipoID,
+            descripcion: $scope.descripcion,
+            status: 1,
+        };        
   
-        console.log(equipo);
-        var saveEquipo = Services.saveEquipo(equipo);
-        saveEquipo.then(function (d) {
-            getAll();
+        var saveIncidencia = Services.saveIncidencia(incidencia);
+        saveIncidencia.then(function (d) {
+            getIncidencias();
+            
         }, function (error) {
             console.log('Oops! Something went wrong while saving the data.')
         })
 
     }
+
+    $scope.setVal = function (id, nmodal) {
+        document.getElementById("aidi"+nmodal).value = id;
+        document.getElementById("saveCh"+nmodal).value = id;
+    }
+   
+
+    $scope.test = function(ob) {
+        var id = ob.currentTarget.value;
+        var comen = $scope.comentario;
+
+
+        console.log(id);
+    }
+
 })

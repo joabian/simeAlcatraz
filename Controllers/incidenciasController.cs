@@ -72,5 +72,12 @@ namespace simeAlcatraz.Controllers
             }
 
         }
+        // POST api/incidencias/updateField/name/value
+        [Route("api/incidencias/updateField/{id}/{fieldName}/{value}")]
+        public void Post(string id, string fieldName, string value)
+        {
+            myEntity.Database.ExecuteSqlCommand("UPDATE incidencias SET [" + fieldName + "] = '" + value + "' WHERE incidenciaID = " + id);
+            myEntity.SaveChanges();
+        }
     }
 }

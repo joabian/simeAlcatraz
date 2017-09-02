@@ -16,12 +16,13 @@
             <div class="ibox">
                 <div class="ibox-content">
                     <h3>Abiertas</h3>
-                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list" ng-model="data.inc">
-                        <li ng-if="abierta.estatus==1" ng-repeat="abierta in data.inc">
+                    <a class="btn-white" href="incidenProb">Agregar nueva</a>
+                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list">
+                        <li  ng-repeat="abierta in incidencias" ng-if="abierta.status==1">
                             <strong>Descripcion: </strong> {{abierta.descripcion}}
                             <br /><strong>Usuario: </strong> {{abierta.usuario}}
                             <div class="agile-detail">
-                                <a class="pull-right btn btn-xs btn-white">Atender</a>
+                                <a class="pull-right btn btn-xs btn-white" data-toggle="modal" data-target="#myModal4" ng-click="setVal(abierta.incidenciaID,4)">Atender</a>
                                 <i class="fa fa-arrow-circle-right"><strong> ID de incidencia: </strong></i> {{abierta.incidenciaID}}
                             </div>
                         </li>
@@ -33,12 +34,13 @@
             <div class="ibox">
                 <div class="ibox-content">
                     <h3>Suspendidas</h3>
-                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list" ng-model="dataS.suspen">
-                        <li class="{{suspe.statusClass}}-element" ng-repeat="suspe in dataS.susp">
-                            <strong>Descripcion: </strong> {{suspe.comentario}}
+                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list">
+                        <li ng-repeat="abierta in incidencias" ng-if="abierta.status==2">
+                            <strong>Descripcion: </strong> {{abierta.descripcion}}
+                            <br /><strong>Usuario: </strong> {{abierta.usuario}}
                             <div class="agile-detail">
-                                <a class="pull-right btn btn-xs btn-white">Re-abrir</a>
-                                <i class="fa fa-arrow-circle-right"><strong> ID de incidencia: </strong></i> {{suspe.incidenciaID}}
+                                <a class="pull-right btn btn-xs btn-white" data-toggle="modal" data-target="#myModal3" ng-click="setVal(abierta.incidenciaID,3)">Re-Abrir</a>
+                                <i class="fa fa-arrow-circle-right"><strong> ID de incidencia: </strong></i> {{abierta.incidenciaID}}
                             </div>
                         </li>
                     </ul>
@@ -49,13 +51,13 @@
             <div class="ibox">
                 <div class="ibox-content">
                     <h3>En atención</h3>
-                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list" ng-model="data.inc">
-                        <li ng-if="abierta.estatus==3" ng-repeat="abierta in inc">
+                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list">
+                        <li ng-if="abierta.status==3" ng-repeat="abierta in incidencias">
                             <strong>Descripcion: </strong> {{abierta.descripcion}}
                             <br /><strong>Usuario: </strong> {{abierta.usuario}}
                             <div class="agile-detail">
-                                <a class="pull-right btn btn-xs btn-white" href="views/incidenSol.html">Agregar solucion</a>
-                                <a class="pull-right btn btn-xs btn-white" href="incidenSusp.html">Suspender</a>
+                                <a class="pull-right btn btn-xs btn-white" data-toggle="modal" data-target="#myModal2" ng-click="setVal(abierta.incidenciaID,2)">Agregar Solución</a>
+                                <a class="pull-right btn btn-xs btn-white" data-toggle="modal" data-target="#myModal5" ng-click="setVal(abierta.incidenciaID,5)">Suspender</a>
                                 <i class="fa fa-arrow-circle-right"><strong> ID de incidencia: </strong></i> {{abierta.incidenciaID}}
                             </div>
                         </li>
@@ -65,7 +67,139 @@
         </div>
 
     </div>
+    <div class="modal inmodal fade" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Cerrar incidencia</h4>
+                    <small class="font-bold">Por favor ingrese la solución a esta incidencia.</small>
+                </div>
+                <div class="modal-body">
 
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">ID de Incidencia: </label>
+
+                        <div class="col-lg-10"><input type="text" id="aidi2" class="form-control" readonly></div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Comentario: </label>
+                            <div class="col-sm-10">
+                                <textarea rows="5" cols="10" ng-model="solucion" class="form-control" placeholder="Ingrese comentario" required></textarea>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Usuario</label>
+
+                        <div class="col-lg-10"><input type="text" ng-model="usuario" class="form-control" placeholder="Ingrese su nombre" required></div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer" ng-controller="SolucionController">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveCh2" ng-click="saveSolucion($event)" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal inmodal fade" id="myModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Re-abrir</h4>
+                    <h2 class="font-bold">Esta seguro que desea re-abrir esta incidencia?</h2>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">ID de Incidencia: </label>
+
+                        <div class="col-lg-10"><input type="text" id="aidi3" class="form-control" readonly></div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveCh3" ng-click="updateIncidencia($event)" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal inmodal fade" id="myModal4" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Atender</h4>
+                    <h2 class="font-bold">Esta seguro que desea atender esta incidencia?</h2>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">ID de Incidencia: </label>
+
+                        <div class="col-lg-10"><input type="text" id="aidi4" class="form-control" readonly></div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveCh4" ng-click="updateIncidencia($event)" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Suspender incidencia</h4>
+                    <small class="font-bold">Por favor ingrese comentario.</small>
+                </div>
+                <div class="modal-body">
+                  
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">ID de Incidencia: </label>
+
+                            <div class="col-lg-10"><input type="text" id="aidi5" class="form-control" readonly></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Comentario: </label>
+                                <div class="col-sm-10">
+                                    <textarea rows="5" cols="10" ng-model="comentario" class="form-control" placeholder="Ingrese comentario" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                   
+                </div>
+
+                <div class="modal-footer" ng-controller="SuspencionController">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveCh5" ng-click="saveSuspencion($event)" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Main Inspinia CSS files -->
+    <link href="../Content//animate.css" rel="stylesheet">
+    <link id="loadBefore" href="../Content//style.css" rel="stylesheet">
+    <!-- Custom CSS file -->
+    <link href="../Content/estilo.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+  
     <div class="row">
         <div class="col-lg-12">
 

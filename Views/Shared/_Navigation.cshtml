@@ -25,7 +25,14 @@
                     IN+
                 </div>
             </li>
-
+            <li class="@Html.IsSelected(controller: "ConfigurationView")">
+                <a href="#"><i class="fa fa-cogs"></i> <span class="nav-label" data-i18n="nav.configuration">Configuracion</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "ConfigurationView", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "categories")"><a href="@Url.Action("categories", "ConfigurationView")">Categorias</a></li>
+                    <li class="@Html.IsSelected(action: "subcategories")"><a href="@Url.Action("subcategories", "ConfigurationView")">Subcategorias</a></li>
+                    <li class="@Html.IsSelected(action: "users")"><a href="@Url.Action("users", "ConfigurationView")">Usuarios</a></li>
+                </ul>
+            </li>
             <li class="@Html.IsSelected(controller: "EquiposView")">
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Equipos</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "EquiposView", cssClass: "in")">

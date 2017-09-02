@@ -147,6 +147,7 @@
     <Compile Include="Controllers\categoriasController.cs" />
     <Compile Include="Controllers\checkListsController.cs" />
     <Compile Include="Controllers\comentariosController.cs" />
+    <Compile Include="Controllers\ConfigurationViewController.cs" />
     <Compile Include="Controllers\CSSAnimationsController.cs" />
     <Compile Include="Controllers\EcommerceController.cs" />
     <Compile Include="Controllers\EquiposController.cs" />
@@ -506,8 +507,14 @@
     <Content Include="Scripts\angular\angular-touch.min.js" />
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\APIScripts\Controllers\CategoriaController.js" />
     <Content Include="Scripts\APIScripts\Controllers\EquipoController.js" />
     <Content Include="Scripts\APIScripts\Controllers\IncidenciaController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\SolucionController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\SubcategoriaController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\SucursalController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\SuspencionController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\UserController.js" />
     <Content Include="Scripts\APIScripts\Modules\Module.js" />
     <Content Include="Scripts\APIScripts\Services\Services.js" />
     <Content Include="Scripts\api\typehead_collection.json" />
@@ -1967,6 +1974,9 @@
     <Content Include="Views\SucursalesView\sucursalEnc.cshtml" />
     <Content Include="Views\TicketsView\ticketForm.cshtml" />
     <Content Include="Views\TicketsView\ticketLink.cshtml" />
+    <Content Include="Views\ConfigurationView\categories.cshtml" />
+    <Content Include="Views\ConfigurationView\subcategories.cshtml" />
+    <Content Include="Views\ConfigurationView\users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
