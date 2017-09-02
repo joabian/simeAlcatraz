@@ -36,6 +36,17 @@ namespace simeAlcatraz.Controllers
             return query;
         }
 
+       
+
+        // GET api/subcategoria/GetByCategoryID/5
+        [Route("api/areas/GetBySucID/{id}")]
+        public IEnumerable<area> GetByCategoryID(int id)
+        {
+            var query = from mysub in myEntity.areas.AsEnumerable()
+                        where mysub.idSucursal == id
+                        select mysub;
+            return query;
+        }
 
         // POST api/areas
         public void Post(area ar)

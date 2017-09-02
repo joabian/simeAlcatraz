@@ -2,7 +2,8 @@
     getAreas();
     getEncargado();
     getSucursales();
-    
+    getEquipoSinArea();
+    //getAreaBySucId();
 
     function showNotification(tipo, msg, title, TimeOut) {
         toastr.clear();
@@ -100,6 +101,50 @@
         })
     };
 
+    function getEquipoSinArea() {
+        var select = Services.getEquipos();
+
+        select.then(function (d) {
+            $scope.equipos = d.data;
+            console.log($scope.equipos);
+        }, function (error) {
+            console.log('Oops! Something went wrong while fetching the data.')
+        })
+    };
+
+    $scope.getAreaBySucId = function (id) {
+        var servCall = Services.getAreaSuc(id);
+        servCall.then(function (d) {
+            $scope.areas = d.data;
+            console.log($scope.areas)
+        }, function (error) {
+            console.log('Oops! Something went wrong while fetching the data.')
+        })
+    }
+
+
+    $scope.asignararea = function (equipo, id, areaid, cantidad ) {
+        alert(equipo + " " + id + " " + areaid + " " + cantidad);
+
+        var Equipo = {
+            idArea: areaid,
+            idEquipo: equipo,
+            idSucursal: id,
+            cantidad: cantidad,
+            idUsuario: null,
+            fechaUltimoServicio: null,
+            fechaUltimoInven:null
+        }
+
+        var saveEquipo = Services.saveAsigEquipo(Equipo);
+        saveEquipo.then(function (d) {
+            showNotification(1, 'Equipo Asignado!', 'Correcto');
+            $('html, body').animate({ scrollTop: 0 }, 'normal');
+            getEquipoSinArea();
+        }, function (error) {
+            showNotification(4, "Error al registrar", "Error");
+        })
+    }
     //$scope.makeEditable = function (obj) {
     //    obj.target.setAttribute("contenteditable", true);
     //    obj.target.focus();

@@ -29,6 +29,18 @@
         });
     }
 
+    this.getAreaSuc = function (id) {
+        return $http.get("/api/areas/GetBySucID/" + id)
+    }
+
+    this.saveAsigEquipo = function (equipo) {
+        return $http(
+        {
+            method: 'post',
+            data: equipo,
+            url: '/api/areastock'
+        });
+    }
 
     // ====================================== </AREAS>============================================
     

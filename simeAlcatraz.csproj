@@ -144,6 +144,7 @@
     <Compile Include="Controllers\actividadesController.cs" />
     <Compile Include="Controllers\AppViewsController.cs" />
     <Compile Include="Controllers\areasController.cs" />
+    <Compile Include="Controllers\areaStockController.cs" />
     <Compile Include="Controllers\AreasViewController.cs" />
     <Compile Include="Controllers\categoriasController.cs" />
     <Compile Include="Controllers\checkListsController.cs" />
@@ -1976,6 +1977,11 @@
     <Content Include="Views\EquiposView\caracteriticasEspeciales.cshtml" />
     <Content Include="Views\AreasView\agregarArea.cshtml" />
     <Content Include="Views\AreasView\asignarEquipo.cshtml" />
+    <Content Include="Views\areaStocks\Create.cshtml" />
+    <Content Include="Views\areaStocks\Delete.cshtml" />
+    <Content Include="Views\areaStocks\Details.cshtml" />
+    <Content Include="Views\areaStocks\Edit.cshtml" />
+    <Content Include="Views\areaStocks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
