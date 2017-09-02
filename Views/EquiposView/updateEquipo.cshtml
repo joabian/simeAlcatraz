@@ -35,12 +35,6 @@
                                 <td  ng-blur="updEquipo(equipo,$event,'marcaEquipo')" ng-dblclick="makeEditable($event)">{{equipo.marcaEquipo}}</td>
                                 <td ng-dblclick="makeEditable2($event,equipo.equipoID)">
                                     {{equipo.id_categoria}}
-                                    <select class="animated fadeInRight" id="categoria{{equipo.equipoID}}" style="display:;"
-                                            ng-options="Categoria.nombre for Categoria in categorias track by Categoria.categoriaID"
-                                            ng-model="catego" ng-change="updateCatEqui($event,catego.categoriaID)">
-                                        <option value="">Seleccione una categoria</option>
-                                    </select>
-                                    
                                 </td>
                                 <td>{{equipo.id_subcategoria}}
                                 </td>

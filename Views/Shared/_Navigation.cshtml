@@ -35,8 +35,16 @@
                     <li class="@Html.IsSelected(action: "caracteriticasEspeciales")"><a href="@Url.Action("caracteriticasEspeciales", "EquiposView")">Caracteristicas especiales</a></li>
                 </ul>
             </li>
-
-
+              
+            <li class="@Html.IsSelected(controller: "AreaTecnicoView")">
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Area (tecnico)</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "AreaTecnicoView", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "controlinventario")"><a href="@Url.Action("controlinventario", "AreaTecnicoView")">Control de inventario</a></li>
+                    <li class="@Html.IsSelected(action: "controlmantenimiento")"><a href="@Url.Action("controlmantenimiento", "AreaTecnicoView")">Control de mantenimiento</a></li>
+                    <li class="@Html.IsSelected(action: "setticket")"><a href="@Url.Action("setticket", "AreaTecnicoView")">Levantar ticket</a></li>
+                    <li class="@Html.IsSelected(action: "problemasolucion")"><a href="@Url.Action("problemasolucion", "AreaTecnicoView")">Problema - solucion</a></li>
+                </ul>
+            </li>
             <li class="@Html.IsSelected(controller: "Dashboards")">
                 <a href="@Url.Action("Dashboard_1", "Dashboards")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Dashboards</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Dashboards", cssClass: "in")">

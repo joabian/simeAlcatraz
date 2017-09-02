@@ -134,6 +134,7 @@
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
     <Folder Include="Images\assets\" />
+    <Folder Include="Views\AreaTecnico\" />
     <Folder Include="Views\Configuracion\" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <Compile Include="Controllers\actividadesController.cs" />
     <Compile Include="Controllers\AppViewsController.cs" />
     <Compile Include="Controllers\areasController.cs" />
+    <Compile Include="Controllers\AreaTecnicoViewController.cs" />
     <Compile Include="Controllers\categoriasController.cs" />
     <Compile Include="Controllers\checkListsController.cs" />
     <Compile Include="Controllers\comentariosController.cs" />
@@ -505,6 +507,7 @@
     <Content Include="Scripts\angular\angular-touch.min.js" />
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\APIScripts\Controllers\AreaTecnicoController.js" />
     <Content Include="Scripts\APIScripts\Controllers\EquipoController.js" />
     <Content Include="Scripts\APIScripts\Modules\Module.js" />
     <Content Include="Scripts\APIScripts\Services\Services.js" />
@@ -1960,6 +1963,10 @@
     <Content Include="Views\ConfiguracionView\categorias.cshtml" />
     <Content Include="Views\inventario.cshtml" />
     <Content Include="Views\EquiposView\caracteriticasEspeciales.cshtml" />
+    <Content Include="Views\AreaTecnicoView\controlinventario.cshtml" />
+    <Content Include="Views\AreaTecnicoView\controlmantenimiento.cshtml" />
+    <Content Include="Views\AreaTecnicoView\setticket.cshtml" />
+    <Content Include="Views\AreaTecnicoView\problemasolucion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

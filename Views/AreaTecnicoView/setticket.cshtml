@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Levantar ticket";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="wrapper" class="wrapper wrapper-content" ng-controller="EquipoController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h2>Levantar tickets</h2>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-5">
+                <select class="form-control" ng-model="seloadAction" ng-change="loadActioncarEsp();">
+                    <option value="">Seleccione el tipo de ticket</option>
+                    <option value="1">Ticket de incidencia</option>
+                    <option value="2">Orden de compra</option>
+                </select>
+            </div>
+        </div>
+        <br />
+
+        <div class="row" style="background:#fff;">
+            <div ng-if="valAction == 0"></div>
+
+            <div ng-if="valAction == 1" class="animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="text-center m-t-lg">
+                         
+                                <form class="form-horizontal">
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Usuario</label>
+                                        <div class="col-lg-10">
+                                            <input type="text" placeholder="Usuario" class="form-control" value="Juan Perez" disabled>
+                                        </div>
+                                        <br />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Sucursal</label>
+                                        <div class="col-lg-10">
+                                            <select class="form-control" ng-options="sucursal.nombre for sucursal in sucursales track by sucursal.idsucursal" ng-model="sucursal">
+                                                <option value="">Panamericana</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Equipo</label>
+
+                                        <div class="col-lg-10"><input type="text" ng-model="equipoID" placeholder="Equipo" class="form-control"></div>
+                                        <span class="help-block m-b-none">
+                                            Numero de equipo que muestra en su etiqueta
+                                        </span>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Descripción</label>
+                                            <div class="col-sm-10">
+                                                <textarea rows="5" cols="10" class="form-control" ng-model="descripcion" placeholder="Ingrese una descripcion"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-sm btn-white" type="submit">Registrar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                        </div>
+                    </div>
+                </div>
+          
+            </div>
+
+            <div ng-if="valAction == 2" class="animated fadeInRight">
+
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 text-center"><h4>Seleccione el equipo y periodo</h4></div>
+                </div>
+                <div class="col-lg-12 col-sm-12" style="padding-top:10px;">
+                    <div class="row col-lg-12 col-sm-12">
+                        <div class="col-lg-6 col-sm-6">
+                            <select class="form-control" ng-options="Categoria.nombre for Categoria in categorias track by Categoria.categoriaID"
+                                    ng-model="category" ng-change="updateSubcat(category.categoriaID)">
+                                <option value="">Seleccionar Categoria</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <select class="form-control" ng-options="Subcategoria.nombre for Subcategoria in subcategorias track by Subcategoria.subcategoriaID"
+                                    ng-model="subcategory" ng-change="getEquiposWhoutInven(subcategory.subcategoriaID)">
+                                <option value="">seleccionar Subcategoria</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row col-lg-12 col-sm-12">
+                        <br />
+                        <div class="col-lg-12 col-sm-12">
+                            <select class="form-control" ng-options="periodo.nombrePeriodo for periodo in periodoMantenimiento track by periodo.idperiodo"
+                                    ng-model="periodomant">
+                                <option value="">Periodo de revision</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12">
+                        <br />
+                        <div class="col-lg-4 col-sm-6 animated fadeInRight" ng-repeat="equi in equiposWotInv">
+                            <div class="ibox-content text-center contenEquipo" onclick="changeColorChk2(this)">
+                                <h3>{{equi.nombreEquipo}}</h3>
+                                <div class="" style="padding-left:0px;">
+                                    <img alt="image" class="imgeqTsk" ng-src="{{equi.fotourl}}" style="width:100%;height:150px">
+                                </div>
+                                <small>Marca:{{equi.marcaEquipo}}</small><br />
+                                <small>No. Serie:{{equi.numeroSerie}}</small><br />
+                                <small>Sucursal: {{equi.sucursal}}</small>
+                                <input type="checkbox" value='{{equi.idEquipo}}' style="visibility:" name="equiposFCheck" class="i-checks">
+                            </div><br />
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12 col-sm-12 text-center">
+                        <div class="row col-lg-12 col-sm-12 center-block" style="display:block;margin:auto">
+                            <br />
+                            <button type="button" class="btn btn-info" ng-click="savePeriodo(category,subcategory,periodomant);">Guardar</button>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
