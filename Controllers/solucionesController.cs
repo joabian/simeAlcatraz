@@ -33,6 +33,8 @@ namespace simeAlcatraz.Controllers
             if (ModelState.IsValid)
             {
                 myEntity.soluciones.Add(sol);
+                //myEntity.Database.ExecuteSqlCommand("UPDATE incidencias SET status=2 WHERE incidenciaID = " + susp.incidenciaID);
+
                 myEntity.SaveChanges();
             }
         }

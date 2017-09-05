@@ -5,44 +5,51 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
-using simeAlcatraz.Models; 
+using simeAlcatraz.Models;
 
 namespace simeAlcatraz.Controllers
 {
-    public class stockController : ApiController
+    public class areaStockController : ApiController
     {
+
         private sime_dbEntities myEntity = new sime_dbEntities();
 
-        // GET api/stock
-        public IEnumerable<stock> Get()
+        // GET api/areastock
+        public IEnumerable<areaStock> Get()
         {
-            return myEntity.stocks.AsEnumerable();
+            return myEntity.areaStocks.AsEnumerable();
         }
 
-        // GET api/stock/5
-        public stock Get(int id)
-        {
-            stock stk = myEntity.stocks.Find(id);
-            return stk;
 
+
+        // GET api/areastock/5
+        public areaStock Get(int id)
+        {
+            areaStock fnd = myEntity.areaStocks.Find(id);
+            return fnd;
         }
 
-        // POST api/stock
-        public void Post(stock stk)
+        // POST api/areastock
+        public int Post(areaStock areaStock)
         {
+            int id;
+            id = 0;
             if (ModelState.IsValid)
             {
-                myEntity.stocks.Add(stk);
+                myEntity.areaStocks.Add(areaStock);
                 myEntity.SaveChanges();
+                id = areaStock.id;
             }
+
+            return id;
         }
 
-        // PUT api/stock/5
-        public void Put(stock stk)
+        // PUT api/areastock/5
+        public void Put(areaStock areaStock)
         {
             if (ModelState.IsValid)
             {
-                myEntity.Entry(stk).State = EntityState.Modified;
+                myEntity.Entry(areaStock).State = EntityState.Modified;
                 try
                 {
                     myEntity.SaveChanges();
@@ -54,15 +61,15 @@ namespace simeAlcatraz.Controllers
             }
         }
 
-        // DELETE api/stock/5
+        // DELETE api/areastock/5
         public void Delete(int id)
         {
-            stock dlt = myEntity.stocks.Find(id);
+            areaStock dlt = myEntity.areaStocks.Find(id);
             if (dlt != null)
             {
                 try
                 {
-                    myEntity.stocks.Remove(dlt);
+                    myEntity.areaStocks.Remove(dlt);
                     myEntity.SaveChanges();
                 }
                 catch (Exception)
@@ -70,7 +77,6 @@ namespace simeAlcatraz.Controllers
                     throw;
                 }
             }
-
         }
     }
 }

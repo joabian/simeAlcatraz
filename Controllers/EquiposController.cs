@@ -21,6 +21,32 @@ namespace simeAlcatraz.Controllers
             return myEntity.equipoes.AsEnumerable();
         }
 
+        // GET api/equipos
+        [HttpGet]
+        [Route("api/equipos/getAllJoin")]
+        public Array GetAll()
+        {
+            //return myEntity.equipoes.AsEnumerable();
+            var eq = from eqps in myEntity.equipoes
+                     join cats in myEntity.categorias on eqps.id_categoria equals cats.categoriaID
+                     join subs in myEntity.subcategorias on eqps.id_subcategoria equals subs.subcategoriaID
+                     select new { 
+                         equipoID = eqps.equipoID,
+                         descripcion = eqps.descripcion,
+                         activo = eqps.activo,
+                         marcaEquipo = eqps.marcaEquipo,
+                         nombreEquipo = eqps.nombreEquipo,
+                         modeloEquipo = eqps.modeloEquipo,
+                         serializado = eqps.serializado,
+                         numeroSerie = eqps.numeroSerie,
+                         id_categoria = eqps.id_categoria,
+                         id_subcategoria = eqps.id_subcategoria,
+                         nombreCategoria = cats.nombre, 
+                         nombreSubcategoria = subs.nombre
+                     };
+            return eq.ToArray();
+        }
+
         // GET api/equipos/5
         public equipo Get(int id)
         {
@@ -81,7 +107,7 @@ namespace simeAlcatraz.Controllers
         [Route("api/equipos/updateField/{id}/{fieldName}/{value}")]
         public void Post(int id, string fieldName, int value)
         {
-            myEntity.Database.ExecuteSqlCommand("UPDATE equipo SET [" + fieldName + "] = '" + value + "' WHERE equipoID = '" + id+"'");
+            myEntity.Database.ExecuteSqlCommand("UPDATE equipo SET [" + fieldName + "] = '" + value + "' WHERE equipoID = '" + id + "'");
             myEntity.SaveChanges();
         }
 

@@ -1,4 +1,5 @@
 ﻿var app;
 (function () {
-    app = angular.module("simeAlcatraz", ['datatables', 'ngFileUpload']);
+    //, 'ngFileUpload'
+    app = angular.module("simeAlcatraz", ['datatables']);
 })();

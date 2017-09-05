@@ -143,6 +143,9 @@
     <Compile Include="Controllers\actividadesController.cs" />
     <Compile Include="Controllers\AppViewsController.cs" />
     <Compile Include="Controllers\areasController.cs" />
+    <Compile Include="Controllers\areaStockController.cs" />
+    <Compile Include="Controllers\AreasViewController.cs" />
+    <Compile Include="Controllers\AreaTecnicoViewController.cs" />
     <Compile Include="Controllers\categoriasController.cs" />
     <Compile Include="Controllers\checkListsController.cs" />
     <Compile Include="Controllers\comentariosController.cs" />
@@ -158,6 +161,7 @@
     <Compile Include="Controllers\GridOptionsController.cs" />
     <Compile Include="Controllers\DashboardsController.cs" />
     <Compile Include="Controllers\incidenciasController.cs" />
+    <Compile Include="Controllers\incidenciasViewController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\LandingController.cs" />
     <Compile Include="Controllers\LayoutsController.cs" />
@@ -171,12 +175,13 @@
     <Compile Include="Controllers\ScaffoldingController.cs" />
     <Compile Include="Controllers\serviciosController.cs" />
     <Compile Include="Controllers\solucionesController.cs" />
-    <Compile Include="Controllers\stockController.cs" />
     <Compile Include="Controllers\subcategoriasController.cs" />
     <Compile Include="Controllers\sucursalesController.cs" />
+    <Compile Include="Controllers\SucursalesViewController.cs" />
     <Compile Include="Controllers\suspencionesController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\tareasChecksController.cs" />
+    <Compile Include="Controllers\ticketsViewController.cs" />
     <Compile Include="Controllers\UIElementsController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Controllers\vwAreasController.cs" />
@@ -248,9 +253,6 @@
     <Compile Include="Models\solucione.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\stock.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\subcategoria.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -275,6 +277,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -455,6 +458,48 @@
     <Content Include="Content\plugins\slick\fonts\slick.ttf" />
     <Content Include="Content\plugins\slick\fonts\slick.woff" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Images\assets\back2.jpg" />
+    <Content Include="Images\assets\back3.png" />
+    <Content Include="Images\assets\back4.jpg" />
+    <Content Include="Images\assets\background.jpg" />
+    <Content Include="Images\assets\logob.png" />
+    <Content Include="Images\assets\logow.png" />
+    <Content Include="Images\assets\pattern.jpg" />
+    <Content Include="Images\assets\pattern2.jpg" />
+    <Content Include="Images\assets\pattern3.jpg" />
+    <Content Include="Images\Circle_Logo.png" />
+    <Content Include="Images\Equipos\Img_a10.jpg" />
+    <Content Include="Images\Equipos\Img_asd17.jpg" />
+    <Content Include="Images\Equipos\Img_asdasd1.jpg" />
+    <Content Include="Images\Equipos\Img_asdasd18.jpg" />
+    <Content Include="Images\Equipos\Img_asdasd26.jpg" />
+    <Content Include="Images\Equipos\Img_asdasd36.jpg" />
+    <Content Include="Images\Equipos\Img_asdd15.jpg" />
+    <Content Include="Images\Equipos\Img_c31.jpg" />
+    <Content Include="Images\Equipos\Img_jdjdkk37.jpg" />
+    <Content Include="Images\Equipos\Img_kdkd1039.jpg" />
+    <Content Include="Images\Equipos\Img_ksmsk18.jpg" />
+    <Content Include="Images\Equipos\Img_NA2.jpg" />
+    <Content Include="Images\Equipos\Img_NA24.jpg" />
+    <Content Include="Images\Equipos\Img_NA25.jpg" />
+    <Content Include="Images\Equipos\Img_NA3.jpg" />
+    <Content Include="Images\Equipos\Img_NA32.jpg" />
+    <Content Include="Images\Equipos\Img_zxx27.jpg" />
+    <Content Include="Images\Equipos\non_photo.jpg" />
+    <Content Include="Images\fotos\a2.jpg" />
+    <Content Include="Images\fotos\bancoOlimpico.jpg" />
+    <Content Include="Images\fotos\Ce-Approved.jpg" />
+    <Content Include="Images\fotos\dos.jpg" />
+    <Content Include="Images\fotos\mancuernas.jpg" />
+    <Content Include="Images\fotos\maquinaPierna.jpg" />
+    <Content Include="Images\fotos\multiestacion.jpg" />
+    <Content Include="Images\fotos\non_photo.jpg" />
+    <Content Include="Images\fotos\prensa_piernas_vertical_5000.jpg" />
+    <Content Include="Images\fotos\tipica-maquina-de-gimnasio.jpg" />
+    <Content Include="Images\Sucursales\Panamericana.jpg" />
+    <Content Include="Images\Sucursales\Sendero.jpg" />
+    <Content Include="Images\Sucursales\Tecnologico.jpg" />
+    <Content Include="Images\Sucursales\Zaragoza.jpg" />
     <Content Include="locales\en.json" />
     <Content Include="locales\es.json" />
     <Content Include="pdf\example.pdf" />
@@ -506,8 +551,14 @@
     <Content Include="Scripts\angular\angular-touch.min.js" />
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\APIScripts\Controllers\AreasController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\AreaTecnicoController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\IncidenciaController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\SolucionController.js" />
     <Content Include="Scripts\APIScripts\Controllers\SubcategoriaController.js" />
     <Content Include="Scripts\APIScripts\Controllers\CategoriaController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\SucursalController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\SuspencionController.js" />
     <Content Include="Scripts\APIScripts\Controllers\UserController.js" />
     <Content Include="Scripts\APIScripts\Controllers\EquipoController.js" />
     <Content Include="Scripts\APIScripts\Directives\Directives.js" />
@@ -526,6 +577,7 @@
     <Content Include="Scripts\angular\angular-sanitize.min.js.map" />
     <Content Include="Scripts\angular\angular-touch.min.js.map" />
     <Content Include="Scripts\angular\angular.min.js.map" />
+    <Content Include="README.md" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\a1.jpg" />
     <Content Include="Images\a2.jpg" />
@@ -1976,6 +2028,28 @@
     <Content Include="Views\ConfigurationView\users.cshtml" />
     <Content Include="Views\ConfigurationView\subcategories.cshtml" />
     <Content Include="Views\inventario.cshtml" />
+    <Content Include="Views\AreaTecnicoView\controlinventario.cshtml" />
+    <Content Include="Views\AreaTecnicoView\controlmantenimiento.cshtml" />
+    <Content Include="Views\AreaTecnicoView\problemasolucion.cshtml" />
+    <Content Include="Views\AreaTecnicoView\setticket.cshtml" />
+    <Content Include="Views\EquiposView\caracteriticasEspeciales.cshtml" />
+    <Content Include="Views\EquiposView\updateEquipo.cshtml" />
+    <Content Include="Views\IncidenciasView\incidenCerradas.cshtml" />
+    <Content Include="Views\IncidenciasView\incidencias.cshtml" />
+    <Content Include="Views\IncidenciasView\incidenProb.cshtml" />
+    <Content Include="Views\IncidenciasView\incidenSol.cshtml" />
+    <Content Include="Views\IncidenciasView\incidenSusp.cshtml" />
+    <Content Include="Views\SucursalesView\sucursalEnc.cshtml" />
+    <Content Include="Views\SucursalesView\sucursales.cshtml" />
+    <Content Include="Views\TicketsView\ticketForm.cshtml" />
+    <Content Include="Views\TicketsView\ticketLink.cshtml" />
+    <Content Include="Views\areaStocks\Create.cshtml" />
+    <Content Include="Views\areaStocks\Delete.cshtml" />
+    <Content Include="Views\areaStocks\Details.cshtml" />
+    <Content Include="Views\areaStocks\Edit.cshtml" />
+    <Content Include="Views\areaStocks\Index.cshtml" />
+    <Content Include="Views\AreasView\agregarArea.cshtml" />
+    <Content Include="Views\AreasView\asignarEquipo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

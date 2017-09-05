@@ -8,15 +8,15 @@
 
 <div class="wrapper wrapper-content animated fadeInRight" ng-controller="EquipoController">
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12 col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="row wrapper border-bottom white-bg page-heading">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <h2>Registrar equipo</h2>
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form class="form-horizontal" enctype="multipart/form-data">
+                    <form class="form-horizontal" enctype="multipart/form-data" id="toclearform">
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Nombre</label>
@@ -34,19 +34,20 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Categoria</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="CategoriaEquipo" id="CategoriaEquipo"
-                                        ng-init="somethingHere = somethingHere || options[0].value"
-                                        ng-options="categoria.nombre for categoria in data.Categorias track by categoria.categoriaID"
-                                        ng-model="data.catego" ng-change="update(data.catego.categoriaID)"></select>
+                                <select class="form-control" ng-options="Categoria.nombre for Categoria in categorias track by Categoria.categoriaID"
+                                        ng-model="category" ng-change="updateSubcat(category.categoriaID)">
+                                    <option value="">Seleccionar Categoria</option>
+                                </select>
                             </div>
 
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Subcategoria</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="SubcategoriaEquipo" id="SubcategoriaEquipo"
-                                        ng-options="Subcategoria.nombre for Subcategoria in data2.Subcategorias track by Subcategoria.subcategoriaID"
-                                        ng-model="data2.subcategos"></select>
+                                <select class="form-control" ng-options="Subcategoria.nombre for Subcategoria in subcategorias track by Subcategoria.subcategoriaID"
+                                        ng-model="subcategory" >
+                                    <option value="">seleccionar Subcategoria</option>
+                                </select>
                             </div>
                         </div>
 
@@ -60,20 +61,6 @@
                             <label class="col-sm-2 control-label">Número de serie</label>
                             <div class="col-sm-10"><input type="text" placeholder="Número de serie" data-ng-model="noserie" class="form-control "></div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Foto</label>
-                            <div class="col-sm-10">
-                                <div class="fileinput fileinput-new" data-provides="fileinput" data-ng-model="foto2">
-                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-                                    <div>
-                                        <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar imagen</span><span class="fileinput-exists">Cambiar</span><input type="file" file-model="foto" name="imgUpl" id="imguplo"></span>
-                                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Eliminar</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Descripcion</label>
                             <div class="col-sm-10"><textarea class="form-control" rows="4" id='areaDescripcion' data-ng-model="descripcion" placeholder='Descripcion'></textarea></div>
@@ -90,9 +77,6 @@
         </div>
     </div>
 </div>
-
-<link href="/jasny/jasny-bootstrap.min.css" rel="stylesheet">
-<!-- Jasny -->
-<script src="/jasny/jasny-bootstrap.min.js"></script>
-
-
+<link href="~/Content/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-2.1.1.js"></script>
+<script src="~/Scripts/plugins/jasny/jasny-bootstrap.min.js"></script>

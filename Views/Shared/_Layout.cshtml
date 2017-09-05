@@ -65,21 +65,34 @@
     <!-- Handler for local scripts -->
     @RenderSection("scripts", required: false)
 
+  
+    @Styles.Render("~/plugins/toastrStyles")
+
+    @Scripts.Render("~/plugins/toastr")
+
+    @Styles.Render("~/plugins/sweetAlertStyles")
+    
+    @Scripts.Render("~/plugins/sweetAlert")
 
     <script src="~/Scripts/angular/angular.js"></script>
     @*<script src="~/Scripts/angular-route.js"></script>*@
-    <script src="~/Scripts/angular/ng-file-upload.js"></script>
-    <script src="~/Scripts/angular/ng-file-upload-shim.js"></script>
+    @*<script src="~/Scripts/angular/ng-file-upload.js"></script>
+    <script src="~/Scripts/angular/ng-file-upload-shim.js"></script>*@
 
     <script src="~/Scripts/APIScripts/Modules/Module.js"></script>
-    <script src="~/Scripts/APIScripts/Controllers/EquipoController.js"></script> 
-    <script src="~/Scripts/APIScripts/Controllers/CategoriaController.js"></script> 
-    <script src="~/Scripts/APIScripts/Controllers/SubcategoriaController.js"></script> 
-    <script src="~/Scripts/APIScripts/Controllers/UserController.js"></script> 
     <script src="~/Scripts/APIScripts/Services/Services.js"></script>
-    <script src="~/Scripts/APIScripts/Directives/Directives.js"></script>
-    
-    @Scripts.Render("~/plugins/dataTables")
+    <script src="~/Scripts/APIScripts/Controllers/EquipoController.js"></script> 
+    <script src="~/Scripts/APIScripts/Controllers/CategoriaController.js"></script>
+    <script src="~/Scripts/APIScripts/Controllers/SubcategoriaController.js"></script>
+    <script src="~/Scripts/APIScripts/Controllers/IncidenciaController.js"></script>
+    <script src="~/Scripts/APIScripts/Controllers/SucursalController.js"></script>
+    <script src="~/Scripts/APIScripts/Controllers/SuspencionController.js"></script>
+    <script src="~/Scripts/APIScripts/Controllers/SolucionController.js"></script>
+    <script src="~/Scripts/APIScripts/Controllers/AreasController.js"></script>
+    <script src="~/Scripts/APIScripts/Controllers/UserController.js"></script>
+    <script src="~/Scripts/APIScripts/Controllers/AreaTecnicoController.js"></script>
+    @Scripts.Render("~/plugins/dataTables") 
+   
 
 </body>
 

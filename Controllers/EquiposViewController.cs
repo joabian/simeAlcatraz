@@ -24,10 +24,7 @@ namespace simeAlcatraz.Controllers
         {
             return View();
         }
-        public ActionResult inventario()
-        {
-            return PartialView("~/Views/inventario.cshtml");
-        }
+        
         public ActionResult caracteriticasEspeciales()
         {
             return View();

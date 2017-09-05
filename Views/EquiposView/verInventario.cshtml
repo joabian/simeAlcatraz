@@ -1,7 +1,171 @@
 ﻿@{
-    ViewBag.Title = "agregarEquipo";
+    ViewBag.Title = "Ver inventario";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    #rowInv {
+        background: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    #navInven {
+        background-image: url('views/../img/assets/pattern3.jpg');
+        width: 100%;
+        margin-left: 0;
+        background-image: url('../Images/assets/pattern3.jpg');
+    }
+
+    #navTopMenu {
+        background: #000;
+        margin: 0;
+        padding: 0;
+    }
+
+    .ibox {
+        box-shadow: none;
+        transition: box-shadow 0.3s;
+    }
+
+        .ibox:hover {
+            background: red;
+            box-shadow: 0px 0px 35px 0px #bdc3c7;
+        }
+</style>
+
+<div ng-app="simeAlcatraz" id="rowInv" class="wrapper col-lg-12 col-sm-12 white-bg animated fadeInRight" style="min-height:750px;" data-ng-controller="EquipoController" ng-init="update(1)">
+    <div class="row" id="navTopMenu">
+        <div class="col-lg-10 col-sm-10"></div>
+        <div class="col-lg-1 col-sm-1"><a href="@Url.Action("agregarEquipo", "EquiposView")"><span style="color:#fff;">Volver</span></a></div>
+    </div>
+    <div class="row" id="navInven">
+        <div class="col-lg-3 col-sm-3">
+                <h2 style="color:#fff;"><img src="~/Images/assets/logow.png" />| Inventario</h2>
+        </div>
+        <div class="col-lg-1 col-sm-1"></div>
+
+        <div class="col-lg-3 col-sm-3">
+            <label style="color:#fff">Sucursal</label>
+            <select class="form-control animated fadeInRight" name="sucursal" id="sucursal"
+                    ng-options="sucursal.nombre for sucursal in sucursales track by sucursal.id"
+                    ng-model="sucursalMod">
+                <option value="">Seleccione una sucursal</option>
+            </select>
+        </div>
+
+        <div class="col-lg-3 col-sm-3">
+            <label style="color:#fff">Categoria</label>
+            <select class="form-control animated fadeInRight" name="categoria" id="categoria"
+                    ng-options="Categoria.nombre for Categoria in categorias track by Categoria.categoriaID"
+                    ng-model="catego" ng-change="updateSubcat(catego.categoriaID)">
+                <option value="">Seleccione una categoria</option>
+            </select>
+        </div>
+        <div class="col-lg-1 col-sm-1" style="padding-top:25px;"><button class="form-control" style="background:none;color:#fff;" ng-click="getEquipoByThreeIds();">ver</button></div>
+    </div>
+    <div class="row"><br /><br /></div>
+    <div class="row">
+        <div class="col-lg-2 col-sm-2">
+            <div class="text-center">
+                <h3>Todos los equipos ({{dataAllEq.equipo.length}})</h3>
+                <hr />
+                
+                
+                <div class="form-group">
+                    <h4>Subcategorias</h4><br />
+                    <div class="col-sm-12 " ng-repeat="subcategoria in subcategorias">
+                        
+                        <div class="checkbox i-checks pull-left">
+                            <label>
+                                <input type="checkbox" value="" class="icheckbox_square-green" name="group" id="{{subcategoria.subcategoriaID}}"
+                                       ng-click="updateList(subcategoria.subcategoriaID)">&nbsp;{{subcategoria.nombre}}
+                            </label>
+                            
+                            
+                        </div>
+
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-10 col-sm-10">
+            <div class="col-lg-3 col-sm-6 animated fadeInRight" style="opacity:0.8" ng-repeat="equipo in equiposfromVwStock">
+                <div class="ibox" style="border:1px solid #bdc3c7">
+                    <div class="ibox-content product-box">
+                        <div class="product-imitation" style="border-bottom:1px solid red;background:none">
+                            <img ng-src="{{equipo.fotourl}}" style="width:100%;height:230px;">
+                        </div>
+                        <div class="product-desc contEqu">
+                            <small class="text-muted"></small>
+                            <p>
+                                <a href="#" class="product-name">{{equipo.nombreEquipo}}</a>
+                            </p>
+                            <div class="small m-t-xs">
+                                <p>
+                                    Marca: {{equipo.marcaEquipo}}<strong></strong>
+                                </p>
+                                <p>
+                                    Descripcion: {{equipo.descripcion}}<strong></strong>
+                                <p rows='3'></p>
+                                </p>
+                                <p>
+                                    Cantidad: <strong>{{equipo.cantidad}}</strong>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="../Content/bootstrap.min.css" rel="stylesheet">
+<!-- Main Inspinia CSS files -->
+<link href="../Content/animate.css" rel="stylesheet">
+<link id="loadBefore" href="../Content/style.css" rel="stylesheet">
+<!-- Custom CSS file -->
+<link href="../Content/estilo.css" rel="stylesheet">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/style.css" rel="stylesheet" />
+<script src="~/Scripts/angular/angular.js"></script>
+<script src="~/Scripts/jquery-2.1.1.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/APIScripts/Modules/Module.js"></script>
+<script src="~/Scripts/APIScripts/Services/Services.js"></script>
+<script src="~/Scripts/APIScripts/Controllers/EquipoController.js"></script>
+<script src="~/Scripts/APIScripts/Controllers/AreaTecnicoController.js"></script>
 
 
-Vista nueva
+    @Styles.Render("~/plugins/toastrStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+
+
+
+    @Scripts.Render("~/plugins/toastr")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/iCheck")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });
+    </script>
+
+
+
+
+
+
+

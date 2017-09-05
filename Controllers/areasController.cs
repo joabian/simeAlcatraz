@@ -28,10 +28,21 @@ namespace simeAlcatraz.Controllers
         }
 
         // GET api/areas/SelectByEncargadoID/5
+        [HttpGet]
+        [Route("api/areas/SelectByEncargadoID/{id}")]
         public IEnumerable<area> SelectByEncargadoID(int id)
         {
             var query = from mysub in myEntity.areas.AsEnumerable()
                         where mysub.usuarioEncargado == id
+                        select mysub;
+            return query;
+        }
+
+        [Route("api/areas/GetBySucID/{id}")]
+        public IEnumerable<area> GetByCategoryID(int id)
+        {
+            var query = from mysub in myEntity.areas.AsEnumerable()
+                        where mysub.idSucursal == id
                         select mysub;
             return query;
         }

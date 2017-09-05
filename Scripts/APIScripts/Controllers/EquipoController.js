@@ -3,6 +3,9 @@
     getCategorias();
     getSucursalesAll();
     getAllTask();
+    getAllJoin();
+    $scope.equiposfromVwStock = [];
+
 
     function simpleAlert(title, text, type) {
         if (type == 0) { type = "" } if (type == 1) { type = "success" } if (type == 2) { type = "warning" }
@@ -80,6 +83,45 @@
             console.log('Oops! Something went wrong while fetching the data.')
         })
     };
+
+    $scope.SubSelected = []
+
+    $scope.updateList = function (id) {
+        if (isInArray(id, $scope.SubSelected)) {
+            $scope.SubSelected = removeA($scope.SubSelected, id);
+        } else {
+            $scope.SubSelected.push(id)
+        }
+        
+        $scope.getEquipoByThreeIds();
+    };
+
+    function isInArray(value, array) {
+        return array.indexOf(value) > -1;
+    }
+
+    function removeA(arr) {
+        var what, a = arguments, L = a.length, ax;
+        while (L > 1 && arr.length) {
+            what = a[--L];
+            while ((ax = arr.indexOf(what)) !== -1) {
+                arr.splice(ax, 1);
+            }
+        }
+        return arr;
+    }
+
+
+    function getAllJoin() {
+        var servCall = Services.getAllJoin();
+        servCall.then(function (d) {
+            $scope.equiposJoin = d.data;
+            //console.log($scope.equipos)
+        }, function (error) {
+            console.log('Oops! Something went wrong while fetching the data.')
+        })
+    };
+
     function getCategorias() {
         var servCall = Services.getCategorias();
         servCall.then(function (d) {
@@ -184,7 +226,7 @@
     $scope.saveInvididualCheck = function (checklist, idEquipo,arrTareas,idSubc) {
         var svcheck = Services.saveCheckList(checklist);
         svcheck.then(function (d) {
-            Services.updEquipoHasCheck(idEquipo, "hasCheckList", 'true');
+            Services.updEquipoField(idEquipo, "hasCheckList", 'true');
             for (k = 0; k < arrTareas.length; k++) {
                 var actividades = {
                     idChecklist: d.data,
@@ -218,7 +260,16 @@
                 {
                         for (j = 0; j < arrIdEqui.length; j++) {
                            
-                            var updEquip = Services.updEquip(arrIdEqui[j],"periodoServNum",periodo.peridoMantenimiento);
+                            var updEquip = Services.updEquipoField(arrIdEqui[j], "periodoServNum", periodo.peridoMantenimiento);
+                            updEquip.then(function (d) {
+                                $scope.getEquiposWhoutInven(idsubcat.subcategoriaID);
+                                
+
+                            }, function (error) {
+                                //showNotification(4, "Oops! Something went wrong while saving the data.", "Error", 3000);
+                            })
+
+                            var updEquip = Services.updEquipoField(arrIdEqui[j], "periodoServ", "true");
                             updEquip.then(function (d) {
                                 $scope.getEquiposWhoutInven(idsubcat.subcategoriaID);
                                 showNotification(1, "Periodo registrado!", "Exito", 1000);
@@ -226,6 +277,7 @@
                             }, function (error) {
                                 showNotification(4, "Oops! Something went wrong while saving the data.", "Error", 3000);
                             })
+
                         }
                     
 
@@ -256,25 +308,52 @@
         var servCall = Services.getUpdSubcategoria(id);
         servCall.then(function (d) {
             $scope.subcategorias = d.data;
+            $scope.SubSelected = [];
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
            //console.log($scope.subcategorias)
         }, function (error) {
             console.log('Oops! Something went wrong while fetching the data.')
         })
     }
-    $scope.getEquipoByThreeIds= function(){
+
+    
+
+    
+    $scope.getEquipoByThreeIds = function () {
+        //alert("entra");
         if ($scope.sucursalMod && $scope.catego != undefined) {
             var IdSucursal = $scope.sucursalMod.id;
             var IdCategoria = $scope.catego.categoriaID;
-            var IdSubcategoria = $scope.subcategorias.subca;
-            if (IdSubcategoria == undefined){ IdSubcategoria = 0; }
-            //alert("Sucursal: " + IdSucursal + " Categoria: " + IdCategoria + " Subcategoria: " + IdSubcategoria);
-            var servCall = Services.getEquiposByIds(IdSucursal, IdCategoria, IdSubcategoria);
-            servCall.then(function (d) {
-                $scope.equiposfromVwStock = d.data;
-                //console.log($scope.equiposfromVwStock)
-            }, function (error) {
-                //console.log('Oops! Something went wrong while fetching the data.')
-            })
+            //var IdSubcategoria = $scope.subcategorias.subca;
+            if ($scope.SubSelected.length == 0) {
+                var servCall = Services.getEquiposByIds(IdSucursal, IdCategoria, 0);
+                servCall.then(function (d) {
+                    $scope.equiposfromVwStock = d.data;
+                    //console.log($scope.equiposfromVwStock)
+                }, function (error) {
+                    //console.log('Oops! Something went wrong while fetching the data.')
+                })
+            } else {
+                $scope.equiposfromVwStock = [];
+                for (i = 0; i < $scope.SubSelected.length; i++) {
+                    var servCall = Services.getEquiposByIds(IdSucursal, IdCategoria, $scope.SubSelected[i]);
+                    servCall.then(function (d) {
+                        $scope.equiposfromVwStock = $scope.equiposfromVwStock.concat(d.data);
+                        //console.log($scope.equiposfromVwStock)
+                    }, function (error) {
+                        //console.log('Oops! Something went wrong while fetching the data.')
+                    })
+                }
+            }
+
+            
+
+
+            
         }
         else {
             if ($scope.sucursalMod == undefined && $scope.catego == undefined) { simpleAlert("Alerta","Seleccione una sucursal y una categoria!.",2)}
@@ -284,6 +363,7 @@
             }
         } 
     }
+
     $scope.showAlert = function () {
         confirmAlert("Eliminar equipo", "Desea borrar este equipo?", "Borrar equipo", 2, "Eliminado", "El equipo se elimino exitosamente");
     }
@@ -297,6 +377,7 @@
             console.log('Oops! Something went wrong while fetching the data.')
         })
     }
+
     $scope.loadActioncarEsp = function () {
         $scope.valAction = $scope.seloadAction;
     }
@@ -359,8 +440,8 @@
             //equipoID:4,
             descripcion: $scope.descripcion,
             fechaIngreso: new Date(),
-            id_categoria: $scope.category.id_categoria,
-            id_subcategoria: $scope.subcategory.id_subcategoria,
+            id_categoria: $scope.category.categoriaID,
+            id_subcategoria: $scope.subcategory.subcategoriaID,
             activo: true,
             marcaEquipo: $scope.marcaEquipo,
             nombreEquipo: $scope.nombreEquipo,

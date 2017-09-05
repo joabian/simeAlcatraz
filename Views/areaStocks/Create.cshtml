@@ -1,0 +1,105 @@
+﻿@model simeAlcatraz.Models.areaStock
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Create areaStock</h5>
+                    </div>
+                    <div class="ibox-content">
+    
+    				@using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.idArea, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.idArea)
+                    @Html.ValidationMessageFor(model => model.idArea)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.idEquipo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.idEquipo)
+                    @Html.ValidationMessageFor(model => model.idEquipo)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.idSucursal, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.idSucursal)
+                    @Html.ValidationMessageFor(model => model.idSucursal)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.cantidad, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cantidad)
+                    @Html.ValidationMessageFor(model => model.cantidad)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.idUsuario, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.idUsuario)
+                    @Html.ValidationMessageFor(model => model.idUsuario)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.fechaUltimoServicio, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fechaUltimoServicio)
+                    @Html.ValidationMessageFor(model => model.fechaUltimoServicio)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.fechaUltimoInven, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fechaUltimoInven)
+                    @Html.ValidationMessageFor(model => model.fechaUltimoInven)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+    				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                </div>
+            </div>
+        </div>
+    }
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+    
+     
+</body>
+</html>
