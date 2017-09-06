@@ -1,0 +1,109 @@
+﻿@model simeAlcatraz.Models.areaStock
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    
+    
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Details areaStock</h5>
+                    </div>
+                    <div class="ibox-content">
+    
+    
+    				    <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.idArea)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.idArea)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.idEquipo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.idEquipo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.idSucursal)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.idSucursal)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.cantidad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.idUsuario)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.idUsuario)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.fechaUltimoServicio)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.fechaUltimoServicio)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.fechaUltimoInven)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.fechaUltimoInven)
+            </dd>
+    
+        </dl>
+    
+    
+    	    @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-primary"})
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</body>
+</html>

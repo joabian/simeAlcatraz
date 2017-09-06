@@ -40,6 +40,51 @@
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "EquiposView", cssClass: "in")">
                     <li class="@Html.IsSelected(action: "agregarEquipo")"><a href="@Url.Action("agregarEquipo", "EquiposView")">Agregar Equipo</a></li>
                     <li class="@Html.IsSelected(action: "verInventario")"><a href="@Url.Action("verInventario", "EquiposView")">Ver Inventario</a></li>
+                    <li class="@Html.IsSelected(action: "updateEquipo")"><a href="@Url.Action("updateEquipo", "EquiposView")">Modificar</a></li>
+                    <li class="@Html.IsSelected(action: "caracteriticasEspeciales")"><a href="@Url.Action("caracteriticasEspeciales", "EquiposView")">Caracteristicas especiales</a></li>
+                </ul>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "AreaTecnicoView")">
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Area (tecnico)</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "AreaTecnicoView", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "controlinventario")"><a href="@Url.Action("controlinventario", "AreaTecnicoView")">Control de inventario</a></li>
+                    <li class="@Html.IsSelected(action: "controlmantenimiento")"><a href="@Url.Action("controlmantenimiento", "AreaTecnicoView")">Control de mantenimiento</a></li>
+                    <li class="@Html.IsSelected(action: "setticket")"><a href="@Url.Action("setticket", "AreaTecnicoView")">Levantar ticket</a></li>
+                    <li class="@Html.IsSelected(action: "problemasolucion")"><a href="@Url.Action("problemasolucion", "AreaTecnicoView")">Problema - solucion</a></li>
+                </ul>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "TicketsView")">
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Tickets (Clientes)</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "TicketsView", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "ticketLink")"><a href="@Url.Action("ticketLink", "TicketsView")">Link</a></li>
+                    <li class="@Html.IsSelected(action: "ticketForm")"><a href="@Url.Action("ticketForm", "TicketsView")">Formulario</a></li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "IncidenciasView")">
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Incidencias</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "IncidenciasView", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "incidencias")"><a href="@Url.Action("incidencias", "IncidenciasView")">Tablero de incidencias</a></li>
+                    <li class="@Html.IsSelected(action: "incidenProb")"><a href="@Url.Action("incidenProb", "IncidenciasView")">Abrir incidencia</a></li>
+                    <li class="@Html.IsSelected(action: "incidenSusp")"><a href="@Url.Action("incidenSusp", "IncidenciasView")">Suspender incidencia</a></li>
+                    <li class="@Html.IsSelected(action: "incidenSol")"><a href="@Url.Action("incidenSol", "IncidenciasView")">Cerrar incidencia</a></li>
+                    <li class="@Html.IsSelected(action: "incidenCerradas")"><a href="@Url.Action("incidenCerradas", "IncidenciasView")">Incidencias cerradas</a></li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "SucursalesView")">
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Sucursales</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "SucursalesView", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "sucursales")"><a href="@Url.Action("sucursales", "SucursalesView")">Sucursales</a></li>
+                    <li class="@Html.IsSelected(action: "sucursalEnc")"><a href="@Url.Action("sucursalEnc", "SucursalesView")">Encargado de sucursal</a></li>
+                </ul>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "AreasView")">
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Areas</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "EquiposView", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "agregarArea")"><a href="@Url.Action("agregarArea", "AreasView")">Agregar Area</a></li>
+                    <li class="@Html.IsSelected(action: "asignarEquipo")"><a href="@Url.Action("asignarEquipo", "AreasView")">Asignar equipo</a></li>
                 </ul>
             </li>
 
