@@ -1,0 +1,1014 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="sime_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actividades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idChecklist" Type="int" />
+          <Property Name="idTarea" Type="int" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="areas">
+          <Key>
+            <PropertyRef Name="areaID" />
+          </Key>
+          <Property Name="areaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="250" />
+          <Property Name="idSucursal" Type="int" />
+          <Property Name="usuarioEncargado" Type="int" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="fechaIngreso" Type="datetime" />
+        </EntityType>
+        <EntityType Name="areaStock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idArea" Type="int" />
+          <Property Name="idEquipo" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="fechaUltimoServicio" Type="datetime" />
+          <Property Name="fechaUltimoInven" Type="datetime" />
+          <Property Name="idSucursal" Type="int" />
+        </EntityType>
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="categoriaID" />
+          </Key>
+          <Property Name="categoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="fechaIngreso" Type="datetime" />
+        </EntityType>
+        <EntityType Name="checklist">
+          <Key>
+            <PropertyRef Name="checkID" />
+          </Key>
+          <Property Name="checkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEquipo" Type="int" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+          <Property Name="periodoServicio" Type="int" />
+        </EntityType>
+        <EntityType Name="comentarios">
+          <Key>
+            <PropertyRef Name="comentarioID" />
+          </Key>
+          <Property Name="comentarioID" Type="int" Nullable="false" />
+          <Property Name="incidenciaID" Type="int" Nullable="false" />
+          <Property Name="comentario" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="equipo">
+          <Key>
+            <PropertyRef Name="equipoID" />
+          </Key>
+          <Property Name="equipoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+          <Property Name="fechaIngreso" Type="datetime" />
+          <Property Name="id_categoria" Type="int" />
+          <Property Name="id_subcategoria" Type="int" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="marcaEquipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombreEquipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="modeloEquipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="serializado" Type="bit" />
+          <Property Name="numeroSerie" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaModifico" Type="datetime" />
+          <Property Name="userModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="userCaptura" Type="nvarchar" MaxLength="50" />
+          <Property Name="areaStatus" Type="bit" />
+          <Property Name="hasCheckList" Type="bit" />
+          <Property Name="periodoServ" Type="bit" />
+          <Property Name="periodoServNum" Type="int" />
+        </EntityType>
+        <EntityType Name="fotos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_equipo" Type="int" />
+          <Property Name="url" Type="nvarchar" MaxLength="150" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="fcreo" Type="date" />
+          <Property Name="creo" Type="varchar" MaxLength="50" />
+          <Property Name="modifico" Type="varchar" MaxLength="50" />
+          <Property Name="fmodifico" Type="date" />
+        </EntityType>
+        <EntityType Name="incidencias">
+          <Key>
+            <PropertyRef Name="incidenciaID" />
+          </Key>
+          <Property Name="incidenciaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
+          <Property Name="equipoID" Type="int" Nullable="false" />
+          <Property Name="serializado" Type="bit" />
+          <Property Name="numSerie" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="fechaApertura" Type="date" />
+          <Property Name="fechaAtencion" Type="date" />
+          <Property Name="fechaClausura" Type="date" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRecord" Type="int" />
+          <Property Name="tabla" Type="nvarchar" MaxLength="50" />
+          <Property Name="usuario" Type="int" />
+          <Property Name="evento" Type="nvarchar" MaxLength="500" />
+          <Property Name="valOld" Type="nvarchar" MaxLength="50" />
+          <Property Name="valNew" Type="nvarchar" MaxLength="50" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="pagina" Type="nvarchar" MaxLength="150" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="requisiciones">
+          <Key>
+            <PropertyRef Name="requisicionID" />
+          </Key>
+          <Property Name="requisicionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRequisitor" Type="int" />
+          <Property Name="idResuelve" Type="int" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+          <Property Name="respuesta" Type="nvarchar" MaxLength="500" />
+          <Property Name="estatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="rolID" />
+          </Key>
+          <Property Name="rolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rol" Type="nvarchar" MaxLength="50" />
+          <Property Name="creo" Type="int" />
+          <Property Name="fCreo" Type="datetime" />
+          <Property Name="modifico" Type="int" />
+          <Property Name="fModifico" Type="datetime" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="servicios">
+          <Key>
+            <PropertyRef Name="servicioID" />
+          </Key>
+          <Property Name="servicioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAreaStock" Type="int" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="atendido" Type="bit" />
+          <Property Name="idChecklist" Type="int" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="soluciones">
+          <Key>
+            <PropertyRef Name="solucionID" />
+          </Key>
+          <Property Name="solucionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="incidenciaID" Type="int" Nullable="false" />
+          <Property Name="solucion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="funciono" Type="bit" Nullable="false" />
+          <Property Name="contador" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="subcategoria">
+          <Key>
+            <PropertyRef Name="subcategoriaID" />
+          </Key>
+          <Property Name="subcategoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="categoriaID" Type="int" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="fechaIngreso" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sucursales">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="idEncargado" Type="int" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="150" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="150" />
+          <Property Name="horario" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="suspenciones">
+          <Key>
+            <PropertyRef Name="suspencionID" />
+          </Key>
+          <Property Name="suspencionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="incidenciaID" Type="int" Nullable="false" />
+          <Property Name="comentario" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="fechaApertura" Type="datetime" Nullable="false" />
+          <Property Name="fechaClausura" Type="datetime" Nullable="false" />
+          <Property Name="activa" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tareasCheck">
+          <Key>
+            <PropertyRef Name="idTarea" />
+          </Key>
+          <Property Name="idTarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreTarea" Type="nvarchar" MaxLength="200" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="creo" Type="nvarchar" MaxLength="200" />
+          <Property Name="fcreo" Type="date" />
+          <Property Name="modifico" Type="nvarchar" MaxLength="200" />
+          <Property Name="fmodifico" Type="date" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreUsuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="apellidoPaterno" Type="nvarchar" MaxLength="100" />
+          <Property Name="apellidoMaterno" Type="nvarchar" MaxLength="100" />
+          <Property Name="fechaNacimiento" Type="datetime" />
+          <Property Name="rfc" Type="nvarchar" MaxLength="50" />
+          <Property Name="curp" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="fechaContratacion" Type="datetime" />
+          <Property Name="idSupervisor" Type="int" />
+          <Property Name="idSucursalBase" Type="int" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="departamento" Type="nvarchar" MaxLength="50" />
+          <Property Name="puesto" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'sime_db.dbo.vw_areas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_areas">
+          <Key>
+            <PropertyRef Name="areaID" />
+            <PropertyRef Name="nombreSucursal" />
+            <PropertyRef Name="nombreEncargado" />
+          </Key>
+          <Property Name="areaID" Type="int" Nullable="false" />
+          <Property Name="nombreArea" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="250" />
+          <Property Name="nombreSucursal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombreEncargado" Type="nvarchar" MaxLength="302" Nullable="false" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="fechaIngreso" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="idArea" Type="int" />
+          <Property Name="idEquipo" Type="int" />
+          <Property Name="idSucursal" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="fechaUltimoServicio" Type="datetime" />
+          <Property Name="nombreEquipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="checklist" Type="bit" />
+          <Property Name="periodo" Type="bit" />
+          <Property Name="diasPeriodo" Type="int" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+          <Property Name="fechaIngreso" Type="datetime" />
+          <Property Name="id_categoria" Type="int" />
+          <Property Name="id_subcategoria" Type="int" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="marcaEquipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="modeloEquipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="serializado" Type="bit" />
+          <Property Name="numeroSerie" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaModifico" Type="datetime" />
+          <Property Name="userModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="userCaptura" Type="nvarchar" MaxLength="50" />
+          <Property Name="categoriaNombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubcategoriaNombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="sucursal" Type="nvarchar" MaxLength="50" />
+          <Property Name="fotourl" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityContainer Name="sime_dbModelStoreContainer">
+          <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="areas" EntityType="Self.areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="areaStock" EntityType="Self.areaStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="checklist" EntityType="Self.checklist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comentarios" EntityType="Self.comentarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="equipo" EntityType="Self.equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fotos" EntityType="Self.fotos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="incidencias" EntityType="Self.incidencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="log" EntityType="Self.log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="requisiciones" EntityType="Self.requisiciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicios" EntityType="Self.servicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="soluciones" EntityType="Self.soluciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subcategoria" EntityType="Self.subcategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="suspenciones" EntityType="Self.suspenciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tareasCheck" EntityType="Self.tareasCheck" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_areas" EntityType="Self.vw_areas" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_areas].[areaID] AS [areaID], 
+    [vw_areas].[nombreArea] AS [nombreArea], 
+    [vw_areas].[descripcion] AS [descripcion], 
+    [vw_areas].[nombreSucursal] AS [nombreSucursal], 
+    [vw_areas].[nombreEncargado] AS [nombreEncargado], 
+    [vw_areas].[activo] AS [activo], 
+    [vw_areas].[fechaIngreso] AS [fechaIngreso]
+    FROM [dbo].[vw_areas] AS [vw_areas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_stock" EntityType="Self.vw_stock" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_stock].[id] AS [id], 
+    [vw_stock].[idArea] AS [idArea], 
+    [vw_stock].[idEquipo] AS [idEquipo], 
+    [vw_stock].[idSucursal] AS [idSucursal], 
+    [vw_stock].[cantidad] AS [cantidad], 
+    [vw_stock].[idUsuario] AS [idUsuario], 
+    [vw_stock].[fechaUltimoServicio] AS [fechaUltimoServicio], 
+    [vw_stock].[nombreEquipo] AS [nombreEquipo], 
+    [vw_stock].[checklist] AS [checklist], 
+    [vw_stock].[periodo] AS [periodo], 
+    [vw_stock].[diasPeriodo] AS [diasPeriodo], 
+    [vw_stock].[descripcion] AS [descripcion], 
+    [vw_stock].[fechaIngreso] AS [fechaIngreso], 
+    [vw_stock].[id_categoria] AS [id_categoria], 
+    [vw_stock].[id_subcategoria] AS [id_subcategoria], 
+    [vw_stock].[activo] AS [activo], 
+    [vw_stock].[marcaEquipo] AS [marcaEquipo], 
+    [vw_stock].[modeloEquipo] AS [modeloEquipo], 
+    [vw_stock].[serializado] AS [serializado], 
+    [vw_stock].[numeroSerie] AS [numeroSerie], 
+    [vw_stock].[fechaModifico] AS [fechaModifico], 
+    [vw_stock].[userModifico] AS [userModifico], 
+    [vw_stock].[userCaptura] AS [userCaptura], 
+    [vw_stock].[categoriaNombre] AS [categoriaNombre], 
+    [vw_stock].[SubcategoriaNombre] AS [SubcategoriaNombre], 
+    [vw_stock].[sucursal] AS [sucursal], 
+    [vw_stock].[fotourl] AS [fotourl]
+    FROM [dbo].[vw_stock] AS [vw_stock]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sime_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="actividade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idChecklist" Type="Int32" />
+          <Property Name="idTarea" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="areaID" />
+          </Key>
+          <Property Name="areaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="idSucursal" Type="Int32" />
+          <Property Name="usuarioEncargado" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="areaStock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idArea" Type="Int32" />
+          <Property Name="idEquipo" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="fechaUltimoServicio" Type="DateTime" Precision="3" />
+          <Property Name="idSucursal" Type="Int32" />
+          <Property Name="fechaUltimoInven" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="categoriaID" />
+          </Key>
+          <Property Name="categoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="checklist">
+          <Key>
+            <PropertyRef Name="checkID" />
+          </Key>
+          <Property Name="checkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEquipo" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="periodoServicio" Type="Int32" />
+        </EntityType>
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="comentarioID" />
+          </Key>
+          <Property Name="comentarioID" Type="Int32" Nullable="false" />
+          <Property Name="incidenciaID" Type="Int32" Nullable="false" />
+          <Property Name="comentario1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="equipo">
+          <Key>
+            <PropertyRef Name="equipoID" />
+          </Key>
+          <Property Name="equipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="id_categoria" Type="Int32" />
+          <Property Name="id_subcategoria" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="marcaEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="modeloEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serializado" Type="Boolean" />
+          <Property Name="numeroSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaModifico" Type="DateTime" Precision="3" />
+          <Property Name="userModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userCaptura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="areaStatus" Type="Boolean" />
+          <Property Name="hasCheckList" Type="Boolean" />
+          <Property Name="periodoServ" Type="Boolean" />
+          <Property Name="periodoServNum" Type="Int32" />
+        </EntityType>
+        <EntityType Name="foto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_equipo" Type="Int32" />
+          <Property Name="url" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="fcreo" Type="DateTime" Precision="0" />
+          <Property Name="creo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fmodifico" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="incidencia">
+          <Key>
+            <PropertyRef Name="incidenciaID" />
+          </Key>
+          <Property Name="incidenciaID" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="equipoID" Type="Int32" Nullable="false" />
+          <Property Name="serializado" Type="Boolean" />
+          <Property Name="numSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaAtencion" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="fechaApertura" Type="DateTime" Precision="0" />
+          <Property Name="fechaClausura" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRecord" Type="Int32" />
+          <Property Name="tabla" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usuario" Type="Int32" />
+          <Property Name="evento" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="valOld" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="valNew" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="pagina" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="requisicione">
+          <Key>
+            <PropertyRef Name="requisicionID" />
+          </Key>
+          <Property Name="requisicionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRequisitor" Type="Int32" />
+          <Property Name="idResuelve" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="respuesta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="rolID" />
+          </Key>
+          <Property Name="rolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="creo" Type="Int32" />
+          <Property Name="fCreo" Type="DateTime" Precision="3" />
+          <Property Name="modifico" Type="Int32" />
+          <Property Name="fModifico" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="servicioID" />
+          </Key>
+          <Property Name="servicioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAreaStock" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="atendido" Type="Boolean" />
+          <Property Name="idChecklist" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="solucione">
+          <Key>
+            <PropertyRef Name="solucionID" />
+          </Key>
+          <Property Name="solucionID" Type="Int32" Nullable="false" />
+          <Property Name="incidenciaID" Type="Int32" Nullable="false" />
+          <Property Name="solucion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="funciono" Type="Boolean" Nullable="false" />
+          <Property Name="contador" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="subcategoria">
+          <Key>
+            <PropertyRef Name="subcategoriaID" />
+          </Key>
+          <Property Name="subcategoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="categoriaID" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sucursale">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="idEncargado" Type="Int32" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="horario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="suspencione">
+          <Key>
+            <PropertyRef Name="suspencionID" />
+          </Key>
+          <Property Name="suspencionID" Type="Int32" Nullable="false" />
+          <Property Name="incidenciaID" Type="Int32" Nullable="false" />
+          <Property Name="comentario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaApertura" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaClausura" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="activa" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tareasCheck">
+          <Key>
+            <PropertyRef Name="idTarea" />
+          </Key>
+          <Property Name="idTarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreTarea" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="creo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="fcreo" Type="DateTime" Precision="0" />
+          <Property Name="modifico" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="fmodifico" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="vw_areas">
+          <Key>
+            <PropertyRef Name="areaID" />
+            <PropertyRef Name="nombreSucursal" />
+            <PropertyRef Name="nombreEncargado" />
+          </Key>
+          <Property Name="areaID" Type="Int32" Nullable="false" />
+          <Property Name="nombreArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="nombreSucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombreEncargado" Type="String" MaxLength="302" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="id_categoria" Type="Int32" />
+          <Property Name="id_subcategoria" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="marcaEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="modeloEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serializado" Type="Boolean" />
+          <Property Name="numeroSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaModifico" Type="DateTime" Precision="3" />
+          <Property Name="userModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userCaptura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="categoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubcategoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idArea" Type="Int32" />
+          <Property Name="idEquipo" Type="Int32" />
+          <Property Name="idSucursal" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="fechaUltimoServicio" Type="DateTime" Precision="3" />
+          <Property Name="checklist" Type="Boolean" />
+          <Property Name="periodo" Type="Boolean" />
+          <Property Name="diasPeriodo" Type="Int32" />
+          <Property Name="fotourl" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="sime_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actividades" EntityType="Self.actividade" />
+          <EntitySet Name="areas" EntityType="Self.area" />
+          <EntitySet Name="areaStocks" EntityType="Self.areaStock" />
+          <EntitySet Name="categorias" EntityType="Self.categoria" />
+          <EntitySet Name="checklists" EntityType="Self.checklist" />
+          <EntitySet Name="comentarios" EntityType="Self.comentario" />
+          <EntitySet Name="equipoes" EntityType="Self.equipo" />
+          <EntitySet Name="fotos" EntityType="Self.foto" />
+          <EntitySet Name="incidencias" EntityType="Self.incidencia" />
+          <EntitySet Name="logs" EntityType="Self.log" />
+          <EntitySet Name="requisiciones" EntityType="Self.requisicione" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="servicios" EntityType="Self.servicio" />
+          <EntitySet Name="soluciones" EntityType="Self.solucione" />
+          <EntitySet Name="subcategorias" EntityType="Self.subcategoria" />
+          <EntitySet Name="sucursales" EntityType="Self.sucursale" />
+          <EntitySet Name="suspenciones" EntityType="Self.suspencione" />
+          <EntitySet Name="tareasChecks" EntityType="Self.tareasCheck" />
+          <EntitySet Name="vw_areas" EntityType="Self.vw_areas" />
+          <EntitySet Name="vw_stock" EntityType="Self.vw_stock" />
+          <EntitySet Name="usuarios" EntityType="sime_dbModel.usuario" />
+        </EntityContainer>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="apellidoPaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="apellidoMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="rfc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="curp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="fechaContratacion" Type="DateTime" Precision="3" />
+          <Property Name="idSupervisor" Type="Int32" />
+          <Property Name="idSucursalBase" Type="Int32" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="departamento" Type="String" FixedLength="false" MaxLength="50" Unicode="true" />
+          <Property Name="puesto" Type="String" FixedLength="false" MaxLength="100" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sime_dbModelStoreContainer" CdmEntityContainer="sime_dbEntities">
+          <EntitySetMapping Name="actividades">
+            <EntityTypeMapping TypeName="sime_dbModel.actividade">
+              <MappingFragment StoreEntitySet="actividades">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idChecklist" ColumnName="idChecklist" />
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areas">
+            <EntityTypeMapping TypeName="sime_dbModel.area">
+              <MappingFragment StoreEntitySet="areas">
+                <ScalarProperty Name="areaID" ColumnName="areaID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="usuarioEncargado" ColumnName="usuarioEncargado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areaStocks">
+            <EntityTypeMapping TypeName="sime_dbModel.areaStock">
+              <MappingFragment StoreEntitySet="areaStock">
+                <ScalarProperty Name="fechaUltimoInven" ColumnName="fechaUltimoInven" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="fechaUltimoServicio" ColumnName="fechaUltimoServicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categorias">
+            <EntityTypeMapping TypeName="sime_dbModel.categoria">
+              <MappingFragment StoreEntitySet="categoria">
+                <ScalarProperty Name="categoriaID" ColumnName="categoriaID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="checklists">
+            <EntityTypeMapping TypeName="sime_dbModel.checklist">
+              <MappingFragment StoreEntitySet="checklist">
+                <ScalarProperty Name="checkID" ColumnName="checkID" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="periodoServicio" ColumnName="periodoServicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comentarios">
+            <EntityTypeMapping TypeName="sime_dbModel.comentario">
+              <MappingFragment StoreEntitySet="comentarios">
+                <ScalarProperty Name="comentarioID" ColumnName="comentarioID" />
+                <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+                <ScalarProperty Name="comentario1" ColumnName="comentario" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="equipoes">
+            <EntityTypeMapping TypeName="sime_dbModel.equipo">
+              <MappingFragment StoreEntitySet="equipo">
+                <ScalarProperty Name="periodoServNum" ColumnName="periodoServNum" />
+                <ScalarProperty Name="periodoServ" ColumnName="periodoServ" />
+                <ScalarProperty Name="hasCheckList" ColumnName="hasCheckList" />
+                <ScalarProperty Name="areaStatus" ColumnName="areaStatus" />
+                <ScalarProperty Name="equipoID" ColumnName="equipoID" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="marcaEquipo" ColumnName="marcaEquipo" />
+                <ScalarProperty Name="nombreEquipo" ColumnName="nombreEquipo" />
+                <ScalarProperty Name="modeloEquipo" ColumnName="modeloEquipo" />
+                <ScalarProperty Name="serializado" ColumnName="serializado" />
+                <ScalarProperty Name="numeroSerie" ColumnName="numeroSerie" />
+                <ScalarProperty Name="fechaModifico" ColumnName="fechaModifico" />
+                <ScalarProperty Name="userModifico" ColumnName="userModifico" />
+                <ScalarProperty Name="userCaptura" ColumnName="userCaptura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fotos">
+            <EntityTypeMapping TypeName="sime_dbModel.foto">
+              <MappingFragment StoreEntitySet="fotos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_equipo" ColumnName="id_equipo" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fcreo" ColumnName="fcreo" />
+                <ScalarProperty Name="creo" ColumnName="creo" />
+                <ScalarProperty Name="modifico" ColumnName="modifico" />
+                <ScalarProperty Name="fmodifico" ColumnName="fmodifico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="incidencias">
+            <EntityTypeMapping TypeName="sime_dbModel.incidencia">
+              <MappingFragment StoreEntitySet="incidencias">
+                <ScalarProperty Name="fechaClausura" ColumnName="fechaClausura" />
+                <ScalarProperty Name="fechaApertura" ColumnName="fechaApertura" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="equipoID" ColumnName="equipoID" />
+                <ScalarProperty Name="serializado" ColumnName="serializado" />
+                <ScalarProperty Name="numSerie" ColumnName="numSerie" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaAtencion" ColumnName="fechaAtencion" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logs">
+            <EntityTypeMapping TypeName="sime_dbModel.log">
+              <MappingFragment StoreEntitySet="log">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idRecord" ColumnName="idRecord" />
+                <ScalarProperty Name="tabla" ColumnName="tabla" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="evento" ColumnName="evento" />
+                <ScalarProperty Name="valOld" ColumnName="valOld" />
+                <ScalarProperty Name="valNew" ColumnName="valNew" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="pagina" ColumnName="pagina" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="requisiciones">
+            <EntityTypeMapping TypeName="sime_dbModel.requisicione">
+              <MappingFragment StoreEntitySet="requisiciones">
+                <ScalarProperty Name="requisicionID" ColumnName="requisicionID" />
+                <ScalarProperty Name="idRequisitor" ColumnName="idRequisitor" />
+                <ScalarProperty Name="idResuelve" ColumnName="idResuelve" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="sime_dbModel.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="rolID" ColumnName="rolID" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="creo" ColumnName="creo" />
+                <ScalarProperty Name="fCreo" ColumnName="fCreo" />
+                <ScalarProperty Name="modifico" ColumnName="modifico" />
+                <ScalarProperty Name="fModifico" ColumnName="fModifico" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicios">
+            <EntityTypeMapping TypeName="sime_dbModel.servicio">
+              <MappingFragment StoreEntitySet="servicios">
+                <ScalarProperty Name="servicioID" ColumnName="servicioID" />
+                <ScalarProperty Name="idAreaStock" ColumnName="idAreaStock" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="atendido" ColumnName="atendido" />
+                <ScalarProperty Name="idChecklist" ColumnName="idChecklist" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="soluciones">
+            <EntityTypeMapping TypeName="sime_dbModel.solucione">
+              <MappingFragment StoreEntitySet="soluciones">
+                <ScalarProperty Name="solucionID" ColumnName="solucionID" />
+                <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+                <ScalarProperty Name="solucion" ColumnName="solucion" />
+                <ScalarProperty Name="funciono" ColumnName="funciono" />
+                <ScalarProperty Name="contador" ColumnName="contador" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subcategorias">
+            <EntityTypeMapping TypeName="sime_dbModel.subcategoria">
+              <MappingFragment StoreEntitySet="subcategoria">
+                <ScalarProperty Name="subcategoriaID" ColumnName="subcategoriaID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="categoriaID" ColumnName="categoriaID" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sucursales">
+            <EntityTypeMapping TypeName="sime_dbModel.sucursale">
+              <MappingFragment StoreEntitySet="sucursales">
+                <ScalarProperty Name="horario" ColumnName="horario" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="idEncargado" ColumnName="idEncargado" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="suspenciones">
+            <EntityTypeMapping TypeName="sime_dbModel.suspencione">
+              <MappingFragment StoreEntitySet="suspenciones">
+                <ScalarProperty Name="suspencionID" ColumnName="suspencionID" />
+                <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="fechaApertura" ColumnName="fechaApertura" />
+                <ScalarProperty Name="fechaClausura" ColumnName="fechaClausura" />
+                <ScalarProperty Name="activa" ColumnName="activa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tareasChecks">
+            <EntityTypeMapping TypeName="sime_dbModel.tareasCheck">
+              <MappingFragment StoreEntitySet="tareasCheck">
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="nombreTarea" ColumnName="nombreTarea" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="creo" ColumnName="creo" />
+                <ScalarProperty Name="fcreo" ColumnName="fcreo" />
+                <ScalarProperty Name="modifico" ColumnName="modifico" />
+                <ScalarProperty Name="fmodifico" ColumnName="fmodifico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_areas">
+            <EntityTypeMapping TypeName="sime_dbModel.vw_areas">
+              <MappingFragment StoreEntitySet="vw_areas">
+                <ScalarProperty Name="areaID" ColumnName="areaID" />
+                <ScalarProperty Name="nombreArea" ColumnName="nombreArea" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombreSucursal" ColumnName="nombreSucursal" />
+                <ScalarProperty Name="nombreEncargado" ColumnName="nombreEncargado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_stock">
+            <EntityTypeMapping TypeName="sime_dbModel.vw_stock">
+              <MappingFragment StoreEntitySet="vw_stock">
+                <ScalarProperty Name="fotourl" ColumnName="fotourl" />
+                <ScalarProperty Name="diasPeriodo" ColumnName="diasPeriodo" />
+                <ScalarProperty Name="periodo" ColumnName="periodo" />
+                <ScalarProperty Name="checklist" ColumnName="checklist" />
+                <ScalarProperty Name="fechaUltimoServicio" ColumnName="fechaUltimoServicio" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="marcaEquipo" ColumnName="marcaEquipo" />
+                <ScalarProperty Name="nombreEquipo" ColumnName="nombreEquipo" />
+                <ScalarProperty Name="modeloEquipo" ColumnName="modeloEquipo" />
+                <ScalarProperty Name="serializado" ColumnName="serializado" />
+                <ScalarProperty Name="numeroSerie" ColumnName="numeroSerie" />
+                <ScalarProperty Name="fechaModifico" ColumnName="fechaModifico" />
+                <ScalarProperty Name="userModifico" ColumnName="userModifico" />
+                <ScalarProperty Name="userCaptura" ColumnName="userCaptura" />
+                <ScalarProperty Name="categoriaNombre" ColumnName="categoriaNombre" />
+                <ScalarProperty Name="SubcategoriaNombre" ColumnName="SubcategoriaNombre" />
+                <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="sime_dbModel.usuario">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="idSucursalBase" ColumnName="idSucursalBase" />
+                <ScalarProperty Name="idSupervisor" ColumnName="idSupervisor" />
+                <ScalarProperty Name="fechaContratacion" ColumnName="fechaContratacion" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="usuarioID" ColumnName="usuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

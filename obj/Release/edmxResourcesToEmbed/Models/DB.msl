@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sime_dbModelStoreContainer" CdmEntityContainer="sime_dbEntities">
+    <EntitySetMapping Name="actividades">
+      <EntityTypeMapping TypeName="sime_dbModel.actividade">
+        <MappingFragment StoreEntitySet="actividades">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idChecklist" ColumnName="idChecklist" />
+          <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="areas">
+      <EntityTypeMapping TypeName="sime_dbModel.area">
+        <MappingFragment StoreEntitySet="areas">
+          <ScalarProperty Name="areaID" ColumnName="areaID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+          <ScalarProperty Name="usuarioEncargado" ColumnName="usuarioEncargado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="areaStocks">
+      <EntityTypeMapping TypeName="sime_dbModel.areaStock">
+        <MappingFragment StoreEntitySet="areaStock">
+          <ScalarProperty Name="fechaUltimoInven" ColumnName="fechaUltimoInven" />
+          <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="fechaUltimoServicio" ColumnName="fechaUltimoServicio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categorias">
+      <EntityTypeMapping TypeName="sime_dbModel.categoria">
+        <MappingFragment StoreEntitySet="categoria">
+          <ScalarProperty Name="categoriaID" ColumnName="categoriaID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="checklists">
+      <EntityTypeMapping TypeName="sime_dbModel.checklist">
+        <MappingFragment StoreEntitySet="checklist">
+          <ScalarProperty Name="checkID" ColumnName="checkID" />
+          <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="periodoServicio" ColumnName="periodoServicio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comentarios">
+      <EntityTypeMapping TypeName="sime_dbModel.comentario">
+        <MappingFragment StoreEntitySet="comentarios">
+          <ScalarProperty Name="comentarioID" ColumnName="comentarioID" />
+          <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+          <ScalarProperty Name="comentario1" ColumnName="comentario" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipoes">
+      <EntityTypeMapping TypeName="sime_dbModel.equipo">
+        <MappingFragment StoreEntitySet="equipo">
+          <ScalarProperty Name="periodoServNum" ColumnName="periodoServNum" />
+          <ScalarProperty Name="periodoServ" ColumnName="periodoServ" />
+          <ScalarProperty Name="hasCheckList" ColumnName="hasCheckList" />
+          <ScalarProperty Name="areaStatus" ColumnName="areaStatus" />
+          <ScalarProperty Name="equipoID" ColumnName="equipoID" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="marcaEquipo" ColumnName="marcaEquipo" />
+          <ScalarProperty Name="nombreEquipo" ColumnName="nombreEquipo" />
+          <ScalarProperty Name="modeloEquipo" ColumnName="modeloEquipo" />
+          <ScalarProperty Name="serializado" ColumnName="serializado" />
+          <ScalarProperty Name="numeroSerie" ColumnName="numeroSerie" />
+          <ScalarProperty Name="fechaModifico" ColumnName="fechaModifico" />
+          <ScalarProperty Name="userModifico" ColumnName="userModifico" />
+          <ScalarProperty Name="userCaptura" ColumnName="userCaptura" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fotos">
+      <EntityTypeMapping TypeName="sime_dbModel.foto">
+        <MappingFragment StoreEntitySet="fotos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_equipo" ColumnName="id_equipo" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fcreo" ColumnName="fcreo" />
+          <ScalarProperty Name="creo" ColumnName="creo" />
+          <ScalarProperty Name="modifico" ColumnName="modifico" />
+          <ScalarProperty Name="fmodifico" ColumnName="fmodifico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="incidencias">
+      <EntityTypeMapping TypeName="sime_dbModel.incidencia">
+        <MappingFragment StoreEntitySet="incidencias">
+          <ScalarProperty Name="fechaClausura" ColumnName="fechaClausura" />
+          <ScalarProperty Name="fechaApertura" ColumnName="fechaApertura" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="equipoID" ColumnName="equipoID" />
+          <ScalarProperty Name="serializado" ColumnName="serializado" />
+          <ScalarProperty Name="numSerie" ColumnName="numSerie" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fechaAtencion" ColumnName="fechaAtencion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logs">
+      <EntityTypeMapping TypeName="sime_dbModel.log">
+        <MappingFragment StoreEntitySet="log">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idRecord" ColumnName="idRecord" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="evento" ColumnName="evento" />
+          <ScalarProperty Name="valOld" ColumnName="valOld" />
+          <ScalarProperty Name="valNew" ColumnName="valNew" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="pagina" ColumnName="pagina" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="requisiciones">
+      <EntityTypeMapping TypeName="sime_dbModel.requisicione">
+        <MappingFragment StoreEntitySet="requisiciones">
+          <ScalarProperty Name="requisicionID" ColumnName="requisicionID" />
+          <ScalarProperty Name="idRequisitor" ColumnName="idRequisitor" />
+          <ScalarProperty Name="idResuelve" ColumnName="idResuelve" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="sime_dbModel.role">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="rolID" ColumnName="rolID" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+          <ScalarProperty Name="creo" ColumnName="creo" />
+          <ScalarProperty Name="fCreo" ColumnName="fCreo" />
+          <ScalarProperty Name="modifico" ColumnName="modifico" />
+          <ScalarProperty Name="fModifico" ColumnName="fModifico" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="servicios">
+      <EntityTypeMapping TypeName="sime_dbModel.servicio">
+        <MappingFragment StoreEntitySet="servicios">
+          <ScalarProperty Name="servicioID" ColumnName="servicioID" />
+          <ScalarProperty Name="idAreaStock" ColumnName="idAreaStock" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="atendido" ColumnName="atendido" />
+          <ScalarProperty Name="idChecklist" ColumnName="idChecklist" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="soluciones">
+      <EntityTypeMapping TypeName="sime_dbModel.solucione">
+        <MappingFragment StoreEntitySet="soluciones">
+          <ScalarProperty Name="solucionID" ColumnName="solucionID" />
+          <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+          <ScalarProperty Name="solucion" ColumnName="solucion" />
+          <ScalarProperty Name="funciono" ColumnName="funciono" />
+          <ScalarProperty Name="contador" ColumnName="contador" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subcategorias">
+      <EntityTypeMapping TypeName="sime_dbModel.subcategoria">
+        <MappingFragment StoreEntitySet="subcategoria">
+          <ScalarProperty Name="subcategoriaID" ColumnName="subcategoriaID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="categoriaID" ColumnName="categoriaID" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sucursales">
+      <EntityTypeMapping TypeName="sime_dbModel.sucursale">
+        <MappingFragment StoreEntitySet="sucursales">
+          <ScalarProperty Name="horario" ColumnName="horario" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="idEncargado" ColumnName="idEncargado" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="suspenciones">
+      <EntityTypeMapping TypeName="sime_dbModel.suspencione">
+        <MappingFragment StoreEntitySet="suspenciones">
+          <ScalarProperty Name="suspencionID" ColumnName="suspencionID" />
+          <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+          <ScalarProperty Name="comentario" ColumnName="comentario" />
+          <ScalarProperty Name="fechaApertura" ColumnName="fechaApertura" />
+          <ScalarProperty Name="fechaClausura" ColumnName="fechaClausura" />
+          <ScalarProperty Name="activa" ColumnName="activa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tareasChecks">
+      <EntityTypeMapping TypeName="sime_dbModel.tareasCheck">
+        <MappingFragment StoreEntitySet="tareasCheck">
+          <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+          <ScalarProperty Name="nombreTarea" ColumnName="nombreTarea" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="creo" ColumnName="creo" />
+          <ScalarProperty Name="fcreo" ColumnName="fcreo" />
+          <ScalarProperty Name="modifico" ColumnName="modifico" />
+          <ScalarProperty Name="fmodifico" ColumnName="fmodifico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_areas">
+      <EntityTypeMapping TypeName="sime_dbModel.vw_areas">
+        <MappingFragment StoreEntitySet="vw_areas">
+          <ScalarProperty Name="areaID" ColumnName="areaID" />
+          <ScalarProperty Name="nombreArea" ColumnName="nombreArea" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="nombreSucursal" ColumnName="nombreSucursal" />
+          <ScalarProperty Name="nombreEncargado" ColumnName="nombreEncargado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_stock">
+      <EntityTypeMapping TypeName="sime_dbModel.vw_stock">
+        <MappingFragment StoreEntitySet="vw_stock">
+          <ScalarProperty Name="fotourl" ColumnName="fotourl" />
+          <ScalarProperty Name="diasPeriodo" ColumnName="diasPeriodo" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="checklist" ColumnName="checklist" />
+          <ScalarProperty Name="fechaUltimoServicio" ColumnName="fechaUltimoServicio" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+          <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="marcaEquipo" ColumnName="marcaEquipo" />
+          <ScalarProperty Name="nombreEquipo" ColumnName="nombreEquipo" />
+          <ScalarProperty Name="modeloEquipo" ColumnName="modeloEquipo" />
+          <ScalarProperty Name="serializado" ColumnName="serializado" />
+          <ScalarProperty Name="numeroSerie" ColumnName="numeroSerie" />
+          <ScalarProperty Name="fechaModifico" ColumnName="fechaModifico" />
+          <ScalarProperty Name="userModifico" ColumnName="userModifico" />
+          <ScalarProperty Name="userCaptura" ColumnName="userCaptura" />
+          <ScalarProperty Name="categoriaNombre" ColumnName="categoriaNombre" />
+          <ScalarProperty Name="SubcategoriaNombre" ColumnName="SubcategoriaNombre" />
+          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="sime_dbModel.usuario">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="puesto" ColumnName="puesto" />
+          <ScalarProperty Name="departamento" ColumnName="departamento" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="idSucursalBase" ColumnName="idSucursalBase" />
+          <ScalarProperty Name="idSupervisor" ColumnName="idSupervisor" />
+          <ScalarProperty Name="fechaContratacion" ColumnName="fechaContratacion" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+          <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+          <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+          <ScalarProperty Name="usuarioID" ColumnName="usuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
