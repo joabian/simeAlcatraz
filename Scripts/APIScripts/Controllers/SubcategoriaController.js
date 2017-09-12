@@ -1,14 +1,25 @@
 ﻿app.controller('SubcategoriaController', function ($scope, Services) {
-    getSubcategorias();
+    //getSubcategorias();
+    getSubcategoriasJoin();
+    getCategorias();
 
-    
+    //function getSubcategorias() {
+    //    var select = Services.getSubcategorias();
 
-    function getSubcategorias() {
-        var select = Services.getSubcategorias();
+    //    select.then(function (d) {
+    //        $scope.subcategorias = d.data;
+            
+    //    }, function (error) {
+    //        console.log('Oops! Something went wrong while fetching the data.')
+    //    })
+    //};
+
+    function getSubcategoriasJoin() {
+        var select = Services.getSubcategoriasJoin();
 
         select.then(function (d) {
             $scope.subcategorias = d.data;
-            
+            console.log($scope.subcategorias);
         }, function (error) {
             console.log('Oops! Something went wrong while fetching the data.')
         })
@@ -20,7 +31,7 @@
 
         var upd = Services.updateSubcategoria(subcategoria);
         upd.then(function (d) {
-            getSubcategorias();
+            getSubcategoriasJoin();
         }, function (error) {
             console.log('Oops! Something went wrong while updating the data.')
         })
@@ -30,7 +41,7 @@
         var dlt = Services.deleteSubcategoria(id);
 
         dlt.then(function (d) {
-            getSubcategorias();
+            getSubcategoriasJoin();
         }, function (error) {
             console.log('Oops! Something went wrong while deleting the data.')
         })
@@ -41,18 +52,28 @@
 
         var subcategoria = {
             nombre: $scope.nombre,
-            categoriaID: $scope.categoriaID,
+            categoriaID: $scope.category.categoriaID,
             activo: true
         };
         
         var save = Services.saveSubcategoria(subcategoria);
         save.then(function (d) {
-            getSubcategorias();
+            getSubcategoriasJoin();
         }, function (error) {
             console.log('Oops! Something went wrong while saving the data.')
         })
 
     }
+
+    function getCategorias() {
+        var select = Services.getCategorias();
+
+        select.then(function (d) {
+            $scope.categorias = d.data;
+        }, function (error) {
+            console.log('Oops! Something went wrong while fetching the data.')
+        })
+    };
 
     $scope.makeEditable = function (obj) {
         obj.target.setAttribute("contenteditable", true);

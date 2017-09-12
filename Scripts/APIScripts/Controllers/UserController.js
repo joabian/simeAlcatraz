@@ -1,38 +1,16 @@
-﻿app.controller('UserController', function ($scope, Services) {
+﻿app.controller('UserController', function ($scope, Services, DTOptionsBuilder) {
     getUsers();
 
-    //$scope.dtOptions = DTOptionsBuilder.newOptions()
-    //    .withDOM('<"html5buttons"B>lTfgitp')
-    //    .withButtons([
-    //        { extend: 'copy' },
-    //        { extend: 'csv' },
-    //        { extend: 'excel', title: 'ExampleFile' },
-    //        { extend: 'pdf', title: 'ExampleFile' },
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('responsive', true);
 
-    //        {
-    //            extend: 'print',
-    //            customize: function (win) {
-    //                $(win.document.body).addClass('white-bg');
-    //                $(win.document.body).css('font-size', '10px');
-
-    //                $(win.document.body).find('table')
-    //                    .addClass('compact')
-    //                    .css('font-size', 'inherit');
-    //            }
-    //        }
-    //    ]);
-
-    //repeat-done="initDataTable"
     
-
-
-
     function getUsers() {
         var select = Services.getUsers();
 
         select.then(function (d) {
             $scope.usuarios = d.data;
-            console.log($scope.usuarios);
+            //console.log($scope.usuarios);
         }, function (error) {
             console.log('Oops! Something went wrong while fetching the data.')
         })
@@ -75,7 +53,7 @@
             puesto: $scope.puesto,
             activo: true
         };
-        console.log(usuario);
+        //console.log(usuario);
         var save = Services.saveUser(usuario);
         save.then(function (d) {
             getUsers();

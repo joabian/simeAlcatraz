@@ -1,10 +1,25 @@
-﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="AreaTecnicoController">
-    <!--header de la pagina-->
-    <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-lg-10">
-            <h2>Control de inventario por equipo</h2>
-        </div>
+﻿@{
+    ViewBag.Title = "Control de inventario";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Control de inventario</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("agregarEquipo", "EquiposView")">Inicio</a>
+            </li>
+            <li>
+                <a>Areas</a>
+            </li>
+            <li class="active">
+                <strong>Control de inventario</strong>
+            </li>
+        </ol>
     </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="AreaTecnicoController">
     <div class="row">
         <div class="row">
             <div class="col-sm-12">
@@ -15,30 +30,30 @@
                         <div class="clients-list">
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover">
-                                  <tbody>
-                                    <tr>
-                                        <th></th>
-                                        <th>Area</th>
-                                        <th>Nombre</th>
-                                        <th>Marca</th>
-                                        <th>Modelo</th>
-                                        <th>Serial</th>
-                                        <th>Ultima revision</th>
-                                        <th>Cantidad</th>
-                                        <th>Guardar</th>
-                                    </tr>
-                                    <tr ng-repeat="equi in EquipoForInven">
-                                        <td class="client-avatar"><img alt="image" ng-src="{{equi.fotourl}}"> </td>
-                                        <td>{{equi.nombreArea}}</td>
-                                        <td><span class="badge">{{equi.nombreEquipo}}</span></td>
-                                        <td>{{equi.marcaEquipo}}</td>
-                                        <td>{{equi.modeloEquipo}}</td>
-                                        <td>{{equi.numeroSerie}}</td>
-                                        <td>{{equi.fechaUltimoInven}}</td>
-                                        <td> {{equi.cantidad}}</td>
-                                        <td><button class="form-control" data-toggle="modal" data-target="#myModal6">Contar</button></td>
-                                    </tr>
-                                  </tbody>
+                                    <tbody>
+                                        <tr>
+                                            <th></th>
+                                            <th>Area</th>
+                                            <th>Nombre</th>
+                                            <th>Marca</th>
+                                            <th>Modelo</th>
+                                            <th>Serial</th>
+                                            <th>Ultima revision</th>
+                                            <th>Cantidad</th>
+                                            <th>Guardar</th>
+                                        </tr>
+                                        <tr ng-repeat="equi in EquipoForInven">
+                                            <td class="client-avatar"><img alt="image" ng-src="{{equi.fotourl}}"> </td>
+                                            <td>{{equi.nombreArea}}</td>
+                                            <td><span class="badge">{{equi.nombreEquipo}}</span></td>
+                                            <td>{{equi.marcaEquipo}}</td>
+                                            <td>{{equi.modeloEquipo}}</td>
+                                            <td>{{equi.numeroSerie}}</td>
+                                            <td>{{equi.fechaUltimoInven}}</td>
+                                            <td> {{equi.cantidad}}</td>
+                                            <td><button class="form-control" data-toggle="modal" data-target="#myModal6">Contar</button></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                                 {{test}}
                             </div>
@@ -62,7 +77,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="getEquipoTest();">Guardar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="getEquipoTest();">Guardar</button>
             </div>
         </div>
     </div>

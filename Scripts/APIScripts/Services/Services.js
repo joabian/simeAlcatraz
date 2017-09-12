@@ -120,6 +120,10 @@
         return $http.get("/api/subcategorias")
     }
 
+    this.getSubcategoriasJoin = function () {
+        return $http.get("/api/subcategoria/getAllJoin")
+    }
+
     this.getSubcategoriaByID = function (id) {
         var url = '/api/subcategorias/' + id;
         return $http(
@@ -480,42 +484,22 @@
         return $http.get("/api/usuarios")
     }
 
-    this.saveArea = function (area) {
-        return $http(
-        {
-            method: 'post',
-            data: area,
-            url: '/api/areas'
-        });
+    this.getStockByIDequipo = function (idEq, idSc, idAr) {
+        //return $http.get("/api/areastock/"+idEquipo)
+        return $http.get("/api/areastock/GetByEquipoID/" + idEq + "/" + idSc + "/" + idAr)
     }
 
-    this.getAreas = function () {
-        return $http.get("/api/vwareas")
+    this.updateArStckCant = function (id, field, valor) {
+        return $http(
+      {
+          method: 'post',
+          url: "/api/areastock/updateField/" + id + "/" + field + "/" + valor
+      });
+
     }
+
     
-    this.deleteArea = function (id) {
-        var url = '/api/areas/' + id;
-        return $http(
-        {
-            method: 'delete',
-            data: id,
-            url: url
-        });
-    }
-
-    this.getAreaSuc = function (id) {
-        return $http.get("/api/areas/GetBySucID/" + id)
-    }
-
-    this.saveAsigEquipo = function (equipo) {
-        return $http(
-        {
-            method: 'post',
-            data: equipo,
-            url: '/api/areastock'
-        });
-    }
-
+    
     // ====================================== <AREAS>=============================================  
 
     

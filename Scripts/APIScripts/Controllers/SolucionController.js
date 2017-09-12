@@ -36,7 +36,7 @@
         var selInc = Services.getIncidencias();
         selInc.then(function (d) {
             $rootScope.incidencias = d.data;
-            console.log($rootScope.incidencias);
+            //console.log($rootScope.incidencias);
 
         }, function (error) {
             console.log('algo salio mal!')
