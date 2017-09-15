@@ -333,6 +333,7 @@
                 var servCall = Services.getEquiposByIds(IdSucursal, IdCategoria, 0);
                 servCall.then(function (d) {
                     $scope.equiposfromVwStock = d.data;
+
                     //console.log($scope.equiposfromVwStock)
                 }, function (error) {
                     //console.log('Oops! Something went wrong while fetching the data.')

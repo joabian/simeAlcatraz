@@ -35,59 +35,73 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                   <div class="row">
-                    <div class="col-lg-4 col-sm-6" ng-repeat="equipo in equipos | filter : {areaStatus:false}">
-                        <div class="ibox">
-                            <div class="ibox-content product-box">
-                                @*<div class="product-imitation">
-                                    <img src="img/Equipos/Img_a10.jpg" style="width:100%;height:230px;">
-                                </div>*@
-                                <div class="product-desc">
-                                    <p>
-                                        <form>
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6" ng-if="equipo.serializado==false || equipo.areaStatus==false" ng-repeat="equipo in equipos">
+                            <div class="ibox">
+                                <div class="ibox-content product-box">
+                                    @*<div class="product-imitation">
+                                            <img src="img/Equipos/Img_a10.jpg" style="width:100%;height:230px;">
+                                        </div>*@
+                                    <div class="product-desc">
+                                        <p>
+
 
                                             <strong>
-                                    <p rows='3' style='wordwrap:wrap-text' ng-value="">{{equipo.equipoID}}</p></strong>
-                                    </p>
+                                                {{equipo.equipoID}}
+                                            </strong>
+                                        </p>
 
-                                    <a href="#" class="product-name" id="nombree">{{equipo.nombreEquipo}}</a>
-                                    <div class="small m-t-xs">
-                                        <p>
-                                            Descripcion: <strong>
-                                        <p rows='3' style='wordwrap:wrap-text'>{{equipo.descripcion}}</p></strong>
-                                        </p>
-                                        <p>
-                                            Area: <strong>
-                                        <p rows='3' style='wordwrap:wrap-text'>Sin definir</p></strong>
-                                        </p>
-                                        <p>
-                                            Numero de serie: <strong>
-                                        <p rows='3' style='wordwrap:wrap-text'>{{equipo.numeroSerie}}</p></strong>
-                                        </p>
-                                        <label>Cantidad</label>
-                                        <input type="number" class="form-control" ng-model="cantidad" name="" required>
-                                        <label>Sucursal</label>
-                                        <select class="form-control" name="sucursales" id="sucursales"
-                                                ng-options="sucursal.nombre for sucursal in sucursales track by sucursal.id"
-                                                ng-model="suc" ng-change="getAreaBySucId(suc.id)" required="">
-                                            <option value="">Seleccione una sucursal</option>
-                                        </select><br>
-                                        <label>Area</label>
-                                        <select class="form-control" name="areas" id="areas" required=""
-                                                ng-options="area.nombre for area in areas track by area.areaID"
-                                                ng-model="are">
-                                            <option value="">Seleccione un area</option>
-                                        </select>
-                                        <input type="hidden" name="" id="idequipo" ng-value="{{equipo.equipoID}}">
-                                    </div>
-                                    <div class="m-t text-righ">
-                                        <button ng-click="asignararea(equipo.equipoID, suc.id, are.areaID, cantidad)" class="btn btn-xs btn-outline btn-primary asignar">Asignar area <i class="fa fa-long-arrow-right"></i> </button>
+                                        <a href="#" class="product-name" id="nombree">{{equipo.nombreEquipo}}</a>
+                                        <div class="small m-t-xs">
+                                            <p>
+                                                Descripcion: <strong>
+                                                    {{equipo.descripcion}}
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                Area: <strong>
+                                                    Sin definir
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                Numero de serie: <strong>
+                                                    {{equipo.numeroSerie}}
+                                                </strong>
+                                            </p>
+                                            <div ng-if="equipo.serializado==false">
+                                                <input type="number" class="form-control" ng-model="$parent.cantid">
+                                            </div>
+                                            <div ng-if="equipo.serializado==true">
+
+                                                <input type="number" class="form-control" required ng-value="1" readonly>
+                                            </div>
+                                            <label>Sucursal</label>
+                                            <select class="form-control" name="sucursales" id="sucursales"
+                                                    ng-options="sucursal.nombre for sucursal in sucursales track by sucursal.id"
+                                                    ng-model="suc" ng-change="getAreaBySucId(suc.id)" required="">
+                                                <option value="">Seleccione una sucursal</option>
+                                            </select><br>
+                                            <label>Area</label>
+                                            <select class="form-control" name="areas" id="areas" required=""
+                                                    ng-options="area.nombre for area in areas track by area.areaID"
+                                                    ng-model="are">
+                                                <option value="">Seleccione un area</option>
+                                            </select>
+                                            <input type="hidden" name="" id="idequipo" ng-value="{{equipo.equipoID}}">
+                                        </div>
+                                        <div class="m-t text-righ">
+                                            <div ng-if="equipo.serializado==false">
+                                                <button ng-click="asignararea(equipo.equipoID, suc.id, are.areaID,cantid)" class="btn btn-xs btn-outline btn-primary asignar">Asignar area <i class="fa fa-long-arrow-right"></i> </button>
+                                            </div>
+                                            <div ng-if="equipo.serializado==true">
+                                                <button ng-click="asignararea(equipo.equipoID, suc.id, are.areaID, 1)" class="btn btn-xs btn-outline btn-primary asignar">Asignar area <i class="fa fa-long-arrow-right"></i> </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                       </div>
                 </div>
             </div>
         </div>

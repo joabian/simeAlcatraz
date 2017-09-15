@@ -2,6 +2,24 @@
     ViewBag.Title = "Caracteristicas especiales";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Caracteristicas especiales</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("agregarEquipo", "EquiposView")">Inicio</a>
+            </li>
+            <li>
+                <a>Equipos</a>
+            </li>
+            <li class="active">
+                <strong>Caracteristicas especiales</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
 <div id="wrapper" class="wrapper wrapper-content" ng-controller="EquipoController" >
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">

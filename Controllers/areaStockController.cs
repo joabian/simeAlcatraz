@@ -61,6 +61,36 @@ namespace simeAlcatraz.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/areastock/updateField/{id}/{fieldName}/{value}")]
+        public void Post(int id, string fieldName, int value)
+        {
+            myEntity.Database.ExecuteSqlCommand("UPDATE areaStock SET [" + fieldName + "] = '" + value + "' WHERE id = '" + id + "'");
+            myEntity.SaveChanges();
+        }
+
+        // GET api/areastock/GetByEquipID/1
+        [HttpGet]
+        [Route("api/areastock/GetByEquipoID/{idEq}/{idSc}/{idAr}")]
+        public IEnumerable<areaStock> GetByEquipoID(int idEq, int idSc, int idAr)
+        {
+
+            var query = from mysub in myEntity.areaStocks.AsEnumerable()
+            .Where(mysub => mysub.idEquipo == idEq
+                && mysub.idSucursal == idSc
+                && mysub.idArea == idAr)
+                        select mysub;
+            return query;
+        }
+
+        [HttpGet]
+        [Route("api/areastock/test")]
+        public string test()
+        {
+            return "test good";
+        }
+
+
         // DELETE api/areastock/5
         public void Delete(int id)
         {
