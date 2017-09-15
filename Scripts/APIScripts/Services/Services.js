@@ -257,38 +257,7 @@
         });
     }
 
-    // ----------------------------------- file upload --------------------------------------------
-
-    //Get all photos saved on the server  
-    function getAll() {
-
-        return $http.get("api/fotos")
-        
-    }
-
-    //Get photo from server with given file name        
-    function getPhoto(fileName) {
-        var url = '/api/fotos/' + fileName;
-        return $http(
-        {
-            method: 'get',
-            data: fileName,
-            url: url
-        });
-    }
-
-    // Delete photo on the server with given file name      
-    function deletePhoto(fileName) {
-        var url = '/api/fotos/' + fileName;
-        return $http(
-        {
-            method: 'delete',
-            data: fileName,
-            url: url
-        });
-        
-    }
-
+    
     //----------Servicio de incidencias --
 
 

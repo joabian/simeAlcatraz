@@ -189,7 +189,6 @@
     <Compile Include="Controllers\vwAreasController.cs" />
     <Compile Include="Controllers\vwStockController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
-    <Compile Include="Extensions\CustomMultipartFormDataStreamProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,8 +208,6 @@
     <Compile Include="Models\checklist.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PhotoActionResult.cs" />
-    <Compile Include="Models\PhotoViewModel.cs" />
     <Compile Include="Models\comentario.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>

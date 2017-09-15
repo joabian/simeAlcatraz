@@ -40,3 +40,4 @@ C:\Users\212331260\Documents\proyectos pers\alcatraz\web\simeAlcatraz\simeAlcatr
 C:\Users\212331260\Documents\proyectos pers\alcatraz\web\simeAlcatraz\simeAlcatraz\bin\pl\System.Web.WebPages.Razor.resources.dll
 C:\Users\212331260\Documents\proyectos pers\alcatraz\web\simeAlcatraz\simeAlcatraz\obj\Release\simeAlcatraz.dll
 C:\Users\212331260\Documents\proyectos pers\alcatraz\web\simeAlcatraz\simeAlcatraz\obj\Release\simeAlcatraz.pdb
+C:\Users\212331260\Documents\proyectos pers\alcatraz\web\simeAlcatraz\simeAlcatraz\obj\Release\simeAlcatraz.csprojResolveAssemblyReference.cache

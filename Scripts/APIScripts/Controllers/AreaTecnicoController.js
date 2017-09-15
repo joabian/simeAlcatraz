@@ -1,4 +1,4 @@
-﻿app.controller('AreaTecnicoController', function ($scope, Services,$rootScope) {
+﻿app.controller('AreaTecnicoController', function ($scope, Services) {
     getEquipoInvenPeriodo();
 
     function getEquipoInvenPeriodo(){
