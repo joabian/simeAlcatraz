@@ -454,16 +454,6 @@ namespace simeAlcatraz
                       "~/Scripts/plugins/pdfjs/pdf.js"));
 
 
-            //App Angular Controllers
-            bundles.Add(new ScriptBundle("~/bundles/EquipoController").Include(
-                      "~/Scripts/APIScripts/Controllers/EquipoController.js"));
-
-            //App Angular Services
-            bundles.Add(new ScriptBundle("~/bundles/EquipoService").Include(
-                      "~/Scripts/APIScripts/Services/EquipoService.js"));
-
-
-
         }
     }
 }

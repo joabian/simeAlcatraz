@@ -309,12 +309,7 @@
         servCall.then(function (d) {
             $scope.subcategorias = d.data;
             $scope.SubSelected = [];
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-
-           //console.log($scope.subcategorias)
+            
         }, function (error) {
             console.log('Oops! Something went wrong while fetching the data.')
         })

@@ -11,7 +11,9 @@ namespace simeAlcatraz.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web;
+
     public partial class equipo
     {
         public int equipoID { get; set; }
@@ -32,5 +34,9 @@ namespace simeAlcatraz.Models
         public Nullable<bool> hasCheckList { get; set; }
         public Nullable<bool> periodoServ { get; set; }
         public Nullable<int> periodoServNum { get; set; }
+
+        [DataType(DataType.Upload)]
+        public virtual HttpPostedFileBase ImageUpload { get; set; }
+
     }
 }

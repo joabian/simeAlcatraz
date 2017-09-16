@@ -1,8 +1,41 @@
-﻿
+﻿@model simeAlcatraz.Models.equipo
+
 @{
     ViewBag.Title = "agregarEquipo";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script language="javascript" type="text/javascript">
+
+
+
+    function GetSubsbyCategoriaID(_categoId) {
+
+        var procemessage = "<option value='0'> Procesando...</option>";
+        $("#id_subcategoria").html(procemessage).show();
+        //alert(_categoId);
+        var url = "/EquiposView/GetSubsbyCategoriaID/";
+
+        $.ajax({
+            url: url,
+            data: { categoID: _categoId },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                var markup = "<option value='0'>Seleccione Subcategoria</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#id_subcategoria").html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
+</script>
+
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
@@ -21,42 +54,58 @@
     </div>
 </div>
 
-<div class="wrapper wrapper-content animated fadeInRight" ng-controller="EquipoController">
+<div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12 col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                    <form class="form-horizontal" enctype="multipart/form-data" id="toclearform">
-
+@using (Html.BeginForm("agregarEquipo", "EquiposView", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+    
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Nombre</label>
-                            <div class="col-sm-10"><input type="text" placeholder="Nombre" data-ng-model="nombreEquipo" class="form-control"></div>
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.nombreEquipo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.nombreEquipo, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Modelo</label>
-                            <div class="col-sm-10"><input type="text" placeholder="Modelo" data-ng-model="modelo" class="form-control"></div>
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.modeloEquipo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.modeloEquipo, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Marca</label>
-                            <div class="col-sm-10"><input type="text" placeholder="Marca" data-ng-model="marcaEquipo" class="form-control"></div>
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.marcaEquipo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.marcaEquipo, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Descripcion</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(model => model.descripcion, new { cols = 35, @rows = 3, @class = "form-control" })
+            </div>
+        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Categoria</label>
                             <div class="col-sm-10">
-                                <select class="form-control" ng-options="Categoria.nombre for Categoria in categorias track by Categoria.categoriaID"
-                                        ng-model="category" ng-change="updateSubcat(category.categoriaID)">
-                                    <option value="">Seleccionar Categoria</option>
-                                </select>
+                                @Html.DropDownListFor(model => model.id_categoria,
+             new SelectList(ViewBag.Categories, "categoriaID", "nombre"),
+             "Seleccione Categoria", new { @onchange = "javascript:GetSubsbyCategoriaID(this.value);", @class = "form-control" })
+@Html.ValidationMessageFor(model => model.id_categoria, "", new { @class = "text-danger" })
                             </div>
 
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Subcategoria</label>
                             <div class="col-sm-10">
-                                <select class="form-control" ng-options="Subcategoria.nombre for Subcategoria in subcategorias track by Subcategoria.subcategoriaID"
-                                        ng-model="subcategory" >
-                                    <option value="">seleccionar Subcategoria</option>
+                                <select id="id_subcategoria" name="id_subcategoria" class="form-control">
+                                    <option value='0'>Seleccione Subcategoria</option>
                                 </select>
                             </div>
                         </div>
@@ -64,24 +113,47 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Serializado</label>
                             <div class="col-sm-10">
-                                <div class="i-checks"><label><input type="checkbox" ng-model="checked" aria-label="Toggle ngShow" data-ng-click="ocultar();"> <i></i></label></div>
+                                <div class="checkbox i-checks">
+                                    <label>
+                                        <input type="checkbox" id="serializado" name="serializado" value="true">
+                                        <i></i>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group check-element animate-show-hide" ng-show="checked">
+                        <div class="form-group check-element">
                             <label class="col-sm-2 control-label">Número de serie</label>
-                            <div class="col-sm-10"><input type="text" placeholder="Número de serie" data-ng-model="noserie" class="form-control "></div>
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.numeroSerie, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.numeroSerie, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Descripcion</label>
-                            <div class="col-sm-10"><textarea class="form-control" rows="4" id='areaDescripcion' data-ng-model="descripcion" placeholder='Descripcion'></textarea></div>
+                            <label class="col-sm-2 control-label">Foto</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.ImageUpload, new { type = "file", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ImageUpload, "", new { @class = "text-danger" })
+                            </div>
                         </div>
+                        
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button type="button" id="btnAddCategoria" data-ng-click="saveEquipo();" class="btn btn-info">Añadir</button>
+                                <input type="submit" value="Añadir" class="btn btn-info" />
                             </div>
                         </div>
-                    </form>
+        @if (ViewBag.IsProdSave)
+        {
+            <div id="alert" class="alert alert-success">
+                Producto guardado existosamente
+            </div>
+        }
+        </div>
+}
+                    
+
+                        
+                    
                 </div>
             </div>
         </div>
@@ -90,3 +162,22 @@
 <link href="~/Content/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-2.1.1.js"></script>
 <script src="~/Scripts/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });
+    </script>
+}
