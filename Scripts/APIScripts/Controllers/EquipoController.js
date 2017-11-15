@@ -1,4 +1,4 @@
-﻿app.controller('EquipoController', function ($scope, Services) {
+﻿app.controller('EquipoController', function ($scope, Services, photoManager) {
     getAll();
     getCategorias();
     getSucursalesAll();
@@ -6,7 +6,36 @@
     getAllJoin();
     $scope.equiposfromVwStock = [];
 
+    this.$inject = ['photoManager'];
 
+    function photos(photoManager) {
+        /* jshint validthis:true */
+
+        var vm = this;
+        vm.title = 'photo manager';
+        vm.photos = photoManager.photos;
+        vm.uploading = false;
+        vm.previewPhoto;
+        vm.remove = photoManager.remove;
+        vm.setPreviewPhoto = setPreviewPhoto;
+
+        activate();
+
+        function activate() {
+            photoManager.load();
+        }
+
+        function setPreviewPhoto(photo) {
+            vm.previewPhoto = photo
+        }
+
+        function remove(photo) {
+            photoManager.remove(photo).then(function () {
+                setPreviewPhoto();
+            });
+        }
+    }
+    
     function simpleAlert(title, text, type) {
         if (type == 0) { type = "" } if (type == 1) { type = "success" } if (type == 2) { type = "warning" }
         swal({
@@ -333,6 +362,7 @@
                 var servCall = Services.getEquiposByIds(IdSucursal, IdCategoria, 0);
                 servCall.then(function (d) {
                     $scope.equiposfromVwStock = d.data;
+
                     //console.log($scope.equiposfromVwStock)
                 }, function (error) {
                     //console.log('Oops! Something went wrong while fetching the data.')
@@ -424,7 +454,8 @@
         var saveEquipo = Services.saveEquipo(equipo);
         saveEquipo.then(function (d) {
             //getAll();
-            showNotification(1, 'Equipo registrado!', 'Correcto');
+            $scope.newID = d.data;
+            showNotification(1,'Equipo registrado!', 'Correcto');
             $('html, body').animate({ scrollTop: 0 }, 'normal');
             document.getElementById("toclearform").reset();
           

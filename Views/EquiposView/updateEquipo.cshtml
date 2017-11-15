@@ -3,6 +3,23 @@
     ViewBag.Title = "Modificar equipo";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Modificar equipos</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("agregarEquipo", "EquiposView")">Inicio</a>
+            </li>
+            <li>
+                <a>Equipos</a>
+            </li>
+            <li class="active">
+                <strong>Modificar equipos</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
 <div class="wrapper wrapper-content animated fadeInRight" ng-controller='EquipoController'>
     
     <div class="row">

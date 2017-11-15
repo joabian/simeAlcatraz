@@ -118,7 +118,9 @@ namespace simeAlcatraz
             bundles.Add(new ScriptBundle("~/plugins/dataTables").Include(
                       "~/Scripts/plugins/dataTables/datatables.min.js",
                       "~/Scripts/plugins/dataTables/angular-datatables.min.js",
-                      "~/Scripts/plugins/dataTables/angular-datatables.buttons.min.js"));
+                      "~/Scripts/plugins/dataTables/angular-datatables.buttons.min.js",
+                      "~/Scripts/plugins/dataTables/dataTables.responsive.min.js"
+                      ));
 
             // jeditable 
             bundles.Add(new ScriptBundle("~/plugins/jeditable").Include(
@@ -450,17 +452,6 @@ namespace simeAlcatraz
             // Pdfjs
             bundles.Add(new ScriptBundle("~/plugins/pdfjs").Include(
                       "~/Scripts/plugins/pdfjs/pdf.js"));
-
-
-            //App Angular Controllers
-            bundles.Add(new ScriptBundle("~/bundles/EquipoController").Include(
-                      "~/Scripts/APIScripts/Controllers/EquipoController.js"));
-
-            //App Angular Services
-            bundles.Add(new ScriptBundle("~/bundles/EquipoService").Include(
-                      "~/Scripts/APIScripts/Services/EquipoService.js"));
-
-
 
         }
     }

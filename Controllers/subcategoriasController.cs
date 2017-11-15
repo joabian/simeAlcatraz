@@ -38,6 +38,26 @@ namespace simeAlcatraz.Controllers
             return query;
         }
 
+        // GET api/subcategoria/getAllJoin
+        [HttpGet]
+        [Route("api/subcategoria/getAllJoin")]
+        public Array GetAll()
+        {
+            //return myEntity.equipoes.AsEnumerable();
+            var eq = from mysub in myEntity.subcategorias
+                     join cats in myEntity.categorias on mysub.categoriaID equals cats.categoriaID
+                     select new
+                     {
+                         subcategoriaID = mysub.subcategoriaID,
+                         nombre = mysub.nombre,
+                         categoriaID = mysub.categoriaID,
+                         activo = mysub.activo,
+                         fechaIngreso = mysub.fechaIngreso,
+                         nombreCategoria = cats.nombre
+                     };
+            return eq.ToArray();
+        }
+
         // POST api/subcategoria
         public void Post(subcategoria subcategoria)
         {

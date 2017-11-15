@@ -4,17 +4,27 @@
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>agregarEquipo</h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Agregar equipos</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("agregarEquipo", "EquiposView")">Inicio</a>
+            </li>
+            <li>
+                <a>Equipos</a>
+            </li>
+            <li class="active">
+                <strong>Agregar equipos</strong>
+            </li>
+        </ol>
+    </div>
+</div>
 
 <div class="wrapper wrapper-content animated fadeInRight" ng-controller="EquipoController">
     <div class="row">
         <div class="col-lg-12 col-sm-12">
             <div class="ibox float-e-margins">
-                <div class="row wrapper border-bottom white-bg page-heading">
-                    <div class="col-lg-12">
-                        <h2>Registrar equipo</h2>
-                    </div>
-                </div>
                 <div class="ibox-content">
                     <form class="form-horizontal" enctype="multipart/form-data" id="toclearform">
 
@@ -69,6 +79,7 @@
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
                                 <button type="button" id="btnAddCategoria" data-ng-click="saveEquipo();" class="btn btn-info">Añadir</button>
+                                {{newID}}
                             </div>
                         </div>
                     </form>
@@ -77,6 +88,53 @@
         </div>
     </div>
 </div>
-<link href="~/Content/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-2.1.1.js"></script>
-<script src="~/Scripts/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+
+<div ng-controller="photos as vm">
+
+
+    <div class="row">
+        <div class="col-md-9">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info active">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10">name</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">size (kb)</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">created on</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">modified on</div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2"></div>
+                    </div>
+                </li>
+                <li class="list-group-item" ng-show="vm.photos.length === 0" ng-mouseenter="vm.setPreviewPhoto()">no photos</li>
+                <li ng-repeat="photo in vm.photos" class="list-group-item" ng-mouseenter="vm.setPreviewPhoto(photo)" ng-mouseleave="vm.setPreviewPhoto()">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10 wraptext">{{photo.Name}}</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{photo.Size}}</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{photo.Created | date: short}}</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{photo.Modified | date: short}}</div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                            <button type="button" class="btn btn-xs btn-danger" ng-click="vm.remove(photo)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <eg-photo-uploader></eg-photo-uploader>
+        </div>
+        <div class="col-md-3 hidden-sm hidden-xs" style="height: 150px; width: 150px; margin-bottom: 5px;">
+            <img ng-src="/Album/{{vm.previewPhoto.Name}}" style="max-height: 150px" ng-show="vm.previewPhoto" class="img-responsive" alt="vm.previewPhoto.Name" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <eg-app-status></eg-app-status>
+        </div>
+    </div>
+
+</div>
+
+
+    <link href="~/Content/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/plugins/jasny/jasny-bootstrap.min.js"></script>

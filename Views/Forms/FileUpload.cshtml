@@ -22,8 +22,57 @@
 
     </div>
 </div>
-<div class="wrapper wrapper-content animated fadeIn">
+<div class="wrapper wrapper-content animated fadeIn" ng-controller="photos as vm">
     <div class="row">
+        <div ng-cloak>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>{{vm.title}}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-info active">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10">name</div>
+                                <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">size (kb)</div>
+                                <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">created on</div>
+                                <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">modified on</div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2"></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" ng-show="vm.photos.length === 0" ng-mouseenter="vm.setPreviewPhoto()">no photos</li>
+                        <li ng-repeat="photo in vm.photos" class="list-group-item" ng-mouseenter="vm.setPreviewPhoto(photo)" ng-mouseleave="vm.setPreviewPhoto()">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10 wraptext">{{photo.Name}}</div>
+                                <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{photo.Size}}</div>
+                                <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{photo.Created | date: short}}</div>
+                                <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{photo.Modified | date: short}}</div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                                    <button type="button" class="btn btn-xs btn-danger" ng-click="vm.remove(photo)">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <eg-photo-uploader></eg-photo-uploader>
+                </div>
+                <div class="col-md-3 hidden-sm hidden-xs" style="height: 150px; width: 150px; margin-bottom: 5px;">
+                    <img ng-src="/Album/{{vm.previewPhoto.Name}}" style="max-height: 150px" ng-show="vm.previewPhoto" class="img-responsive" alt="vm.previewPhoto.Name" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <eg-app-status></eg-app-status>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    @*<div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -70,18 +119,18 @@
                         HTML markup code for abowe example:
                     </p>
                     <textarea id="code1">
-&lt;div class="fileinput fileinput-new input-group" data-provides="fileinput"&gt;
-    &lt;div class="form-control" data-trigger="fileinput"&gt;
-        &lt;i class="glyphicon glyphicon-file fileinput-exists">&lt;/i&gt;
-    &lt;span class="fileinput-filename"&gt;&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;span class="input-group-addon btn btn-default btn-file"&gt;
-        &lt;span class="fileinput-new"&gt;Select file&lt;/span&gt;
-        &lt;span class="fileinput-exists"&gt;Change&lt;/span&gt;
-        &lt;input type="file" name="..."/&gt;
-    &lt;/span&gt;
-    &lt;a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove&lt;/a&gt;
-&lt;/div&gt;
+                        &lt;div class="fileinput fileinput-new input-group" data-provides="fileinput"&gt;
+                        &lt;div class="form-control" data-trigger="fileinput"&gt;
+                        &lt;i class="glyphicon glyphicon-file fileinput-exists">&lt;/i&gt;
+                        &lt;span class="fileinput-filename"&gt;&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;span class="input-group-addon btn btn-default btn-file"&gt;
+                        &lt;span class="fileinput-new"&gt;Select file&lt;/span&gt;
+                        &lt;span class="fileinput-exists"&gt;Change&lt;/span&gt;
+                        &lt;input type="file" name="..."/&gt;
+                        &lt;/span&gt;
+                        &lt;a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove&lt;/a&gt;
+                        &lt;/div&gt;
                     </textarea>
                 </div>
             </div>
@@ -120,12 +169,12 @@
                         HTML markup code for abowe example:
                     </p>
                     <textarea id="code2">
-&lt;div class="fileinput fileinput-new" data-provides="fileinput"&gt;
-    &lt;span class="btn btn-default btn-file"&gt;&lt;span class="fileinput-new"&gt;Select file&lt;/span&gt;
-    &lt;span class="fileinput-exists"&gt;Change&lt;/span&gt;&lt;input type="file" name="..."/&gt;&lt;/span&gt;
-    &lt;span class="fileinput-filename"&gt;&lt;/span&gt;
-    &lt;a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;&lt;/a&gt;
-&lt;/div&gt;
+                        &lt;div class="fileinput fileinput-new" data-provides="fileinput"&gt;
+                        &lt;span class="btn btn-default btn-file"&gt;&lt;span class="fileinput-new"&gt;Select file&lt;/span&gt;
+                        &lt;span class="fileinput-exists"&gt;Change&lt;/span&gt;&lt;input type="file" name="..."/&gt;&lt;/span&gt;
+                        &lt;span class="fileinput-filename"&gt;&lt;/span&gt;
+                        &lt;a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;&lt;/a&gt;
+                        &lt;/div&gt;
                     </textarea>
                 </div>
             </div>
@@ -150,23 +199,23 @@
                         HTML markup code for abowe example:
                     </p>
                     <textarea id="code3">
-&lt;form action="#" class="dropzone" id="dropzoneForm"&gt;
-    &lt;div class="fallback"&gt;
-        &lt;input name="file" type="file" multiple /&gt;
-    &lt;/div&gt;
-&lt;/form&gt;
+                        &lt;form action="#" class="dropzone" id="dropzoneForm"&gt;
+                        &lt;div class="fallback"&gt;
+                        &lt;input name="file" type="file" multiple /&gt;
+                        &lt;/div&gt;
+                        &lt;/form&gt;
                     </textarea>
                     <p class="m-t-xs">All avalible options and full documentation you can find: <a href="http://www.dropzonejs.com/#configuration-options">http://www.dropzonejs.com/#configuration-options</a> </p>
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
 
 
 </div>
 
-@section Styles {
+@*@section Styles {
     @Styles.Render("~/Content/plugins/dropzone/dropZoneStyles")
     @Styles.Render("~/plugins/jasnyBootstrapStyles")
     @Styles.Render("~/plugins/codeEditorStyles")
@@ -203,4 +252,4 @@
 
         });
     </script>
-}
+}*@
