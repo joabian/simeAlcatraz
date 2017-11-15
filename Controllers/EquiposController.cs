@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using simeAlcatraz.Models;
+using System.Threading.Tasks;
+using System.Text;
+using System.Net.Http.Headers;
 
 
 namespace simeAlcatraz.Controllers
@@ -66,6 +71,8 @@ namespace simeAlcatraz.Controllers
                 id = equipo.equipoID;
             }
 
+            
+
             return id;
         }
 
@@ -110,6 +117,88 @@ namespace simeAlcatraz.Controllers
             myEntity.Database.ExecuteSqlCommand("UPDATE equipo SET [" + fieldName + "] = '" + value + "' WHERE equipoID = '" + id + "'");
             myEntity.SaveChanges();
         }
+
+
+
+
+        //[HttpPost]
+        //[Route("api/equipos/postWithFile")]
+        //public int Upload(equipo equipo)
+        //{
+        //    //, HttpPostedFileBase photo
+        //    int id;
+        //    id = 0;
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        string directory = @"~/Album";
+        //        var fileUpload = equipo.Files[0];
+
+        //        if (fileUpload != null && fileUpload.ContentLength > 0)
+        //        {
+
+        //            var supportedTypes = new[] { "jpg", "jpeg", "png" };
+
+        //            var fileExt = System.IO.Path.GetExtension(fileUpload.FileName).Substring(1);
+
+        //            if (!supportedTypes.Contains(fileExt))
+        //            {
+        //                id = 0;
+        //            }
+        //            else
+        //            {
+        //                var fileName = Path.GetFileName(fileUpload.FileName);
+        //                fileUpload.SaveAs(Path.Combine(directory, fileName));
+        //            }
+
+        //        }
+
+        //        myEntity.equipoes.Add(equipo);
+        //        myEntity.SaveChanges();
+        //        id = equipo.equipoID;
+        //    }
+
+        //    return id;
+
+        //    //return RedirectToAction("Index");
+        //}
+
+        //[HttpPost]
+        //[Route("api/equipos/postWithFile")]
+        //public async Task<HttpResponseMessage> postWithFile(equipo equipo)  
+        //{
+        //    if (!Request.Content.IsMimeMultipartContent())
+        //    {
+        //        return Request.CreateErrorResponse(HttpStatusCode.UnsupportedMediaType, "The request doesn't contain valid content!");
+        //    }
+        //    else
+        //    {
+        //        try
+        //        {
+        //            var provider = new MultipartMemoryStreamProvider();
+        //            await Request.Content.ReadAsMultipartAsync(provider);
+        //            var response = Request.CreateResponse(HttpStatusCode.OK);
+        //            foreach (var file in provider.Contents)
+        //            {
+        //                var dataStream = await file.ReadAsStreamAsync();
+        //                // use the data stream to persist the data to the server (file system etc)
+        //                var filePath = "";
+
+
+        //                response.Content = new StringContent("Successful upload", Encoding.UTF8, "text/plain");
+        //                response.Content.Headers.ContentType = new MediaTypeWithQualityHeaderValue(@"text/html");
+
+        //            }
+        //            return response;
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+        //        }
+        //    }
+
+
+        //}
 
         
 

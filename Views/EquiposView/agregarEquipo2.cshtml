@@ -1,0 +1,13 @@
+﻿@model simeAlcatraz.Models.equipo
+@{
+    ViewBag.Title = "agregarEquipo2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<input type="file" id="image" name="image">
+// Normal Text Box HTML Control
+<input type="file" id="image" name="image">
+// MVC: we will use this
+@Html.TextBoxFor(model => model.ImageUpload, new { @type = "file" })
+// It will renders for us
+<input type="file" id="MyImage" name="MyImage">

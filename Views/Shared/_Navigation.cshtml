@@ -39,6 +39,7 @@
                 <a href="#"><i class="fa fa-bicycle"></i> <span class="nav-label" data-i18n="nav.equipment">Equipo</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "EquiposView", cssClass: "in")">
                     <li class="@Html.IsSelected(action: "agregarEquipo")"><a href="@Url.Action("agregarEquipo", "EquiposView")">Agregar Equipo</a></li>
+                    <li class="@Html.IsSelected(action: "Create")"><a href="@Url.Action("Create", "EquiposView")">Agregar Equipo2</a></li>
                     <li class="@Html.IsSelected(action: "verInventario")"><a href="@Url.Action("verInventario", "EquiposView")">Ver Inventario</a></li>
                     <li class="@Html.IsSelected(action: "updateEquipo")"><a href="@Url.Action("updateEquipo", "EquiposView")">Modificar</a></li>
                     <li class="@Html.IsSelected(action: "caracteriticasEspeciales")"><a href="@Url.Action("caracteriticasEspeciales", "EquiposView")">Caracteristicas especiales</a></li>
@@ -128,20 +129,20 @@
             </li>
             <li class="@Html.IsSelected(controller: "Widgets")">
                 <a href="@Url.Action("Index", "Widgets")"><i class="fa fa-flask"></i> <span class="nav-label" data-i18n="nav.widgets">Widgets</span> </a>
-            </li>
+            </li>*@
             <li class="@Html.IsSelected(controller: "Forms")">
                 <a href="#"><i class="fa fa-edit"></i> <span class="nav-label" data-i18n="nav.forms">Forms</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Forms", cssClass: "in")">
-                    <li class="@Html.IsSelected(action: "BasicFroms")"><a href="@Url.Action("BasicFroms", "Forms")">Basic form</a></li>
+                    @*<li class="@Html.IsSelected(action: "BasicFroms")"><a href="@Url.Action("BasicFroms", "Forms")">Basic form</a></li>
                     <li class="@Html.IsSelected(action: "Advanced")"><a href="@Url.Action("Advanced", "Forms")">Advanced Plugins</a></li>
-                    <li class="@Html.IsSelected(action: "Wizard")"><a href="@Url.Action("Wizard", "Forms")">Wizard</a></li>
+                    <li class="@Html.IsSelected(action: "Wizard")"><a href="@Url.Action("Wizard", "Forms")">Wizard</a></li>*@
                     <li class="@Html.IsSelected(action: "FileUpload")"><a href="@Url.Action("FileUpload", "Forms")">File Upload</a></li>
-                    <li class="@Html.IsSelected(action: "TextEditor")"><a href="@Url.Action("TextEditor", "Forms")">Text Editor</a></li>
+                    @*<li class="@Html.IsSelected(action: "TextEditor")"><a href="@Url.Action("TextEditor", "Forms")">Text Editor</a></li>
                     <li class="@Html.IsSelected(action: "Autocomplete")"><a href="@Url.Action("Autocomplete", "Forms")">Autocomplete</a></li>
-                    <li class="@Html.IsSelected(action: "Markdown")"><a href="@Url.Action("Markdown", "Forms")">Markdown</a></li>
+                    <li class="@Html.IsSelected(action: "Markdown")"><a href="@Url.Action("Markdown", "Forms")">Markdown</a></li>*@
                 </ul>
             </li>
-            <li class="@Html.IsSelected(controller: "AppViews")">
+            @*<li class="@Html.IsSelected(controller: "AppViews")">
                 <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label" data-i18n="nav.appviews">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "AppViews", cssClass: "in")">
                     <li class="@Html.IsSelected(action: "Contacts")"><a href="@Url.Action("Contacts", "AppViews")">Contacts</a></li>

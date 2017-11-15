@@ -132,7 +132,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <Folder Include="Album\" />
+=======
     <Folder Include="App_Data\uploads\" />
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
     <Folder Include="Images\flags\16\" />
     <Folder Include="Images\flags\32\" />
     <Folder Include="Views\inventario\" />
@@ -172,6 +176,7 @@
     <Compile Include="Controllers\MetricsController.cs" />
     <Compile Include="Controllers\MiscellaneousController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\requisicionesController.cs" />
     <Compile Include="Controllers\rolesController.cs" />
     <Compile Include="Controllers\ScaffoldingController.cs" />
@@ -205,9 +210,14 @@
     <Compile Include="Models\categoria.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\categosDDL.cs" />
     <Compile Include="Models\checklist.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Compile Include="Models\PhotoViewModel.cs" />
+=======
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
     <Compile Include="Models\comentario.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -273,6 +283,10 @@
     <Compile Include="Models\vw_stock.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Photo\IPhotoManager.cs" />
+    <Compile Include="Photo\LocalPhotoManager.cs" />
+    <Compile Include="Photo\PhotoActionResult.cs" />
+    <Compile Include="Photo\PhotoMultipartFormDataStreamProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +296,8 @@
       <DependentUpon>ScaffoldingContext-20141212125339.mdf</DependentUpon>
     </Content>
     <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\email.css" />
@@ -527,6 +543,7 @@
       <DependentUpon>DB.edmx</DependentUpon>
       <LastGenOutput>DB.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
     <Content Include="Scripts\angular\angular-animate.js" />
     <Content Include="Scripts\angular\angular-animate.min.js" />
@@ -558,6 +575,7 @@
     <Content Include="Scripts\APIScripts\Controllers\AreasController.js" />
     <Content Include="Scripts\APIScripts\Controllers\AreaTecnicoController.js" />
     <Content Include="Scripts\APIScripts\Controllers\IncidenciaController.js" />
+    <Content Include="Scripts\APIScripts\Controllers\PhotoController.js" />
     <Content Include="Scripts\APIScripts\Controllers\SolucionController.js" />
     <Content Include="Scripts\APIScripts\Controllers\SubcategoriaController.js" />
     <Content Include="Scripts\APIScripts\Controllers\CategoriaController.js" />
@@ -567,6 +585,22 @@
     <Content Include="Scripts\APIScripts\Controllers\EquipoController.js" />
     <Content Include="Scripts\APIScripts\Directives\Directives.js" />
     <Content Include="Scripts\APIScripts\Modules\Module.js" />
+    <Content Include="Scripts\APIScripts\Photo\app.js" />
+    <Content Include="Scripts\APIScripts\Photo\appInfo.js" />
+    <Content Include="Scripts\APIScripts\Photo\egAppStatus.html" />
+    <Content Include="Scripts\APIScripts\Photo\egAppStatus.js" />
+    <Content Include="Scripts\APIScripts\Photo\nav.html" />
+    <Content Include="Scripts\APIScripts\Photo\photo\egFiles.js" />
+    <Content Include="Scripts\APIScripts\Photo\photo\egPhotoUploader.html" />
+    <Content Include="Scripts\APIScripts\Photo\photo\egPhotoUploader.js" />
+    <Content Include="Scripts\APIScripts\Photo\photo\egUpload.js" />
+    <Content Include="Scripts\APIScripts\Photo\photo\photo.module.js" />
+    <Content Include="Scripts\APIScripts\Photo\photo\photoManager.js" />
+    <Content Include="Scripts\APIScripts\Photo\photo\photoManagerClient.js" />
+    <Content Include="Scripts\APIScripts\Photo\photo\photos.html" />
+    <Content Include="Scripts\APIScripts\Photo\photo\photos.js" />
+    <Content Include="Scripts\APIScripts\Photo\welcome.html" />
+    <Content Include="Scripts\APIScripts\Photo\welcome.js" />
     <Content Include="Scripts\APIScripts\Services\Services.js" />
     <Content Include="Scripts\api\typehead_collection.json" />
     <Content Include="Scripts\angular\angular-animate.min.js.map" />
@@ -583,6 +617,10 @@
     <Content Include="Scripts\angular\angular.min.js.map" />
     <Content Include="README.md" />
     <None Include="Properties\PublishProfiles\PROD.pubxml" />
+<<<<<<< HEAD
+    <Content Include="Scripts\errors.json" />
+=======
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\a1.jpg" />
     <Content Include="Images\a2.jpg" />
@@ -664,6 +702,8 @@
     <Content Include="Scripts\angular\FileAPI.flash.swf" />
     <Content Include="Scripts\angular\FileAPI.js" />
     <Content Include="Scripts\angular\FileAPI.min.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-us.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\angular\ng-file-upload-all.js" />
@@ -672,6 +712,7 @@
     <Content Include="Scripts\angular\ng-file-upload-shim.min.js" />
     <Content Include="Scripts\angular\ng-file-upload.js" />
     <Content Include="Scripts\angular\ng-file-upload.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\plugins\blueimp\jquery.blueimp-gallery.min.js" />
     <Content Include="Scripts\plugins\bootstrap-markdown\bootstrap-markdown.js" />
     <Content Include="Scripts\plugins\bootstrap-markdown\markdown.js" />
@@ -1100,6 +1141,10 @@
     <Content Include="Scripts\plugins\velocity\velocity.min.js" />
     <Content Include="Scripts\plugins\velocity\velocity.ui.min.js" />
     <Content Include="Scripts\plugins\video\responsible-video.js" />
+    <Content Include="Scripts\version.json" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1109,7 +1154,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Dashboards\Dashboard_1.cshtml" />
@@ -1277,6 +1324,8 @@
     <Content Include="Views\areaStocks\Index.cshtml" />
     <Content Include="Views\AreasView\agregarArea.cshtml" />
     <Content Include="Views\AreasView\asignarEquipo.cshtml" />
+    <Content Include="Views\EquiposView\agregarEquipo2.cshtml" />
+    <Content Include="Views\EquiposView\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

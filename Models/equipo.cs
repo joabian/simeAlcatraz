@@ -13,7 +13,11 @@ namespace simeAlcatraz.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
     public partial class equipo
     {
         public int equipoID { get; set; }
@@ -35,8 +39,25 @@ namespace simeAlcatraz.Models
         public Nullable<bool> periodoServ { get; set; }
         public Nullable<int> periodoServNum { get; set; }
 
+<<<<<<< HEAD
+        public virtual List<categoria> categoriaModel { get; set; }
+
+
+        //public UploadFileModel()
+        //{
+        //    Files = new List<HttpPostedFileBase>();
+        //}
+
+        public virtual List<HttpPostedFileBase> Files { get; set; }
+
         [DataType(DataType.Upload)]
         public virtual HttpPostedFileBase ImageUpload { get; set; }
 
+
+=======
+        [DataType(DataType.Upload)]
+        public virtual HttpPostedFileBase ImageUpload { get; set; }
+
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
     }
 }

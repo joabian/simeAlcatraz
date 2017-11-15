@@ -18,5 +18,6 @@ namespace simeAlcatraz.Models
         public string nombre { get; set; }
         public Nullable<bool> activo { get; set; }
         public Nullable<System.DateTime> fechaIngreso { get; set; }
+
     }
 }

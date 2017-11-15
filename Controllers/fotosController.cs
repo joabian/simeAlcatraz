@@ -7,6 +7,11 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+<<<<<<< HEAD
+using System.Data.Entity;
+using simeAlcatraz.Extensions;
+=======
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
 using simeAlcatraz.Models;
 using System.Data.Entity;
 
@@ -15,7 +20,11 @@ namespace simeAlcatraz.Controllers
     public class fotosController : ApiController
     {
         private sime_dbEntities myEntity = new sime_dbEntities();
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
         // GET api/fotos
         public IEnumerable<foto> Get()
         {
