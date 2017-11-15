@@ -453,6 +453,10 @@ namespace simeAlcatraz
             bundles.Add(new ScriptBundle("~/plugins/pdfjs").Include(
                       "~/Scripts/plugins/pdfjs/pdf.js"));
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
         }
     }
 }

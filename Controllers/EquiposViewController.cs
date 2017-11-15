@@ -6,17 +6,28 @@ using System.Web.Mvc;
 using simeAlcatraz.Models;
 using System.IO;
 using System.Drawing;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
 
 namespace simeAlcatraz.Controllers
 {
     public class EquiposViewController : Controller
     {
         private sime_dbEntities myEntity = new sime_dbEntities();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
         //
         // GET: /EquiposView/
         public ActionResult agregarEquipo()
         {
-            return View();
+            ViewBag.IsProdSave = false;
+            ViewBag.Categories = myEntity.categorias;
+            var model = new equipo();
+            return View(model);
         }
 
         public ActionResult agregarEquipo2()
@@ -68,6 +79,7 @@ namespace simeAlcatraz.Controllers
         }
 
 
+<<<<<<< HEAD
         public ActionResult Create()
         {
             // To Bind the category drop down in search section
@@ -75,11 +87,25 @@ namespace simeAlcatraz.Controllers
             ViewBag.Categories = myEntity.categorias;
             var model = new equipo();
             return View(model);
+=======
+        //Action result for ajax call
+        [HttpPost]
+        public ActionResult GetSubsbyCategoriaID(int categoID)
+        {
+            List<subcategoria> objcity = new List<subcategoria>();
+            objcity = GetAllSubcategorias().Where(m => m.categoriaID == categoID).ToList();
+            SelectList obgcity = new SelectList(objcity, "subcategoriaID", "nombre", 0);
+            return Json(obgcity);
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Create(equipo equipo)
+=======
+        public ActionResult agregarEquipo(equipo equipo)
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
         {
             ViewBag.IsProdSave = false;
             if (ModelState.IsValid)
@@ -99,6 +125,13 @@ namespace simeAlcatraz.Controllers
                 eq.serializado = equipo.serializado;
                 eq.numeroSerie = equipo.numeroSerie;
                 eq.fechaModifico = DateTime.Now;
+<<<<<<< HEAD
+=======
+                eq.areaStatus = false;
+                eq.hasCheckList = false;
+                eq.periodoServ = false;
+                eq.periodoServNum = 0;
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
 
                 myEntity.equipoes.Add(eq);
                 myEntity.SaveChanges();
@@ -121,12 +154,21 @@ namespace simeAlcatraz.Controllers
                 else
                 {
                     // Save image to folder and get path
+<<<<<<< HEAD
                     var imageName = id + "-" + String.Format("{0:yyyyMMdd-HHmmssfff}", DateTime.Now);
                     var extension = System.IO.Path.GetExtension(equipo.ImageUpload.FileName).ToLower();
                     using (var img = System.Drawing.Image.FromStream(equipo.ImageUpload.InputStream))
                     {
                         var pathToSave = String.Format("/Album/{0}{1}", imageName, extension);
                         var pathToSaveThumb = String.Format("/Album/{0}_thumb{1}", imageName, extension);
+=======
+                    var imageName = String.Format("{0:yyyyMMdd-HHmmss}", DateTime.Now);
+                    var extension = System.IO.Path.GetExtension(equipo.ImageUpload.FileName).ToLower();
+                    using (var img = System.Drawing.Image.FromStream(equipo.ImageUpload.InputStream))
+                    {
+                        var pathToSave = String.Format("/Images/Equipos/{0}{1}", imageName, extension);
+                        var pathToSaveThumb = String.Format("/Images/Equipos/{0}_thumb{1}", imageName, extension);
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
 
                         // Save large size image, 600 x 600
                         SaveToFolder(img, extension, new Size(1000, 1000), pathToSave);
@@ -145,14 +187,30 @@ namespace simeAlcatraz.Controllers
                     }
 
                 }
+<<<<<<< HEAD
                 
                 ViewBag.IsProdSave = true;
             }
             
+=======
+
+                ViewBag.IsProdSave = true;
+            }
+
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
             ViewBag.Categories = myEntity.categorias;
             return View();
         }
 
+<<<<<<< HEAD
+=======
+        public List<subcategoria> GetAllSubcategorias()
+        {
+            List<subcategoria> subCategos = (from records in myEntity.subcategorias select records).ToList();
+            return subCategos;
+        }
+
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
         private void SaveToFolder(Image img, string extension, Size newSize, string pathToSave)
         {
             // Get new resolution
@@ -182,6 +240,7 @@ namespace simeAlcatraz.Controllers
             return finalSize;
         }
 
+<<<<<<< HEAD
 
 
         //[HttpPost]
@@ -218,6 +277,23 @@ namespace simeAlcatraz.Controllers
         //    return View(instructor);
         //}
 
+=======
+        //public ActionResult agregarEquipo2()
+        //{
+        //    equipo objEquipoModel = new equipo();
+        //    objEquipoModel.categoriaModel = new List<categoria>();
+        //    objEquipoModel.categoriaModel = GetAllCategorias();
+
+        //    return View(objEquipoModel);
+        //}
+
+        //public List<categoria> GetAllCategorias()
+        //{
+
+        //    List<categoria> categos = (from records in myEntity.categorias select records).ToList();
+        //    return categos;
+        //}
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
 
     }
 }

@@ -132,7 +132,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Folder Include="Album\" />
+=======
+    <Folder Include="App_Data\uploads\" />
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
     <Folder Include="Images\flags\16\" />
     <Folder Include="Images\flags\32\" />
     <Folder Include="Views\inventario\" />
@@ -190,7 +194,6 @@
     <Compile Include="Controllers\vwAreasController.cs" />
     <Compile Include="Controllers\vwStockController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
-    <Compile Include="Extensions\CustomMultipartFormDataStreamProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,7 +214,10 @@
     <Compile Include="Models\checklist.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Models\PhotoViewModel.cs" />
+=======
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
     <Compile Include="Models\comentario.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -611,7 +617,10 @@
     <Content Include="Scripts\angular\angular.min.js.map" />
     <Content Include="README.md" />
     <None Include="Properties\PublishProfiles\PROD.pubxml" />
+<<<<<<< HEAD
     <Content Include="Scripts\errors.json" />
+=======
+>>>>>>> 7355f75ef5cf883a31529eb5c1ad2edc9ce5d8e1
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\a1.jpg" />
     <Content Include="Images\a2.jpg" />
